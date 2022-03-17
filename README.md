@@ -1,3 +1,4 @@
+[![Build](https://github.com/PitDotDev/Sourc3---Web-Client/actions/workflows/main.yml/badge.svg)](https://github.com/PitDotDev/Sourc3---Web-Client/actions/workflows/main.yml)
 # Running SOURC3 Web Client
 
 ## Run web client extension
