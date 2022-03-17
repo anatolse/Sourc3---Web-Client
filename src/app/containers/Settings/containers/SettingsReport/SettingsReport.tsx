@@ -14,7 +14,7 @@ import { selectLogs } from '@app/containers/Settings/store/selectors';
 
 const ReportStyled = styled.div`
   margin-bottom: 30px;
-
+  padding: 0 26px;
   p {
     margin: 0;
     text-align: start;
@@ -25,7 +25,7 @@ const ReportStyled = styled.div`
 
 const LinkStyled = styled.span`
   cursor: pointer;
-  color: #00f6d2;
+  color: orange;
   margin 0 3px;
 `;
 
@@ -34,7 +34,7 @@ const SettingsReport = () => {
   const logs: any = useSelector(selectLogs());
 
   const handlePrevious: React.MouseEventHandler = () => {
-    navigate(ROUTES.SETTINGS.BASE);
+    navigate(ROUTES.WALLET.BASE);
   };
 
   const mailClicked = () => {
@@ -43,7 +43,7 @@ const SettingsReport = () => {
   };
 
   const githubClicked = () => {
-    window.open('https://github.com/BeamMW/web-wallet/issues', '_blank');
+    window.open('https://github.com/PitDotDev/web-wallet/issues', '_blank');
   };
 
   const saveLogsclicked = () => {
@@ -53,10 +53,10 @@ const SettingsReport = () => {
 
     zip.file('logs.log', finalLogs.join('\n'));
     zip.generateAsync({ type: 'blob' }).then((content) => {
-      saveAs(content, `beam-web-wallet-${version}-report.zip`);
+      saveAs(content, `source-web-client-${version}-report.zip`);
     });
 
-    navigate(ROUTES.SETTINGS.BASE);
+    navigate(ROUTES.WALLET.BASE);
   };
 
   return (

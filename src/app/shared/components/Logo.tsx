@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@linaria/core';
 
-import { LogoIcon, LogoSmall } from '@app/shared/icons';
+import { IconLogoLarge, LogoIcon } from '@app/shared/icons';
 
 interface LogoProps {
   size?: 'large' | 'small' | 'icon';
@@ -9,34 +9,33 @@ interface LogoProps {
 
 const LogoClassName = css`
   display: block;
-  margin: 0 auto 20px;
+  margin-left: -30px;
 `;
 const smallLogoClassName = css`
-  margin: 0 15px;
 `;
 
 const DIMENSIONS = {
   large: {
-    width: 159,
-    height: 159,
+    width: 375,
+    height: 332,
   },
   small: {
     width: 100,
     height: 100,
   },
   icon: {
-    width: 45,
-    height: 45,
+    width: 100,
+    height: 35,
   },
 };
 
 const Logo: React.FC<LogoProps> = ({ size = 'large' }) => {
-  const viewBox = '0 0 159 159';
+  const viewBox = '0 0 375 332';
   const dimensions = DIMENSIONS[size];
   return size === 'icon' ? (
-    <LogoSmall {...dimensions} className={smallLogoClassName} />
+    <LogoIcon {...dimensions} className={smallLogoClassName} />
   ) : (
-    <LogoIcon {...dimensions} viewBox={viewBox} className={LogoClassName} />
+    <IconLogoLarge {...dimensions} viewBox={viewBox} className={LogoClassName} />
   );
 };
 

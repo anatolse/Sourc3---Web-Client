@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const TransactionInfo = () => {
   const navigate = useNavigate();
   const handlePrevious: React.MouseEventHandler = () => {
-    navigate(ROUTES.SETTINGS.BASE);
+    navigate(ROUTES.WALLET.BASE);
   };
 
   return <Window title="Transaction info" onPrevious={handlePrevious} />;

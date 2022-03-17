@@ -5,7 +5,7 @@ import {
   Window, Button, Input, Footer, Popup,
 } from '@app/shared/components';
 
-import { ArrowLeftIcon, ArrowRightIcon } from '@app/shared/icons';
+import { ArrowLeftIcon } from '@app/shared/icons';
 
 import { createWallet } from '@core/api';
 
@@ -62,29 +62,40 @@ const SetPassword = () => {
     navigate(`${ROUTES.AUTH.REGISTRATION}?do_not_show_warn=true`);
   };
 
+  const AuthInfo = styled.p`
+  opacity: 0.5;
+  text-align: left;
+  line-height:20px;
+  font-size: 14px;
+  `;
+
   return (
     <>
-      <Window title="Password" onPrevious={handlePrevious}>
+      <Window padding="auth" auth title="Password" onPrevious={handlePrevious}>
         <FormStyled onSubmit={handleSubmit}>
-          <Input autoFocus type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <PasswordStrength value={pass} />
-          <p>Strong password needs to meet the following requirements:</p>
-          <ul>
-            <li>the length must be at least 10 characters</li>
-            <li>must contain at least one lowercase letter</li>
-            <li>must contain at least one uppercase letter</li>
-            <li>must contain at least one number</li>
-          </ul>
+          <AuthInfo>
+            Enter a strong password.
+            The password is specific to each client and is only store locally.
+
+          </AuthInfo>
+          <Input
+            autoFocus
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <Input
             type="password"
             valid={valid}
             label={error}
             placeholder="Confirm password"
             onChange={(e) => setConfirm(e.target.value)}
+            password
           />
+          <PasswordStrength value={pass} />
           <Footer>
-            <Button type="submit" icon={ArrowRightIcon} disabled={!ready}>
-              next
+            <Button type="submit" disabled={!ready}>
+              Get Started!
             </Button>
           </Footer>
         </FormStyled>
@@ -98,6 +109,7 @@ const SetPassword = () => {
           </Button>
         )}
         onCancel={() => toggleWarning(false)}
+        footer
       >
         If you return to seed phrase, it would be changed and your local password won’t be saved.
       </Popup>

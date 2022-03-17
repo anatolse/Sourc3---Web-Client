@@ -38,8 +38,7 @@ import { AddressData } from '@core/types';
 import { SendConfirm } from '@app/containers';
 
 const WarningStyled = styled.div`
-  margin: 30px -20px;
-  font-family: 'SFProDisplay';
+  margin: 0px -20px 20px -20px;
   font-style: italic;
   color: var(--color-gray);
 `;
@@ -48,6 +47,10 @@ const maxButtonStyle = css`
   position: absolute;
   right: 20px;
   top: 138px;
+`;
+
+const formClassName = css`
+padding: 0 32px;
 `;
 
 interface SendFormData {
@@ -334,9 +337,9 @@ const SendForm = () => {
   };
 
   return (
-    <Window title="Send" pallete="purple" onPrevious={showConfirm ? handlePrevious : undefined}>
+    <Window title="Send" onPrevious={showConfirm ? handlePrevious : undefined}>
       {!showConfirm ? (
-        <form onSubmit={submitForm}>
+        <form className={formClassName} onSubmit={submitForm}>
           <Section title="Send to" variant="gray">
             <Input
               variant="gray"
@@ -360,6 +363,7 @@ const SendForm = () => {
               asset_id={values.send_amount.asset_id}
               error={errors.send_amount?.toString()}
               onChange={(e) => handleAssetChange(e)}
+              pallete="black"
             />
             <Title variant="subtitle">Available</Title>
             {`${groths} ${truncate(selected.metadata_pairs.N)}`}
@@ -368,7 +372,7 @@ const SendForm = () => {
               <Button
                 icon={ArrowUpIcon}
                 variant="link"
-                pallete="purple"
+                pallete="orange"
                 className={maxButtonStyle}
                 onClick={handleMaxAmount}
               >
@@ -384,7 +388,7 @@ const SendForm = () => {
           />
         </Section> */}
           <WarningStyled>{warning}</WarningStyled>
-          <Button pallete="purple" icon={ArrowRightIcon} type="submit" disabled={isFormDisabled()}>
+          <Button pallete="orange" icon={ArrowRightIcon} type="submit" disabled={isFormDisabled()}>
             next
           </Button>
         </form>

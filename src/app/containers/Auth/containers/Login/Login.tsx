@@ -4,7 +4,7 @@ import {
   Popup, Button, Input, Splash,
 } from '@app/shared/components';
 
-import { WalletSmallIcon, DoneIcon } from '@app/shared/icons';
+import { DoneIcon } from '@app/shared/icons';
 
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate } from 'react-router-dom';
@@ -32,9 +32,9 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Splash size="small">
+      <Splash size="large">
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <p>Enter your password to access the wallet</p>
+          <p>Enter your password to access the web client</p>
           <Input
             autoFocus
             name="password"
@@ -45,8 +45,8 @@ const Login: React.FC = () => {
             label={error}
             ref={inputRef}
           />
-          <Button type="submit" icon={WalletSmallIcon}>
-            open your wallet
+          <Button type="submit">
+            open your client
           </Button>
           <Button
             variant="link"
@@ -55,13 +55,14 @@ const Login: React.FC = () => {
               toggleWarning(true);
             }}
           >
-            Restore wallet or create a new one
+            Restore client or create a new one
           </Button>
         </form>
       </Splash>
       <Popup
         visible={warningVisible}
-        title="Restore wallet or create a new one"
+        title="Restore web client or create a new one"
+        footer
         confirmButton={(
           <Button icon={DoneIcon} onClick={() => navigate(ROUTES.AUTH.BASE)}>
             I agree

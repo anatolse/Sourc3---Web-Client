@@ -22,24 +22,31 @@ const ContainerStyled = styled.div`
   text-align: left;
   font-size: 16px;
   font-weight: 600;
-  color: white;
+  color: black;
 `;
 
 const AmountStyled = styled.span`
   flex-grow: 1;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
 `;
 
 const iconClassName = css`
   position: absolute;
   right: 100%;
-  margin-top: -4px;
 `;
 
 const rateStyle = css`
-  opacity: 0.8;
-  margin: 0;
-  color: white;
-  white-space: nowrap;
+opacity: 0.5;
+margin: 0;
+color: black;
+position: absolute;
+top: 40px;
+font-size: 14px;
+line-height: 14px;
+font-weight: 500;
+}
 `;
 
 const AssetLabel: React.FC<AssetLabelProps> = ({

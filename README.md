@@ -1,6 +1,6 @@
-# Running Beam Web wallet
+# Running SOURC3 Web Client
 
-## Run wallet extension
+## Run web client extension
 
 `npm install`
 `npm run build`

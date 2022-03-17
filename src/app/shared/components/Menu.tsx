@@ -3,17 +3,17 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
-import { CancelIcon } from '@app/shared/icons';
+import { IconProfile, IconSettings } from '@app/shared/icons';
 
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button';
-import BackDrop from './Backdrop';
 
 const MENU_ITEMS = [
   {
     title: 'Wallet',
-    value: ROUTES.WALLET.BASE,
+    value: ROUTES.WALLET.PROFILE,
+    icon: IconProfile,
   },
   // {
   //   title: 'UTXO',
@@ -22,31 +22,24 @@ const MENU_ITEMS = [
   {
     title: 'Settings',
     value: ROUTES.SETTINGS.BASE,
+    icon: IconSettings,
   },
 ];
 
 const ContainerStyled = styled.nav`
-  position: fixed;
-  z-index: 4;
-  top: 50px;
-  left: 0;
-  width: 319px;
-  height: 550px;
-  background-image: linear-gradient(to bottom, #0a4c7e, #042548);
+position: absolute;
+width: 95px;
+right: 0;
 `;
 
 const ListStyled = styled.ul`
-  padding-top: 80px;
+display: flex;
+width: 95px;
+align-items: center;
+justify-content: flex-end;
+margin: 12px 0;
 `;
-
-const ListItemStyled = styled.li<{ active: boolean }>`
-  height: 60px;
-  line-height: 60px;
-  padding-left: 70px;
-  background-image: ${({ active }) => (!active ? 'none' : 'linear-gradient(to right, rgba(5, 226, 194, 0.1), rgba(5, 226, 194, 0))')};
-  text-align: left;
-  font-size: 16px;
-  cursor: ${({ active }) => (active ? 'default' : 'pointer')};
+const ListItemStyled = styled.li`
 `;
 
 const buttonStyle = css`
@@ -70,18 +63,30 @@ const Menu: React.FC<MenuProps> = ({ onCancel }) => {
   };
 
   return (
-    <BackDrop onCancel={onCancel}>
-      <ContainerStyled>
-        <Button variant="icon" icon={CancelIcon} className={buttonStyle} onClick={onCancel} />
-        <ListStyled>
-          {MENU_ITEMS.map(({ title, value }, index) => (
-            <ListItemStyled key={value} active={location.pathname === value} data-index={index} onClick={handleClick}>
-              {title}
-            </ListItemStyled>
-          ))}
-        </ListStyled>
-      </ContainerStyled>
-    </BackDrop>
+    // <ContainerStyled>
+    //   <ListStyled>
+    //     {MENU_ITEMS.map(({ title, value }, index) => (
+    //       <ListItemStyled key={value} active={location.pathname === value} data-index={index} onClick={handleClick}>
+    //         {title}
+    //       </ListItemStyled>
+    //     ))}
+    //   </ListStyled>
+    // </ContainerStyled>
+    <ContainerStyled>
+      <ListStyled>
+        {/* <ListItemStyled>
+        Profile
+      </ListItemStyled>
+      <ListItemStyled>
+        <Button variant="link" icon={IconSettings} />
+      </ListItemStyled> */}
+        {MENU_ITEMS.map(({ title, value, icon }, index) => (
+          <ListItemStyled key={value} data-index={index} onClick={handleClick}>
+            <Button variant="icon" icon={icon} />
+          </ListItemStyled>
+        ))}
+      </ListStyled>
+    </ContainerStyled>
   );
 };
 

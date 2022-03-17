@@ -23,7 +23,7 @@ const SettingsConnected = () => {
   const sites: any = useSelector(selectConnectedSites());
 
   const handlePrevious: React.MouseEventHandler = () => {
-    navigate(ROUTES.SETTINGS.BASE);
+    navigate(ROUTES.WALLET.BASE);
   };
 
   return (

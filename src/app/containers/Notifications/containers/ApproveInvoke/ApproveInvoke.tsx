@@ -188,7 +188,7 @@ const ApproveInvoke = () => {
             <FeeLabelStyled>
               {info.fee}
               {' '}
-              BEAM
+              SC3
               {' '}
             </FeeLabelStyled>
           </FeeValue>

@@ -3,18 +3,24 @@ import { useRoutes } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@app/shared/constants';
 import {
-  Wallet, SendForm, Receive, Utxo,
+  SendForm, Receive, Utxo, Wallet,
 } from '..';
+import Activity from '../Activity';
 
 const routes = [
   {
     path: ROUTES_PATH.WALLET.BASE,
-    element: <Wallet />,
+    element: <Activity />,
     exact: true,
+  },
+  {
+    path: ROUTES_PATH.WALLET.PROFILE,
+    element: <Wallet />,
   },
   {
     path: ROUTES_PATH.WALLET.SEND,
     element: <SendForm />,
+
   },
   {
     path: ROUTES_PATH.WALLET.RECEIVE,

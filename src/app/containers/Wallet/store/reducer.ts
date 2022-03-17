@@ -18,9 +18,9 @@ const META_BLANK: Partial<Asset> = {
 
 const META_BEAM: Partial<Asset> = {
   metadata_pairs: {
-    N: 'BEAM',
-    SN: 'BEAM',
-    UN: 'BEAM',
+    N: 'SC3',
+    SN: 'SC3',
+    UN: 'SC3',
   },
 };
 

@@ -2,26 +2,39 @@ import React from 'react';
 import { styled } from '@linaria/react';
 
 interface TitleProps {
-  variant?: 'regular' | 'subtitle' | 'heading';
+  variant?: 'regular' | 'subtitle' | 'heading' | 'auth';
 }
 
 const STYLE_BASE = {
   margin: 0,
-  fontSize: 14,
+  fontSize: 20,
   fontWeight: 600,
-  textTransform: 'uppercase',
   textAlign: 'left',
   letterSpacing: 1,
-  color: 'white',
+  color: 'black',
 };
 
 const HeadingStyled = styled.h2`
-  line-height: 72px;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 24px;
+  margin: 16px 0 0 24px;
+  width:220px;
+  height: 24px;
+  text-align:left;
+`;
+
+const AuthTitleStyled = styled.h2`
+position: absolute;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 30px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    top: 97px;
+    left: 0;
+    margin:0;
 `;
 
 const TitleStyled = styled.h3`
@@ -43,6 +56,7 @@ const VARIANTS = {
   regular: TitleStyled,
   subtitle: SubtitleStyled,
   heading: HeadingStyled,
+  auth: AuthTitleStyled,
 };
 
 const Title: React.FC<TitleProps> = ({ variant = 'regular', children }) => {

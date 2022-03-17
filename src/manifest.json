@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Beam Web Wallet (Masternet)",
-  "short_name": "Beam Web Wallet (Masternet)",
-  "description": "Beam Web Wallet (Masternet)",
-  "version": "1.0.1",
+  "name": "Sourc3 (Masternet)",
+  "short_name": "Sourc3 (Masternet)",
+  "description": "Sourc3 (Masternet)",
+  "version": "0.0.1",
   "browser_action": {
     "default_popup": "popup.html"
   },

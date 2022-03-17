@@ -8,20 +8,25 @@ interface SectionProps {
   title?: string;
   subtitle?: string;
   collapse?: boolean;
-  variant?: 'regular' | 'gray';
+  variant?: 'regular' | 'gray' | 'receipt';
   showAllAction?: () => void;
 }
 
 const SectionStyled = styled.div`
   position: relative;
-  margin: 0 -10px;
-  padding-top: 20px;
-  text-align: left;
+  width: 359px;
+  height: 146px;
+  overflow:hidden;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 
   > .cancel-button {
     position: absolute;
-    top: 68px;
-    right: 20px;
+    top: 76px;
+    right: 0px;
     cursor: pointer;
   }
 
@@ -32,9 +37,9 @@ const SectionStyled = styled.div`
 
 const SectionGrayStyled = styled.div`
   position: relative;
-  margin: 0 -30px;
-  margin-bottom: 20px;
-  padding: 20px;
+  // margin: 0 -30px;
+  // margin-bottom: 20px;
+  padding: 5px;
   background-color: rgba(255, 255, 255, 0.05);
   text-align: left;
 
@@ -76,7 +81,20 @@ const ShowAll = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: none;
+    padding: 24px 0 10px 16px;
+`;
+
+const ReceiptSectionStyled = styled(SectionStyled)`
+width: 359px;
+height: 75px;
+border: none;
+box-sizing: border-box;
+box-shadow: none
+border-radius: none;
 `;
 
 const Section: React.FC<SectionProps> = ({
@@ -96,6 +114,7 @@ const Section: React.FC<SectionProps> = ({
   const SectionComponent = {
     regular: SectionStyled,
     gray: SectionGrayStyled,
+    receipt: ReceiptSectionStyled,
   }[variant];
 
   return (

@@ -4,32 +4,33 @@ import { styled } from '@linaria/react';
 import { Window, Button, Footer } from '@app/shared/components';
 
 import {
-  EyeIcon, PassIcon, CopyIcon, DoneIcon,
 } from '@app/shared/icons';
 
-const WarningListStyled = styled.ul`
+const WarningListStyled = styled.ol`
+    list-style: auto;
+    padding-left: 20px;
+    opacity: 0.5;
+    line-height: 24px;
+    margin-bottom:24px;
+    font-weight: 800;
   > li {
     position: relative;
-    height: 34px;
-    line-height: 34px;
-    margin-bottom: 20px;
-    padding-left: 60px;
     text-align: left;
-  }
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
   }
 
   p {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: left;
     line-height: normal;
     margin: 0;
   }
+`;
+
+const AuthInfo = styled.p`
+opacity: 0.5;
+text-align: left;
+line-height:20px;
+font-size: 14px;
 `;
 
 interface RegistrationWarningProps {
@@ -37,31 +38,23 @@ interface RegistrationWarningProps {
 }
 
 const RegistrationWarning: React.FC<RegistrationWarningProps> = ({ onClick }) => (
-  <Window title="Create new wallet">
-    <p>
-      If you ever lose your device, you will need this phrase to recover your wallet!
-      <br />
-      Never type your seed phrase in keychains or password managers.
-      <br />
-      Never save it in your local or remote folders in any form.
-    </p>
+  <Window  padding="auth" auth title="Authorization">
+    <AuthInfo>
+      SOURC3 is a decentralized platform. Therefore authorization is done through a secret phrase.
+    </AuthInfo>
+    <AuthInfo>
+      {' '}
+      In the next screen you will be presented with the twelve words.
+    </AuthInfo>
     <WarningListStyled>
-      <li>
-        <EyeIcon width={48} height={34} />
-        <p>Do not let anyone see your seed phrase</p>
-      </li>
-      <li>
-        <PassIcon width={48} height={34} />
-        <p>Never type your seed phrase into password managers or elsewhere</p>
-      </li>
-      <li>
-        <CopyIcon width={48} height={34} />
-        <p>Make at least 2 copies of the phrase in case of emergency</p>
-      </li>
+      <li>Copy them</li>
+      <li>Keep them safe</li>
+      <li>Never share them with anyone</li>
     </WarningListStyled>
+    <AuthInfo>This is the only authorization you will ever need.</AuthInfo>
     <Footer>
-      <Button icon={DoneIcon} type="button" onClick={() => onClick()}>
-        I understand
+      <Button type="button" onClick={() => onClick()}>
+        Show phrase
       </Button>
     </Footer>
   </Window>

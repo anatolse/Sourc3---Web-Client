@@ -34,10 +34,10 @@ const SliderStyled = styled.div<{ active: boolean }>`
   width: 50%;
   height: 100%;
   line-height: 30px;
-  border: 1px solid var(--color-green);
+  // border: 1px solid var(--color-green);
   border-radius: 16px;
-  background-color: #206978;
-  color: var(--color-green);
+  background-color: var(--color-blue);
+  color: white;
 `;
 
 const LabeledToggle: React.FC<LabeledToggleProps> = ({

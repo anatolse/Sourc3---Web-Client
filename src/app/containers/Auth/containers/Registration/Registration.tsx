@@ -7,7 +7,7 @@ import {
 
 import { ROUTES } from '@app/shared/constants';
 
-import { DoneIcon, LockIcon } from '@app/shared/icons';
+import { DoneIcon } from '@app/shared/icons';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,18 +20,21 @@ const SeedListStyled = styled.ol`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 14px;
+  position: absolute;
+    left: 0;
 
   > li {
     counter-increment: counter;
     display: inline-block;
-    width: 140px;
-    height: 32px;
+    min-width: 115px;
+    height: 20px;
     line-height: 30px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 32px;
     border-radius: 16px;
     text-align: left;
+    font-weight: 600;
+    font-size: 16px;
 
     &:before {
       display: inline-block;
@@ -41,10 +44,10 @@ const SeedListStyled = styled.ol`
       line-height: 20px;
       margin: 5px 10px 5px 9px;
       border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: black;
       text-align: center;
       font-size: 10px;
-      color: rgba(255, 255, 255, 0.5);
+      color: white;
     }
 `;
 
@@ -77,28 +80,37 @@ const Registration: React.FC = () => {
     navigate(ROUTES.AUTH.BASE);
   };
 
+  const AuthInfo = styled.p`
+opacity: 0.5;
+text-align: left;
+line-height:20px;
+font-size: 14px;
+`;
+
   return !isRegistrationWarning ? (
     <>
-      <Window title="Seed phrase" onPrevious={handlePrevious}>
-        <p>
-          Your seed phrase is the access key to all the funds in your wallet. Print or write down the phrase to keep it
-          in a safe or in a locked vault. Without the phrase you will not be able to recover your money.
-        </p>
+      <Window padding="auth" auth title="Secret phrase" onPrevious={handlePrevious}>
+        <AuthInfo>
+          Copy the words of the secret phrase.
+          <br />
+          The order is important.
+        </AuthInfo>
         <SeedListStyled>
           {seed.split(' ').map((value, index) => (
             // eslint-disable-next-line
             <li key={index}>{value}</li>
           ))}
         </SeedListStyled>
-        <Footer margin="small">
-          <Button icon={LockIcon} type="button" onClick={() => toggleWarning(true)}>
-            Complete verification
+        <Footer margin="large">
+          <Button type="button" onClick={() => toggleWarning(true)}>
+            Confirm Phrase
           </Button>
         </Footer>
       </Window>
       <Popup
         visible={warningVisible}
-        title="Save seed phrase"
+        title="Save secret phrase"
+        footer
         confirmButton={(
           <Button icon={DoneIcon} onClick={handleNextClick}>
             done
@@ -106,7 +118,7 @@ const Registration: React.FC = () => {
         )}
         onCancel={handleCancel}
       >
-        Please write the seed phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
+        Please write the secret phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
         secure.
       </Popup>
     </>

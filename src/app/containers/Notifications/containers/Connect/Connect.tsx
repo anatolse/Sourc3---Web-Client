@@ -41,7 +41,7 @@ const Connect = () => {
         </b>
         is trying to connect
         <br />
-        to the BEAM Web Wallet.
+        to the SOURCE Web Client.
       </StyledMessage>
       <StyledApprove>Approve connection?</StyledApprove>
       <Button

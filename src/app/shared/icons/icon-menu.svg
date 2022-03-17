@@ -6,22 +6,22 @@
     </defs>
     <g fill="none" fill-rule="evenodd">
         <g transform="translate(0 4)">
-            <mask id="b" fill="#fff">
+            <mask id="b" fill="#fe7b17">
                 <use xlink:href="#a"/>
             </mask>
-            <path fill="#FFF" mask="url(#b)" d="M-5-5h32V8H-5z"/>
+            <path fill="#fe7b17" mask="url(#b)" d="M-5-5h32V8H-5z"/>
         </g>
         <g transform="translate(0 10)">
-            <mask id="d" fill="#fff">
+            <mask id="d" fill="#fe7b17">
                 <use xlink:href="#c"/>
             </mask>
-            <path fill="#FFF" mask="url(#d)" d="M-5-5h32V8H-5z"/>
+            <path fill="#fe7b17" mask="url(#d)" d="M-5-5h32V8H-5z"/>
         </g>
         <g transform="translate(0 16)">
-            <mask id="f" fill="#fff">
+            <mask id="f" fill="#fe7b17">
                 <use xlink:href="#e"/>
             </mask>
-            <path fill="#FFF" mask="url(#f)" d="M-5-5h32V8H-5z"/>
+            <path fill="#fe7b17" mask="url(#f)" d="M-5-5h32V8H-5z"/>
         </g>
     </g>
 </svg>

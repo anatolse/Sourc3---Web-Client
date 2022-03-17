@@ -14,7 +14,7 @@ import { SyncStep } from '@app/containers/Auth/interfaces';
 import { ProgressBar } from '../../../../shared/components';
 
 const TitleStyled = styled.h2`
-  margin: 0;
+  margin-top: 50px;
   font-size: 16px;
 `;
 
@@ -22,7 +22,7 @@ const SubtitleStyled = styled.h3`
   opacity: 0.5;
   height: 17px;
   margin: 30px 0;
-  color: white;
+  color: black;
   font-size: 14px;
   font-weight: 400;
   font-style: italic;
@@ -68,7 +68,7 @@ const Progress = () => {
   const progress = `${title} ${syncPercent}%`;
 
   return (
-    <Splash size="small">
+    <Splash size="large">
       <TitleStyled>Loading</TitleStyled>
       <SubtitleStyled>{active && progress}</SubtitleStyled>
       <ProgressBar active={active} percent={syncPercent} />

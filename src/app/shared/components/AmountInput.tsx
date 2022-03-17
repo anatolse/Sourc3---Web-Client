@@ -17,13 +17,14 @@ import Rate from './Rate';
 const ContainerStyled = styled.div`
   position: relative;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const LabelStyled = styled.div`
   display: inline-block;
   vertical-align: bottom;
   line-height: 26px;
+  color: black;
 `;
 
 const selectClassName = css`
@@ -39,7 +40,7 @@ interface AmountInputProps {
   value: string;
   asset_id: number;
   error?: string;
-  pallete?: 'purple' | 'blue';
+  pallete?: 'black' | 'blue' ;
   onChange?: (value: TransactionAmount) => void;
 }
 
@@ -47,7 +48,7 @@ const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d+)?$/;
 
 const rateStyle = css`
   position: absolute;
-  top: 33px;
+  top: 50px;
   left: 0;
 `;
 

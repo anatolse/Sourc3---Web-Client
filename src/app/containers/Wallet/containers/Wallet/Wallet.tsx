@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from '@linaria/react';
 
 import { Button, Window, Section } from '@app/shared/components';
 
-import { ArrowUpIcon, ArrowDownIcon } from '@app/shared/icons';
+import {
+  ArrowUpIcon, ArrowDownIcon, IconProfileLarge, ArrowDownIconUnder, IconStar,
+} from '@app/shared/icons';
 
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@app/shared/constants';
@@ -12,22 +14,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAssets, selectRate } from '@app/containers/Wallet/store/selectors';
 
 import { loadRate } from '@app/containers/Wallet/store/actions';
-import { TransactionList } from '@app/containers/Transactions';
-import { createdComparator } from '@core/utils';
 import { selectTransactions } from '@app/containers/Transactions/store/selectors';
-import { selectIsBalanceHidden } from '@app/shared/store/selectors';
 import { Assets } from '../../components/Wallet';
 
-const TXS_MAX = 4;
+// const TXS_MAX = 4;
 
 const ActionsStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px -14px 0;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+align-items: center;
+`;
+const Profile = styled.div`
+display: flex;
+width: 100%;
+height: 105px;
+justify-content: space-between;
+align-items: center;
+padding: 0 24px
+`;
+const Avatar = styled.div`
+width: 56px;
+height: 56px;
+left: 24px;
+top: 81px;
+`;
+const Name = styled.p`
+margin: 0
+font-weight: 600;
+font-size: 20px;
+line-height: 20px;
 
-  > button {
-    margin: 0 4px !important;
-  }
+text-align: right;
+letter-spacing: 0.1px;
+`;
+const ButtonStyled = styled.div`
+display: flex
+width:100%
+padding: 24px;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: space-around;
 `;
 
 const Wallet = () => {
@@ -35,39 +62,60 @@ const Wallet = () => {
   const navigate = useNavigate();
   const assets = useSelector(selectAssets());
   const transactions = useSelector(selectTransactions());
-  const isBalanceHidden = useSelector(selectIsBalanceHidden());
   const rate = useSelector(selectRate());
-
+  console.log(assets[0]);
   useEffect(() => {
     if (!rate) {
       dispatch(loadRate.request());
     }
   }, [dispatch, rate]);
 
-  const sorted = transactions.slice().sort(createdComparator);
-  const sliced = sorted.slice(0, TXS_MAX);
-
-  const navigateToTransactions = useCallback(() => {
-    navigate(ROUTES.TRANSACTIONS.BASE);
-  }, [navigate]);
-
   return (
-    <Window title="Wallet" primary>
+    <Window title="Profile">
       <ActionsStyled>
-        <Button pallete="purple" icon={ArrowUpIcon} onClick={() => navigate(ROUTES.WALLET.SEND)}>
-          send
-        </Button>
-        <Button pallete="blue" icon={ArrowDownIcon} onClick={() => navigate(ROUTES.WALLET.RECEIVE)}>
-          receive
-        </Button>
+        <Profile>
+          <Button variant="icon" icon={IconProfileLarge} />
+          <Name>Long John Silver</Name>
+          <Button variant="link">Manage</Button>
+        </Profile>
+        <Section title="Balance">
+          <Assets data={assets} />
+        </Section>
+        <ButtonStyled>
+          <Button
+            variant="block"
+            pallete="orange"
+            icon={ArrowUpIcon}
+            onClick={() => navigate(ROUTES.WALLET.SEND)}
+          >
+            send
+          </Button>
+          <Button
+            variant="block"
+            pallete="green"
+            icon={ArrowDownIcon}
+            onClick={() => navigate(ROUTES.WALLET.RECEIVE)}
+          >
+            receive
+          </Button>
+          <Button
+            variant="block"
+            pallete="black"
+            icon={IconStar}
+            // onClick={() => navigate(ROUTES.WALLET.SEND)}
+          >
+            claim
+          </Button>
+          <Button
+            variant="block"
+            pallete="blue"
+            icon={ArrowDownIconUnder}
+            // onClick={() => navigate(ROUTES.WALLET.RECEIVE)}
+          >
+            buy
+          </Button>
+        </ButtonStyled>
       </ActionsStyled>
-      <Section title="Assets">
-        <Assets data={assets} isBalanceHidden={isBalanceHidden} />
-      </Section>
-
-      <Section title="Transactions" showAllAction={sorted.length > TXS_MAX ? navigateToTransactions : undefined}>
-        <TransactionList data={sliced} isBalanceHidden={isBalanceHidden} />
-      </Section>
     </Window>
   );
 };

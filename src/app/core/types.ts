@@ -1,6 +1,6 @@
-export type Pallete = 'green' | 'ghost' | 'purple' | 'blue' | 'red' | 'white';
+export type Pallete = 'green' | 'ghost' | 'purple' | 'blue' | 'red' | 'white' | 'orange' | 'black';
 
-export type ButtonVariant = 'regular' | 'ghost' | 'block' | 'link' | 'icon';
+export type ButtonVariant = 'regular' | 'ghost' | 'block' | 'link' | 'icon' | 'agree' | 'menu' | 'eye' | 'setting';
 
 export type AddressType = 'regular' | 'regular_new' | 'max_privacy' | 'offline' | 'public_offline' | 'unknown';
 export interface CreateWalletParams {
@@ -57,9 +57,8 @@ export enum WalletMethod {
 }
 
 export enum ExternalAppMethod {
-  CreateBeamApi = 'create_beam_api'
+  CreateBeamApi = 'create_beam_api',
 }
-
 export interface RemoteRequest {
   id: number;
   method: WalletMethod | RPCMethod;
@@ -78,7 +77,7 @@ export enum BackgroundEvent {
   DOWNLOAD_DB_PROGRESS = 'download_db_progress',
   RESTORE_DB_PROGRESS = 'restore_db_progress',
   UNLOCK_WALLET = 'unlock_wallet',
-  CLOSE_NOTIFICATION = 'close_notification'
+  CLOSE_NOTIFICATION = 'close_notification',
 }
 
 export enum RPCEvent {

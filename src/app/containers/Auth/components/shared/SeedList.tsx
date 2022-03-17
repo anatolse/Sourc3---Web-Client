@@ -24,54 +24,60 @@ const ListStyled = styled.ul`
 const baseClassName = css`
   position: relative;
   display: inline-block;
-  width: 140px;
-  height: 32px;
+  width: 147px;
+  height: 44px;
   margin-bottom: 10px;
   padding-left: 30px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-right: -18px;
+}
 
   &:before {
     position: absolute;
-    top: 12px;
-    left: 0;
+    top: 10px;
+    left: 10px;
     content: attr(data-index);
-    width: 20px;
-    height: 20px;
-    line-height: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid black;
     border-radius: 50%;
     text-align: center;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    color: black;
     box-sizing: border-box;
   }
 
   > input {
-    width: 110px;
-    height: 32px;
-    line-height: 16px;
-    padding-top: 16px;
+    width: 97px;
+    height: 41px;
+    line-height: 20px;
     background-color: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    color: black;
+    font-size: 16px
+    caret-color: orange;
+    border:none;
+
   }
 `;
 
 const errorClassName = css`
   &:before {
-    line-height: 20px;
+    line-height: 24px;
     border: none;
     background-color: var(--color-red);
-    color: var(--color-dark-blue);
+    color: var(--color-white);
   }
 `;
 
 const validClassName = css`
   &:before {
-    line-height: 20px;
+    line-height: 24px;
     border: none;
-    background-color: var(--color-green);
-    color: var(--color-dark-blue);
+    background-color: var(--color-black);
+    color: var(--color-white);
   }
 `;
 
@@ -115,7 +121,6 @@ const SeedList: React.FC<SeedListProps> = ({
   const handlePaste: React.ClipboardEventHandler = (event) => {
     if (!indexByValue) {
       const seed: string = event.clipboardData.getData('text');
-
       if (REGEXP_SEED.test(seed)) {
         event.preventDefault();
         fillFromSeed(seed);

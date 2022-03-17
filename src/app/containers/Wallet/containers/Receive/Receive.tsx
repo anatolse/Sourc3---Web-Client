@@ -21,12 +21,12 @@ import { toast } from 'react-toastify';
 
 const AddressStyled = styled.div`
   line-height: 24px;
+  text-align: center;
 `;
 
 const TipStyled = styled.div`
   line-height: 1.14;
   margin-top: 10px;
-  font-family: SFProDisplay;
   font-size: 14px;
   font-style: italic;
   color: var(--color-gray);
@@ -62,7 +62,7 @@ const QrCodeWrapper = styled.div`
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #fff;
+    color: black;
   }
 `;
 
@@ -107,18 +107,19 @@ const Receive = () => {
   };
 
   return (
-    <Window title="Receive" pallete="blue">
+    <Window title="Receive">
       <Popup
         visible={qrVisible}
         title=""
         onCancel={() => setQrVisible(false)}
         confirmButton={(
-          <Button icon={CopySmallIcon} pallete="blue" onClick={copyAndCloseQr}>
+          <Button icon={CopySmallIcon} pallete="orange" onClick={copyAndCloseQr}>
             copy and close
           </Button>
         )}
         footerClass="qr-code-popup"
         cancelButton={null}
+        footer
       >
         <QrCodeWrapper>
           <div className="qr-cd">
@@ -128,7 +129,7 @@ const Receive = () => {
             <>
               <div className="text"> Transaction can last at most 72 hours.</div>
               <br />
-              <div className="text">Min transaction fee is 0.01 BEAM.</div>
+              <div className="text">Min transaction fee is 0.01 SC3.</div>
             </>
           ) : (
             <>
@@ -154,7 +155,7 @@ const Receive = () => {
         <AmountInput
           value={amount}
           asset_id={asset_id}
-          pallete="blue"
+          pallete="black"
           onChange={(e) => dispatch(setReceiveAmount(e))}
         />
       </Section>
@@ -169,7 +170,7 @@ const Receive = () => {
           Transaction can last at most 72 hours.
           <br />
           <br />
-          Min transaction fee is 0.01 BEAM.
+          Min transaction fee is 0.01 SC3.
         </WarningStyled>
       ) : (
         <WarningStyled>
@@ -183,7 +184,7 @@ const Receive = () => {
       {/* <Section title="Comment" variant="gray" collapse>
           <Input variant="gray" />
         </Section> */}
-      <Button pallete="blue" type="button" onClick={submitForm}>
+      <Button pallete="orange" type="button" onClick={submitForm}>
         copy and close
       </Button>
     </Window>

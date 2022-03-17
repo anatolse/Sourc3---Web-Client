@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { styled } from '@linaria/react';
 
 import {
   Button, Footer, Popup, Window,
@@ -53,13 +54,24 @@ const RegistrationConfirm: React.FC = () => {
     dispatch(generateRegistrationSeed.request());
     navigate(`${ROUTES.AUTH.REGISTRATION}?do_not_show_warn=true`);
   };
+  const AuthInfo = styled.p`
+opacity: 0.5;
+text-align: left;
+line-height:20px;
+font-size: 14px;
+`;
 
   return (
-    <Window title="Confirm seed phrase" onPrevious={() => toggleWarning(true)}>
-      <p>
-        Your seed phrase is the access key to all the funds in your wallet. Print or write down the phrase to keep it in
-        a safe or in a locked vault. Without the phrase you will not be able to recover your money.
-      </p>
+    <Window
+      padding="auth"
+      auth
+      title="Confirmation"
+      onPrevious={() => toggleWarning(true)}
+    >
+      <AuthInfo>
+        Enter the words from the secret phrase corresponding the numbers shown below.
+        You can skip the confrimation.
+      </AuthInfo>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
         <Footer>
@@ -73,6 +85,7 @@ const RegistrationConfirm: React.FC = () => {
         visible={warningVisible}
         title="Back to seed phrase"
         footerClass="justify-right"
+        footer
         confirmButton={(
           <Button type="button" onClick={handlePrevious}>
             generate

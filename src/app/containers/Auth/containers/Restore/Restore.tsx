@@ -46,11 +46,11 @@ const Restore: React.FC = () => {
   };
 
   return (
-    <Window title="Restore wallet">
+    <Window padding="auth" auth title="Restore web client">
       <p>Type in your seed phrase</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList data={errors} initial={cache} onInput={(e) => seedListHandler(e)} />
-        <Footer>
+        <Footer margin="small">
           <Button type="submit" disabled={!valid}>
             Submit
           </Button>

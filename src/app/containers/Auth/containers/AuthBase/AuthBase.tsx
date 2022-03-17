@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Popup, Splash, Button } from '@app/shared/components';
+import {
+  Popup, Splash, Button, Footer,
+} from '@app/shared/components';
 import { ROUTES } from '@app/shared/constants';
 
-import { AddIcon, DoneIcon } from '@app/shared/icons';
+import { DoneIcon } from '@app/shared/icons';
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -21,27 +23,30 @@ const AuthBase: React.FC = () => {
 
   return (
     <>
-      <Splash blur={warningVisible}>
-        <Button type="button" icon={AddIcon} onClick={() => navigate(ROUTES.AUTH.REGISTRATION)}>
-          create new wallet
-        </Button>
-        <Button variant="link" onClick={() => toggleWarning(true)}>
-          Restore wallet
-        </Button>
+      <Splash blur={warningVisible} size="large">
+        <Footer margin="small">
+          <Button type="button" onClick={() => toggleWarning(true)}>
+            Login
+          </Button>
+          <Button variant="link" onClick={() => navigate(ROUTES.AUTH.REGISTRATION)}>
+            New user
+          </Button>
+        </Footer>
       </Splash>
       <Popup
         visible={warningVisible}
-        title="Restore wallet"
+        title="Restore web client"
         confirmButton={(
-          <Button icon={DoneIcon} onClick={() => navigate(ROUTES.AUTH.RESTORE)}>
+          <Button variant="agree" icon={DoneIcon} onClick={() => navigate(ROUTES.AUTH.RESTORE)}>
             I agree
           </Button>
         )}
         onCancel={() => toggleWarning(false)}
+        footer
       >
-        You are trying to restore an existing Beam Wallet.
+        You are trying to restore an existing SOURCE3 web client.
         <br />
-        Please notice that if you use your wallet on another device, your balance will be up to date, but transaction
+        Please notice that if you use your client on another device, your balance will be up to date, but transaction
         history and addresses will be kept separately on each device.
       </Popup>
     </>

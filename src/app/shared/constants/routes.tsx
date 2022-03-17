@@ -9,11 +9,12 @@ export const ROUTES = {
     PROGRESS: '/auth/progress',
   },
   WALLET: {
-    BASE: '/wallet',
-    SEND: '/wallet/send',
-    SEND_CONFIRM: '/wallet/send_confirm',
-    RECEIVE: '/wallet/receive',
-    UTXO: '/wallet/utxo',
+    BASE: '/activity',
+    PROFILE: '/activity/profile',
+    SEND: '/activity/send',
+    SEND_CONFIRM: '/activity/send_confirm',
+    RECEIVE: '/activity/receive',
+    UTXO: '/activity/utxo',
   },
   TRANSACTIONS: {
     BASE: '/transactions',
@@ -45,6 +46,7 @@ export const ROUTES_PATH = {
   },
   WALLET: {
     BASE: '/',
+    PROFILE: '/profile',
     SEND: '/send',
     RECEIVE: '/receive',
     UTXO: '/utxo',

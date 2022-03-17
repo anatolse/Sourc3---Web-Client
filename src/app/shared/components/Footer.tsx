@@ -3,7 +3,7 @@ import { styled } from '@linaria/react';
 
 const FooterStyled = styled.div<FooterProps>`
   position: absolute;
-  bottom: ${({ margin }) => (margin === 'large' ? 40 : 20)}px;
+  bottom: ${({ margin }) => (margin === 'large' ? 88 : 38)}px;
   left: 0;
   width: 100%;
   padding: 0 30px;

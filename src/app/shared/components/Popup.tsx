@@ -13,19 +13,21 @@ interface PopupProps {
   visible?: boolean;
   onCancel?: React.MouseEventHandler;
   footerClass?: string;
+  footer?: boolean;
 }
 
 const ContainerStyled = styled.div`
   transform: translateX(-50%) translateY(-50%);
   position: absolute;
+  z-index: 4;
   top: 50%;
   left: 50%;
-  width: 335px;
+  width: 343px;
   padding: 30px 20px;
   border-radius: 10px;
-  background-color: var(--color-popup);
+  background-color: var(--color-white);
   text-align: center;
-  color: white;
+  color: black;
 
   > .cancel-header {
     right: 4px;
@@ -38,6 +40,7 @@ const TitleStyled = styled.h2`
   font-size: 16px;
   margin: 0;
   margin-bottom: 20px;
+  color: black;
 `;
 
 const FooterStyled = styled.div`
@@ -75,16 +78,19 @@ const Popup: React.FC<PopupProps> = ({
   confirmButton,
   children,
   footerClass,
+  footer,
 }) => (visible ? (
   <Backdrop onCancel={onCancel}>
     <ContainerStyled>
       <TitleStyled>{title}</TitleStyled>
       <Button className="cancel-header" variant="icon" pallete="white" icon={CancelIcon} onClick={onCancel} />
       {children}
+      { footer && (
       <FooterStyled className={footerClass}>
         {cancelButton}
         {confirmButton}
       </FooterStyled>
+      )}
     </ContainerStyled>
   </Backdrop>
 ) : null);

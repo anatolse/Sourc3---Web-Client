@@ -6,6 +6,7 @@ import AngleBackIcon from './icon-angle-back.svg';
 import AngleSmallUpIcon from './icon-angle-small-up.svg';
 
 import ArrowDownIcon from './icon-arrow-down.svg';
+import ArrowDownIconUnder from './icon-arrow-down_.svg';
 import ArrowLeftIcon from './icon-arrow-left.svg';
 import ArrowRightIcon from './icon-arrow-right.svg';
 import ArrowUpIcon from './icon-arrow-up.svg';
@@ -30,6 +31,9 @@ import WalletSmallIcon from './icon-wallet-small.svg';
 import SettingsReportIcon from './icon-settings-report.svg';
 import SettingsConnectedSites from './icon-connected-sites.svg';
 import SaveIcon from './icon-save.svg';
+import IconLogoLarge from './icon-logo-large.svg';
+import IconSR3Asset from './icon-SR3.svg';
+import IconStar from './icon-star.svg';
 
 import TxCanceledIcon from './icon-tx-canceled.svg';
 import TxCanceledMPIcon from './icon-tx-canceled-mp.svg';
@@ -53,6 +57,11 @@ import ExternalLink from './external_link.svg';
 import IconEye from './icn-eye.svg';
 import IconEyeCrossed from './icn-eye-crossed.svg';
 import IconQrCode from './ic-qr-copy-9.svg';
+import IconSettings from './icon-settings.svg';
+import IconProfile from './icon-profile.svg';
+import IconProfileLarge from './icon-avatar-large.svg';
+import IconReport from './icon-report.svg';
+import IconQuestion from './icon-question.svg';
 
 export {
   AddIcon,
@@ -60,6 +69,7 @@ export {
   AngleBackIcon,
   AngleSmallUpIcon,
   ArrowDownIcon,
+  ArrowDownIconUnder,
   ArrowLeftIcon,
   ArrowRightIcon,
   ArrowUpIcon,
@@ -102,4 +112,12 @@ export {
   IconEye,
   IconEyeCrossed,
   IconQrCode,
+  IconSettings,
+  IconProfile,
+  IconLogoLarge,
+  IconSR3Asset,
+  IconProfileLarge,
+  IconStar,
+  IconReport,
+  IconQuestion,
 };

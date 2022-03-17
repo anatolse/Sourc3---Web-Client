@@ -6,6 +6,7 @@ import { Section, Button, Rate } from '@app/shared/components';
 import { ArrowUpIcon } from '@app/shared/icons';
 
 import { styled } from '@linaria/react';
+import { css } from '@linaria/core';
 
 import { fromGroths, compact, toGroths } from '@core/utils';
 import { AddressData, AddressType } from '@core/types';
@@ -13,10 +14,12 @@ import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces
 
 const BeamAmount = styled.p`
   font-weight: bold;
-  color: var(--color-violet);
+  color: var(--color-orange);
   margin: 0;
 `;
 
+const formMid = css`
+margin-left: 25px;`;
 const getTxType = (type: AddressType, offline: boolean): string => {
   if (type === 'max_privacy') {
     return 'Maximum anonymity';
@@ -62,45 +65,46 @@ const SendConfirm = (props: SendConfirmProps) => {
 
   return (
     <form
+      className={formMid}
       onSubmit={(e) => {
         e.preventDefault();
         submitSend();
       }}
     >
-      <Section subtitle="Send to">{compact(address)}</Section>
-      <Section subtitle="Transaction type">{txType}</Section>
-      <Section subtitle="Amount">
+      <Section variant="receipt" subtitle="Send to">{compact(address)}</Section>
+      <Section variant="receipt" subtitle="Transaction type">{txType}</Section>
+      <Section variant="receipt" subtitle="Amount">
         <BeamAmount>
           {fromGroths(value)}
           &nbsp;
           {metadata_pairs.UN}
         </BeamAmount>
       </Section>
-      <Section subtitle="Transaction Fee">
+      <Section variant="receipt" subtitle="Transaction Fee">
         {fromGroths(fee)}
-        &nbsp;BEAM
+        &nbsp;SC3
         <Rate value={fee} groths />
       </Section>
-      <Section subtitle="Change">
+      <Section variant="receipt" subtitle="Change">
         {fromGroths(selected.asset_id === 0 ? change : asset_change)}
         &nbsp;
         {metadata_pairs.UN}
         <Rate value={selected.asset_id === 0 ? change : asset_change} groths />
       </Section>
-      <Section subtitle="Remaining">
+      <Section variant="receipt" subtitle="Remaining">
         {fromGroths(remaining)}
         &nbsp;
         {metadata_pairs.UN}
         <Rate value={remaining} groths />
       </Section>
       {selected.asset_id !== 0 && (
-        <Section subtitle="Beam Remaining">
+        <Section variant="receipt" subtitle="Beam Remaining">
           {fromGroths(beamRemaining)}
           &nbsp;BEAM
           <Rate value={beamRemaining} groths />
         </Section>
       )}
-      <Button type="submit" pallete="purple" icon={ArrowUpIcon} style={{ marginTop: '30px' }}>
+      <Button type="submit" pallete="orange" icon={ArrowUpIcon} style={{ marginTop: '30px' }}>
         send
       </Button>
     </form>

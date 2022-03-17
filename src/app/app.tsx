@@ -98,7 +98,7 @@ const App = () => {
           icon={false}
           toastStyle={{
             textAlign: 'center',
-            background: '#25557B',
+            background: 'var(--color-green)',
             color: 'white',
             width: '90%',
             margin: '0 auto 16px',

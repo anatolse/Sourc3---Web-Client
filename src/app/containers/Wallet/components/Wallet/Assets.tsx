@@ -2,12 +2,9 @@ import React from 'react';
 import { styled } from '@linaria/react';
 
 import AssetLabel from '@app/shared/components/AssetLabel';
-import { PALLETE_ASSETS } from '@app/shared/constants';
 import { AssetTotal } from '@app/containers/Wallet/interfaces';
 
 const ListStyled = styled.ul`
-  margin: 0 -20px;
-  padding: 0 8px;
 `;
 
 interface AssetsProps {
@@ -31,18 +28,6 @@ const ListItemStyled = styled.li<{ opt_color?: string; asset_id: number }>`
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-image: linear-gradient(
-      90deg,
-      ${({ asset_id, opt_color }) => {
-    if (opt_color) {
-      return opt_color;
-    }
-
-    return PALLETE_ASSETS[asset_id] ? PALLETE_ASSETS[asset_id] : PALLETE_ASSETS[asset_id % PALLETE_ASSETS.length];
-  }}
-        0%,
-      var(--color-dark-blue) 110%
-    );
   }
 `;
 

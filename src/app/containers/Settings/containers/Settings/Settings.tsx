@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import * as extensionizer from 'extensionizer';
 import { styled } from '@linaria/react';
 
-import { RemoveIcon, SettingsReportIcon, SettingsConnectedSites } from '@app/shared/icons';
+import {
+  RemoveIcon, SettingsReportIcon, SettingsConnectedSites, IconReport,
+} from '@app/shared/icons';
 
 import { ROUTES } from '@app/shared/constants';
 
@@ -16,12 +18,11 @@ import { selectVersion } from '@app/containers/Settings/store/selectors';
 import { RemovePopup } from '../../components';
 
 const ContainerStyled = styled.div`
-  margin: 0 -10px;
 `;
 
 const VersionStyled = styled.div`
   text-align: end;
-  color: rgba(255, 255, 255, 0.7);
+  color: black;
   margin-bottom: 20px;
 `;
 
@@ -55,17 +56,19 @@ const Settings = () => {
 
   return (
     <>
-      <Window title="Settings" primary>
+      <Window primary title="Settings">
         <ContainerStyled>
-          <VersionStyled>{version}</VersionStyled>
-          <Button variant="block" pallete="white" icon={SettingsReportIcon} onClick={() => ReportClicked()}>
+          {/* <VersionStyled>{version}</VersionStyled> */}
+          <Button
+            variant="setting"
+            pallete="black"
+            icon={IconReport}
+            onClick={() => ReportClicked()}
+          >
             Report a problem
           </Button>
-          <Button variant="block" pallete="white" icon={SettingsConnectedSites} onClick={() => ConnectedSitesClicked()}>
-            Connected sites
-          </Button>
           <Button
-            variant="block"
+            variant="setting"
             pallete="red"
             icon={RemoveIcon}
             onClick={() => {
@@ -73,7 +76,7 @@ const Settings = () => {
               toggleWarning(true);
             }}
           >
-            Remove current wallet
+            Quit current account
           </Button>
         </ContainerStyled>
       </Window>
