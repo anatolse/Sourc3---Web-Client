@@ -32,5 +32,5 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v1
         with:
-          name: beam-web-wallet${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
+          name: source-web-wallet${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
           path: dist
