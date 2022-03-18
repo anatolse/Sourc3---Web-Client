@@ -63,7 +63,7 @@ const Wallet = () => {
   const assets = useSelector(selectAssets());
   const transactions = useSelector(selectTransactions());
   const rate = useSelector(selectRate());
-  console.log(assets[0]);
+  const balance = (assets[0].available);
   useEffect(() => {
     if (!rate) {
       dispatch(loadRate.request());
@@ -98,22 +98,30 @@ const Wallet = () => {
           >
             receive
           </Button>
-          <Button
-            variant="block"
-            pallete="black"
-            icon={IconStar}
-            // onClick={() => navigate(ROUTES.WALLET.SEND)}
-          >
-            claim
-          </Button>
-          <Button
-            variant="block"
-            pallete="blue"
-            icon={ArrowDownIconUnder}
-            // onClick={() => navigate(ROUTES.WALLET.RECEIVE)}
-          >
-            buy
-          </Button>
+          {
+            !balance
+           && (
+           <>
+             {' '}
+             <Button
+               variant="block"
+               pallete="black"
+               icon={IconStar}
+             >
+               claim
+             </Button>
+             <Button
+               variant="block"
+               pallete="blue"
+               icon={ArrowDownIconUnder}
+             >
+               buy
+             </Button>
+
+           </>
+           )
+          }
+
         </ButtonStyled>
       </ActionsStyled>
     </Window>

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Button, Window } from '@app/shared/components';
 import { styled } from '@linaria/react';
-import { SaveIcon } from '@app/shared/icons';
 import * as extensionizer from 'extensionizer';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -13,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { selectLogs } from '@app/containers/Settings/store/selectors';
 
 const ReportStyled = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   padding: 0 26px;
   p {
     margin: 0;
@@ -23,6 +22,25 @@ const ReportStyled = styled.div`
   }
 `;
 
+const TitleStyled = styled.h4`
+font-size: 14px;
+    color: rgba(0,0,0, 0.5);
+    font-weight: 500;
+    text-align: left;
+`;
+
+const ListStyled = styled.ol`
+    padding: 0px 19px;
+    font-size: 14px;
+    color: #808080;
+    font-weight: 500;
+    text-align: left;
+    line-height: 24px;
+    list-style: point;
+`;
+const ListItemStyled = styled.li`
+
+`;
 const LinkStyled = styled.span`
   cursor: pointer;
   color: orange;
@@ -62,19 +80,20 @@ const SettingsReport = () => {
   return (
     <Window title="Report a problem" onPrevious={handlePrevious}>
       <ReportStyled>
-        <p>To report a problem:</p>
-        <p>1. Click “Save wallet logs” and choose</p>
-        <p>a destination folder for log archive.</p>
-        <p>
-          2. Send email to
-          <LinkStyled onClick={() => mailClicked()}>support@beam.mw</LinkStyled>
-          or open a ticket in
-          <LinkStyled onClick={() => githubClicked()}>Github</LinkStyled>
-          .
-        </p>
-        <p>3. Don’t forget to attach logs archive.</p>
+        <TitleStyled>To report a problem:</TitleStyled>
+        <ListStyled>
+          <ListItemStyled>Click “Save wallet logs” and choose a destination folder for log archive.</ListItemStyled>
+          <ListItemStyled>
+            Send email to
+            <LinkStyled onClick={() => mailClicked()}>support@beam.mw</LinkStyled>
+            or open a ticket in
+            <LinkStyled onClick={() => githubClicked()}>Github</LinkStyled>
+            {' '}
+            (don’t forget to attach logs archive).
+          </ListItemStyled>
+        </ListStyled>
       </ReportStyled>
-      <Button type="button" icon={SaveIcon} onClick={() => saveLogsclicked()}>
+      <Button type="button" onClick={() => saveLogsclicked()}>
         save wallet logs
       </Button>
     </Window>

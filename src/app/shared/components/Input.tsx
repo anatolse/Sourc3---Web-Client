@@ -7,7 +7,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   valid?: boolean;
   variant?: 'regular' | 'gray' | 'amount';
-  pallete?: 'purple' | 'blue' | 'corn-flower-blue';
+  pallete?: 'purple' | 'blue' | 'corn-flower-blue' | 'black';
   margin?: 'none' | 'large';
   password?: boolean;
 }
@@ -99,7 +99,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               {...rest}
               type={passwordShown ? 'text' : 'password'}
             />
-            {!!label && <LabelStyled valid={valid}>{label}</LabelStyled>}
+            {!!ref && <LabelStyled valid={valid}>{label}</LabelStyled>}
             <Button
               type="button"
               variant="eye"

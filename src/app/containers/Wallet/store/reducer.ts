@@ -72,7 +72,9 @@ const handleAssets = (state: WalletStateType) => {
 
 const reducer = createReducer<WalletStateType, Action>(initialState)
   .handleAction(actions.setTotals, (state, action) => produce(state, (nexState) => {
-    nexState.totals = action.payload;
+    nexState.totals = action.payload.filter(({ asset_id }) => (
+      asset_id === 0
+    ));
     nexState.assets_total = handleAssets(nexState);
   }))
   .handleAction(actions.setAssets, (state, action) => produce(state, (nexState) => {

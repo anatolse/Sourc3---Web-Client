@@ -40,7 +40,7 @@ interface AmountInputProps {
   value: string;
   asset_id: number;
   error?: string;
-  pallete?: 'black' | 'blue' ;
+  pallete?: 'purple' | 'blue' | 'black';
   onChange?: (value: TransactionAmount) => void;
 }
 

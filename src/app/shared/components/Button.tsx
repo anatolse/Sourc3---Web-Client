@@ -162,7 +162,7 @@ background-color: rgba(255,255,255,0.03);
 border-radius: 0;
 font-size: 16px;
 text-align: left;
-letter-spacing: 3px;
+letter-spacing: 0.1px;
 border-bottom: 1px solid rgba(0,0,0, 0.05);
   color: ${({ pallete }) => `var(--color-${pallete})`};
 

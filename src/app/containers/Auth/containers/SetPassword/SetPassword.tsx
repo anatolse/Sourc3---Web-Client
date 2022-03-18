@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { styled } from '@linaria/react';
 
 import {
@@ -83,6 +83,7 @@ const SetPassword = () => {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            password
           />
           <Input
             type="password"
@@ -90,7 +91,7 @@ const SetPassword = () => {
             label={error}
             placeholder="Confirm password"
             onChange={(e) => setConfirm(e.target.value)}
-            password
+            password={!!useRef}
           />
           <PasswordStrength value={pass} />
           <Footer>

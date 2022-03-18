@@ -137,7 +137,7 @@ export const Window: React.FC<WindowProps> = ({
           <Menu />
         ) : (
           <CancelButton>
-            <Button variant="icon" icon={CancelIcon} onClick={handleBackClick} />
+            <Button variant="icon" icon={CancelIcon} onClick={handlePrevious} />
           </CancelButton>
         )}
       </HeadingStyled>

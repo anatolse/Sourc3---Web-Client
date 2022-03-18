@@ -7,14 +7,14 @@ css`
       --color-purple: #da68f5;
       --color-red: #f25f5b;
       --color-yellow: #f4ce4a;
-      --color-green: #3bd05a;
-      --color-blue: #0bccf7;
+      --color-green: #3FD05A ;
+      --color-blue: #4DA2E6 ;
       --color-dark-blue: #042548;
       --color-gray: #8196a4;
       --color-white: white;
       --color-violet: #c061e0;
-      --color-orange: #fe7b17;
-      --color-corn-flower-blue: #4da3e6
+      --color-orange: #FF791F ;
+      --color-corn-flower-blue: #4DA2E6
       --color-black: #000000;
       
       --color-rgba-blue: rgba(77,163,230, 0.2)
