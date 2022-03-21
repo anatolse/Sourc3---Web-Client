@@ -33,7 +33,7 @@ const Connect = () => {
 
   return (
     <>
-      <StyledTitle>DApp Connection Request</StyledTitle>
+      <StyledTitle>Sourc3 web client connection request</StyledTitle>
       <StyledMessage>
         <b>
           {notification.params.appname}

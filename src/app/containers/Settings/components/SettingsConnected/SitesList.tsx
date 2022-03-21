@@ -17,7 +17,7 @@ interface SitesProps {
 
 const ListItemStyled = styled.li`
   position: relative;
-  padding: 20px;
+  padding: 20px 32px;
   text-align: start;
   display: flex;
   flex-direction: row;
@@ -30,7 +30,7 @@ const ListItemStyled = styled.li`
 
 const UrlItemStyled = styled.div`
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.5);
 `;
 
 const SitesList: React.FC<SitesProps> = ({ data: sites }) => {

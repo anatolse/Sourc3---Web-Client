@@ -50,14 +50,14 @@ function handleConnect(remote) {
       notificationManager.openBeamTabsIDs[tabId] = true;
       activeTab = remote.sender.tab.id;
       notificationPort = remote;
-      notificationPort.onDisconnect.addListener((e)=> {
+      notificationPort.onDisconnect.addListener((e) => {
         if (activeTab) {
           // notificationManager.closeTab(activeTab);
           activeTab = null;
           notificationManager.appname = ''; // TODO: check with reconnect
           notificationManager.openBeamTabsIDs = {};
         }
-      })
+      });
 
       wallet.init(postMessage, notificationManager.notification);
       break;
@@ -78,8 +78,8 @@ function handleConnect(remote) {
           } else if (msg.type === ExternalAppMethod.CreateBeamApi) {
             if (msg.is_reconnect) {
               notificationManager.appname === msg.appname
-              ? notificationManager.openPopup()
-              : notificationManager.openConnectNotification(msg, remote.sender.origin);
+                ? notificationManager.openPopup()
+                : notificationManager.openConnectNotification(msg, remote.sender.origin);
             } else {
               notificationManager.openConnectNotification(msg, remote.sender.origin);
             }

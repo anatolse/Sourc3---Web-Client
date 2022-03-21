@@ -69,6 +69,14 @@ const Settings = () => {
           </Button>
           <Button
             variant="setting"
+            pallete="black"
+            icon={SettingsConnectedSites}
+            onClick={() => ConnectedSitesClicked()}
+          >
+            Connected sites
+          </Button>
+          <Button
+            variant="setting"
             pallete="red"
             icon={RemoveIcon}
             onClick={() => {
