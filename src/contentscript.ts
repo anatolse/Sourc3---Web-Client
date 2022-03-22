@@ -82,7 +82,6 @@ window.addEventListener('message', (event) => {
       extensionPort.postMessage(reqData);
     } else {
       setupConnection();
-
       extensionPort.postMessage(reqData);
       extensionPort.onMessage.addListener((msg) => {
         if (msg.result && shouldInjectProvider()) {

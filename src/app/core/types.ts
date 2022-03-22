@@ -57,7 +57,7 @@ export enum WalletMethod {
 }
 
 export enum ExternalAppMethod {
-  CreateBeamApi = 'create_beam_api',
+  CreateSourc3Api = 'create_sourc3_api',
 }
 export interface RemoteRequest {
   id: number;
