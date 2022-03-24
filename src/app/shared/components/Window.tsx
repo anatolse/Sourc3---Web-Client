@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@linaria/react';
 // import { css } from '@linaria/core';
-import { CancelIcon } from '@app/shared/icons';
+import { CancelIcon, IconBack } from '@app/shared/icons';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -16,9 +16,8 @@ import Menu from './Menu';
 
 interface WindowProps {
   title?: string;
-  primary?: boolean;
-  auth?: boolean
   padding?:'auth' | 'page';
+  type?: string
   // pallete?: 'default' | 'blue' | 'purple';
   onPrevious?: React.MouseEventHandler | undefined;
 }
@@ -94,16 +93,18 @@ const CancelButton = styled.div`
 position: absolute;
 width: 25px;
 right: 20px;
-top: 18px;
+top: 16px;
+`;
+const BackButton = styled(CancelButton)`
+left: 11px;
 `;
 
 export const Window: React.FC<WindowProps> = ({
   title,
-  primary = false,
-  auth = false,
   children,
   onPrevious,
   padding = 'page',
+  type = '',
 }) => {
   // const dispatch = useDispatch();
   // const wrapperRef = useRef(null);
@@ -122,30 +123,62 @@ export const Window: React.FC<WindowProps> = ({
 
   const handleBackClick = !onPrevious ? handlePrevious : onPrevious;
 
+  const renderWindow = (window: string) => {
+    switch (window) {
+      case 'auth':
+        return (
+          <>
+            <HeadingStyled>
+              <FrameStyled>
+                <Logo size="icon" />
+              </FrameStyled>
+              <CancelButton>
+                <Button variant="icon" icon={CancelIcon} onClick={handlePrevious} />
+              </CancelButton>
+            </HeadingStyled>
+            <Title variant="auth">{title}</Title>
+          </>
+        );
+      case 'pageMain':
+        return (
+          <>
+            <HeadingStyled>
+              <FrameStyled>
+                <Logo size="icon" />
+              </FrameStyled>
+              <Menu />
+            </HeadingStyled>
+          </>
+        );
+      case 'page':
+        return (
+          <>
+            <HeadingStyled>
+              <Title variant="page">{title}</Title>
+              <BackButton>
+                <Button variant="icon" icon={IconBack} onClick={handlePrevious} />
+              </BackButton>
+            </HeadingStyled>
+          </>
+        );
+      default:
+        return (
+          <>
+            <HeadingStyled>
+              <Title variant="heading">{title}</Title>
+              <CancelButton>
+                <Button variant="icon" icon={CancelIcon} onClick={handleBackClick} />
+              </CancelButton>
+            </HeadingStyled>
+          </>
+        );
+        break;
+    }
+  };
+
   return (
-    <ContainerStyled padding={padding}>
-      <HeadingStyled>
-        { title && !auth ? (
-          <Title variant="heading">{title}</Title>
-        )
-          : (
-            <FrameStyled>
-              <Logo size="icon" />
-            </FrameStyled>
-          )}
-        { !title && primary ? (
-          <Menu />
-        ) : (
-          <CancelButton>
-            <Button variant="icon" icon={CancelIcon} onClick={handlePrevious} />
-          </CancelButton>
-        )}
-      </HeadingStyled>
-      {!primary && title && auth && (
-        <Title variant="auth">{title}</Title>
-      )}
-      {/* {auth
-        && <BackButton onClick={handleBackClick} />} */}
+    <ContainerStyled padding={padding} type={type}>
+      {renderWindow(type)}
       { children }
     </ContainerStyled>
   );

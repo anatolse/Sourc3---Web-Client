@@ -4,11 +4,12 @@ import * as extensionizer from 'extensionizer';
 import { styled } from '@linaria/react';
 
 import {
-  RemoveIcon, SettingsReportIcon, SettingsConnectedSites, IconReport,
+  RemoveIcon, SettingsReportIcon, SettingsConnectedSites, IconReport, IconLockWallet,
 } from '@app/shared/icons';
 
 import { ROUTES } from '@app/shared/constants';
 
+import { actions } from '@app/shared/store';
 import { Button, Window } from '@app/shared/components';
 import { useNavigate } from 'react-router-dom';
 import { setError } from '@app/shared/store/actions';
@@ -51,14 +52,25 @@ const Settings = () => {
   const ConnectedSitesClicked = () => {
     navigate(ROUTES.SETTINGS.SETTINGS_CONNECTED);
   };
+  const stopWallet = () => {
+    dispatch(actions.lockWallet());
+  };
 
   const version = `v ${manifest.version} (${versionData.beam_branch_name})`;
 
   return (
     <>
-      <Window primary title="Settings">
+      <Window title="Settings">
         <ContainerStyled>
           {/* <VersionStyled>{version}</VersionStyled> */}
+          <Button
+            variant="setting"
+            pallete="black"
+            icon={IconLockWallet}
+            onClick={() => stopWallet()}
+          >
+            Lock client
+          </Button>
           <Button
             variant="setting"
             pallete="black"

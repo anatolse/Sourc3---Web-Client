@@ -6,6 +6,7 @@ import {
   SendForm, Receive, Utxo, Wallet,
 } from '..';
 import Activity from '../Activity';
+import Manage from '../Manage';
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: ROUTES_PATH.WALLET.UTXO,
     element: <Utxo />,
+  },
+  {
+    path: ROUTES_PATH.WALLET.MANAGE,
+    element: <Manage />,
   },
 ];
 

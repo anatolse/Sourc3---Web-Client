@@ -15,6 +15,7 @@ export const ROUTES = {
     SEND_CONFIRM: '/activity/send_confirm',
     RECEIVE: '/activity/receive',
     UTXO: '/activity/utxo',
+    MANAGE: '/activity/manage',
   },
   TRANSACTIONS: {
     BASE: '/transactions',
@@ -50,6 +51,7 @@ export const ROUTES_PATH = {
     SEND: '/send',
     RECEIVE: '/receive',
     UTXO: '/utxo',
+    MANAGE: '/manage',
   },
   TRANSACTIONS: {
     BASE: '/',

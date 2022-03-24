@@ -27,7 +27,7 @@ const SettingsConnected = () => {
   };
 
   return (
-    <Window title="Connected sites" onPrevious={handlePrevious}>
+    <Window type="page" title="Connected sites" onPrevious={handlePrevious}>
       <SitesStyled>
         {sites.length > 0 ? (
           <SitesList data={sites} />

@@ -71,7 +71,7 @@ const SetPassword = () => {
 
   return (
     <>
-      <Window padding="auth" auth title="Password" onPrevious={handlePrevious}>
+      <Window padding="auth" type="auth" title="Password" onPrevious={handlePrevious}>
         <FormStyled onSubmit={handleSubmit}>
           <AuthInfo>
             Enter a strong password.

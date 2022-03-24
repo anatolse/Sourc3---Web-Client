@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@linaria/react';
 
 interface TitleProps {
-  variant?: 'regular' | 'subtitle' | 'heading' | 'auth';
+  variant?: 'regular' | 'subtitle' | 'heading' | 'auth' | 'page';
 }
 
 const STYLE_BASE = {
@@ -19,6 +19,15 @@ const HeadingStyled = styled.h2`
   font-weight: 900;
   line-height: 24px;
   margin: 16px 0 0 24px;
+  width:220px;
+  height: 24px;
+  text-align:left;
+`;
+const PageStyled = styled.h2`
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 24px;
+  margin: 16px 0 0 60px;
   width:220px;
   height: 24px;
   text-align:left;
@@ -57,6 +66,7 @@ const VARIANTS = {
   subtitle: SubtitleStyled,
   heading: HeadingStyled,
   auth: AuthTitleStyled,
+  page: PageStyled,
 };
 
 const Title: React.FC<TitleProps> = ({ variant = 'regular', children }) => {

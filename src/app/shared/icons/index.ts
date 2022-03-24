@@ -60,8 +60,15 @@ import IconQrCode from './ic-qr-copy-9.svg';
 import IconSettings from './icon-settings.svg';
 import IconProfile from './icon-profile.svg';
 import IconProfileLarge from './icon-avatar-large.svg';
+import IconProfileLarge2 from './icon-avatar-large-2.svg';
+import IconProfileLarge3 from './icon-avatar-large-3.svg';
+import IconProfileLarge4 from './icon-avatar-large-4.svg';
 import IconReport from './icon-report.svg';
 import IconQuestion from './icon-question.svg';
+import IconBack from './icon-back.svg';
+import IconDropMenu from './icon-drop-menu.svg';
+import IconEdit from './icon-edit.svg';
+import IconRemove from './icon-basket.svg';
 
 export {
   AddIcon,
@@ -117,7 +124,14 @@ export {
   IconLogoLarge,
   IconSR3Asset,
   IconProfileLarge,
+  IconProfileLarge2,
+  IconProfileLarge3,
+  IconProfileLarge4,
   IconStar,
   IconReport,
   IconQuestion,
+  IconBack,
+  IconDropMenu,
+  IconEdit,
+  IconRemove,
 };

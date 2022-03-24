@@ -86,7 +86,7 @@ const GhostButtonStyled = styled(ButtonStyled)`
   &:hover,
   &:active {
     box-shadow: 0 0 8px rgba(236, 26, 20, 0.5);
-    background-color: rgba(236, 26, 20, 1);
+    // background-color: rgba(236, 26, 20, 1);
   }
 `;
 const AgreeButtonStyled = styled(GhostButtonStyled)`
@@ -142,6 +142,35 @@ const LinkButtonStyled = styled(IconButtonStyled)`
   font-weight: 700;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
+const SwitchButtonStyled = styled(IconButtonStyled)`
+  margin: 0 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: ${({ pallete }) => `var(--color-${pallete})`};
+`;
+const LinkDropButtonStyled = styled(GhostButtonStyled)`
+background-color: rgba(255,255,255,0.03);
+border-radius: 0;
+font-size: 16px;
+text-align: left;
+line-height: 16px;
+font-weight: 500;
+padding: 2px  16px;
+margin: 0;
+height: 40px;
+letter-spacing: 0.1px;
+  color: ${({ pallete }) => `var(--color-${pallete})`};
+
+  &:hover,
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+  }
+  > svg {
+    vertical-align: bottom;
+    margin-right: 10px;
+  }
+`;
 
 const EyeStyle = styled(IconButtonStyled)`
 position: absolute;
@@ -187,6 +216,9 @@ const VARIANTS = {
   menu: MenuStyle,
   eye: EyeStyle,
   setting: SettingButtonStyled,
+  switch: SwitchButtonStyled,
+  iconDropMenu: SwitchButtonStyled,
+  linkDrop: LinkDropButtonStyled,
 
 };
 

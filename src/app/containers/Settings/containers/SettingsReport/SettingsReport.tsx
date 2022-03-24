@@ -78,7 +78,7 @@ const SettingsReport = () => {
   };
 
   return (
-    <Window title="Report a problem" onPrevious={handlePrevious}>
+    <Window type="page" title="Report a problem" onPrevious={handlePrevious}>
       <ReportStyled>
         <TitleStyled>To report a problem:</TitleStyled>
         <ListStyled>

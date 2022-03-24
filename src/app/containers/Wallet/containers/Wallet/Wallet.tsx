@@ -76,20 +76,27 @@ const Wallet = () => {
         <Profile>
           <Button variant="icon" icon={IconProfileLarge} />
           <Name>Long John Silver</Name>
-          <Button variant="link">Manage</Button>
+          <Button
+            variant="link"
+            onClick={() => navigate(ROUTES.WALLET.MANAGE)}
+          >
+            Manage
+          </Button>
         </Profile>
         <Section title="Balance">
           <Assets data={assets} />
         </Section>
         <ButtonStyled>
-          <Button
-            variant="block"
-            pallete="orange"
-            icon={ArrowUpIcon}
-            onClick={() => navigate(ROUTES.WALLET.SEND)}
-          >
-            send
-          </Button>
+          {balance ? (
+            <Button
+              variant="block"
+              pallete="orange"
+              icon={ArrowUpIcon}
+              onClick={() => navigate(ROUTES.WALLET.SEND)}
+            >
+              send
+            </Button>
+          ) : <></>}
           <Button
             variant="block"
             pallete="green"
@@ -99,28 +106,24 @@ const Wallet = () => {
             receive
           </Button>
           {
-            !balance
-           && (
-           <>
-             {' '}
-             <Button
-               variant="block"
-               pallete="black"
-               icon={IconStar}
-             >
-               claim
-             </Button>
-             <Button
-               variant="block"
-               pallete="blue"
-               icon={ArrowDownIconUnder}
-             >
-               buy
-             </Button>
-
-           </>
-           )
-          }
+            balance
+              ? (
+                <Button
+                  variant="block"
+                  pallete="black"
+                  icon={IconStar}
+                >
+                  claim
+                </Button>
+              ) : <></>
+             }
+          <Button
+            variant="block"
+            pallete="blue"
+            icon={ArrowDownIconUnder}
+          >
+            buy
+          </Button>
 
         </ButtonStyled>
       </ActionsStyled>

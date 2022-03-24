@@ -30,11 +30,11 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
   };
 
   const confirmButton = warned ? (
-    <Button pallete="red" icon={RemoveIcon} onClick={handleConfirm}>
+    <Button pallete="orange" onClick={handleConfirm}>
       remove
     </Button>
   ) : (
-    <Button pallete="red" icon={ArrowRightIcon} onClick={handleConfirm}>
+    <Button pallete="orange" onClick={handleConfirm}>
       proceed
     </Button>
   );
@@ -45,7 +45,7 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
       title="Quit current account"
       footer
       cancelButton={(
-        <Button variant="ghost" icon={CancelIcon} onClick={onCancel} pallete="orange">
+        <Button variant="ghost" onClick={onCancel}>
           cancel
         </Button>
       )}

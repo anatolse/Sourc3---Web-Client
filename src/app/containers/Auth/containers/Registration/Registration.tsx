@@ -89,7 +89,7 @@ font-size: 14px;
 
   return !isRegistrationWarning ? (
     <>
-      <Window padding="auth" auth title="Secret phrase" onPrevious={handlePrevious}>
+      <Window padding="auth" type="auth" title="Secret phrase" onPrevious={handlePrevious}>
         <AuthInfo>
           Copy the words of the secret phrase.
           <br />

@@ -38,7 +38,7 @@ interface RegistrationWarningProps {
 }
 
 const RegistrationWarning: React.FC<RegistrationWarningProps> = ({ onClick }) => (
-  <Window  padding="auth" auth title="Authorization">
+  <Window padding="auth" type="auth" title="Authorization">
     <AuthInfo>
       SOURC3 is a decentralized platform. Therefore authorization is done through a secret phrase.
     </AuthInfo>

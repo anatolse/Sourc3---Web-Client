@@ -17,6 +17,7 @@ css`
       --color-corn-flower-blue: #4DA2E6
       --color-black: #000000;
       
+      --color-currentRole: gray;
       --color-rgba-blue: rgba(77,163,230, 0.2)
 
 

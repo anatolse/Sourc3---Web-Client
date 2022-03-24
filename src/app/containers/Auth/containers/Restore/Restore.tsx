@@ -46,7 +46,7 @@ const Restore: React.FC = () => {
   };
 
   return (
-    <Window padding="auth" auth title="Restore web client">
+    <Window padding="auth" type="auth" title="Restore web client">
       <p>Type in your seed phrase</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList data={errors} initial={cache} onInput={(e) => seedListHandler(e)} />

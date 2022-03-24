@@ -8,7 +8,7 @@ interface SectionProps {
   title?: string;
   subtitle?: string;
   collapse?: boolean;
-  variant?: 'regular' | 'gray' | 'receipt';
+  variant?: 'regular' | 'gray' | 'receipt' | 'profile';
   showAllAction?: () => void;
 }
 
@@ -17,6 +17,27 @@ const SectionStyled = styled.div`
   width: 359px;
   height: 146px;
   overflow:hidden;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+
+  > .cancel-button {
+    position: absolute;
+    top: 76px;
+    right: 0px;
+    cursor: pointer;
+  }
+
+  > .send-input {
+    width: 95%;
+  }
+`;
+const ProfileStyled = styled.div`
+  position: relative;
+  width: 174px;
+  height: 152px;
 
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
@@ -115,6 +136,7 @@ const Section: React.FC<SectionProps> = ({
     regular: SectionStyled,
     gray: SectionGrayStyled,
     receipt: ReceiptSectionStyled,
+    profile: ProfileStyled,
   }[variant];
 
   return (

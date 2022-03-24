@@ -63,8 +63,8 @@ font-size: 14px;
 
   return (
     <Window
+      type="auth"
       padding="auth"
-      auth
       title="Confirmation"
       onPrevious={() => toggleWarning(true)}
     >

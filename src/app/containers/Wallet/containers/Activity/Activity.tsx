@@ -14,7 +14,7 @@ line-height: 24px;
 `;
 
 const Activity = () => (
-  <Window primary>
+  <Window type="pageMain">
     <TitleStyled>Activity</TitleStyled>
   </Window>
 );
