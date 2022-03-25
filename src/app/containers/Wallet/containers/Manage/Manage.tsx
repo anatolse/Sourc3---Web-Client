@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  Button, Popup, Section, Window,
+  Button, Section, Window,
 } from '@app/shared/components';
 import {
   IconDropMenu,
@@ -9,6 +9,7 @@ import {
 } from '@app/shared/icons';
 import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
+import useOutsideClick from '@app/shared/hooks/OutsideClickHook';
 
 const ProfileComponent = styled.div`
 display: flex;
@@ -38,8 +39,16 @@ display: flex;
     }
     .wrapperItems{
       height: 100%;
+        &>li:nth-child(even)>.btnProfile:hover, .btnProfile:active{
+          border-bottom-left-radius:8px;
+          border-bottom-right-radius:8px;
+        }
+        &>li:nth-child(odd)>.btnProfile:hover, .btnProfile:active{
+          border-top-left-radius:8px;
+          border-top-right-radius:8px;
+        }
     }
-    .btnProfile{
+    .btnProfile:{
         font-size: 16px;
         line-height: 16px;
         font-weight: 500;
@@ -98,54 +107,74 @@ const data = [
 ];
 
 function Manage() {
+  const ContainerProfile = ({ item }) => {
+    const wrapperRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+    const { isOutside } = useOutsideClick(wrapperRef);
+    useEffect(() => {
+      if (isOutside) {
+        setVisible(false);
+      }
+    }, [isOutside]);
+
+    return (
+      <>
+        <Section variant="profile" key={item.id}>
+          <Profile>
+            <Button variant="icon" icon={item.avatar} />
+            <Name>{item.name}</Name>
+            <Button
+              pallete={item.active ? 'currentRole' : 'orange'}
+              variant="switch"
+            >
+              {item.active ? ('Current role') : ('Switch')}
+
+            </Button>
+          </Profile>
+          <Button
+            className={style}
+            variant="icon"
+            icon={IconDropMenu}
+            onClick={() => (setVisible(true))}
+            aria-hidden="true"
+          />
+          {visible && (
+          <div className="wrapper" key={item.id} ref={wrapperRef}>
+            <ul className="wrapperItems" aria-hidden="true">
+              <li>
+                <Button
+                  className="btnProfile"
+                  variant="linkDrop"
+                  pallete="black"
+                  icon={IconEdit}
+                >
+                  Edit profile
+                </Button>
+
+              </li>
+              <li>
+                <Button
+                  className="btnProfile"
+                  variant="linkDrop"
+                  pallete="black"
+                  icon={IconRemove}
+                >
+                  Remove profile
+                </Button>
+
+              </li>
+            </ul>
+          </div>
+          )}
+        </Section>
+      </>
+    );
+  };
   return (
     <Window type="page" title="Manage profiles">
       <ProfileComponent>
         { data && data.map((item) => (
-          <Section variant="profile" key={item.id}>
-            <Profile>
-              <Button variant="icon" icon={item.avatar} />
-              <Name>{item.name}</Name>
-              <Button
-                pallete={item.active ? 'currentRole' : 'orange'}
-                variant="switch"
-              >
-                {item.active ? ('Current role') : ('Switch')}
-
-              </Button>
-            </Profile>
-            <Button
-              className={style}
-              variant="icon"
-              icon={IconDropMenu}
-            />
-            {/* <div className="wrapper" key={item.id}>
-              <ul className="wrapperItems">
-                <li>
-                  <Button
-                    className="btnProfile"
-                    variant="linkDrop"
-                    pallete="black"
-                    icon={IconEdit}
-                  >
-                    Edit profile
-                  </Button>
-
-                </li>
-                <li>
-                  <Button
-                    className="btnProfile"
-                    variant="linkDrop"
-                    pallete="black"
-                    icon={IconRemove}
-                  >
-                    Remove profile
-                  </Button>
-
-                </li>
-              </ul>
-            </div> */}
-          </Section>
+          <ContainerProfile item={item} key={item.id} />
         ))}
       </ProfileComponent>
       <Button>Add new profile</Button>

@@ -162,7 +162,7 @@ letter-spacing: 0.1px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 
   &:hover,
-  &:active {
+  &:active: nth-child(even) {
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: none;
   }
