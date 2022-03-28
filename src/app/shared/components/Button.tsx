@@ -193,6 +193,7 @@ font-size: 16px;
 text-align: left;
 letter-spacing: 0.1px;
 border-bottom: 1px solid rgba(0,0,0, 0.05);
+margin:0;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 
   &:hover,

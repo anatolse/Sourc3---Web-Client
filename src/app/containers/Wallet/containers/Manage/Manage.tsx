@@ -35,7 +35,7 @@ display: flex;
       box-sizing: border-box;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
       border-radius: 8px;
-      overflow:
+      z-index: 999;
     }
     .wrapperItems{
       height: 100%;
@@ -77,6 +77,16 @@ const style = css`
   position: absolute;
   top: 8px;
   right: 0;
+`;
+const overlay = css`
+background: rgba(0,0,0,0.05);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin: 0 0 !important;
 `;
 
 const data = [
@@ -139,32 +149,39 @@ function Manage() {
             aria-hidden="true"
           />
           {visible && (
-          <div className="wrapper" key={item.id} ref={wrapperRef}>
-            <ul className="wrapperItems" aria-hidden="true">
-              <li>
-                <Button
-                  className="btnProfile"
-                  variant="linkDrop"
-                  pallete="black"
-                  icon={IconEdit}
-                >
-                  Edit profile
-                </Button>
+            <>
+              <div className="wrapper" key={item.id} ref={wrapperRef}>
+                <ul className="wrapperItems" aria-hidden="true">
+                  <li>
+                    <Button
+                      className="btnProfile"
+                      variant="linkDrop"
+                      pallete="black"
+                      icon={IconEdit}
+                    >
+                      Edit profile
+                    </Button>
 
-              </li>
-              <li>
-                <Button
-                  className="btnProfile"
-                  variant="linkDrop"
-                  pallete="black"
-                  icon={IconRemove}
-                >
-                  Remove profile
-                </Button>
+                  </li>
+                  <li>
+                    <Button
+                      className="btnProfile"
+                      variant="linkDrop"
+                      pallete="black"
+                      icon={IconRemove}
+                    >
+                      Remove profile
+                    </Button>
 
-              </li>
-            </ul>
-          </div>
+                  </li>
+                </ul>
+              </div>
+              {
+        visible && (
+          <div className={overlay} />
+        )
+      }
+            </>
           )}
         </Section>
       </>

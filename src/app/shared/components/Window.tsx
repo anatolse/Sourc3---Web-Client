@@ -34,7 +34,7 @@ interface WindowProps {
 const ContainerStyled = styled.div<WindowProps>`
   position: relative;
   min-height: 600px;
-  padding: ${({ padding }) => (padding === 'auth' ? '145px 32px 30px' : '60px 0 30px')};
+  padding: ${({ padding }) => (padding === 'auth' ? '145px 32px 30px' : '56px 0 30px')};
   text-align: center;
   background: white;
 `;
