@@ -27,11 +27,11 @@ const TrackStyled = styled.div`
   height: 100%;
   border: solid 1px var(--color-disabled);
   border-radius: 10px;
-  background-color: rgba(141, 161, 173, 0.1);
-
+  background-color: rgba(255, 121, 31, 0.1);
+  
   input[type='checkbox']:checked ~ & {
-    border-color: var(--color-green);
-    background-color: rgba(0, 251, 209, 0.1);
+    border-color: #FF791F;
+    background-color: rgba(255, 121, 31, 0.1);
   }
 `;
 
@@ -39,14 +39,14 @@ const SliderStyled = styled.div<{ active: boolean }>`
   position: absolute;
   top: 2px;
   left: 2px;
-  background-color: var(--color-disabled);
+  background-color: rgba(0, 0, 0, 0.3);;
   width: 16px;
   height: 16px;
   border-radius: 50%;
 
   input[type='checkbox']:checked ~ & {
     left: 18px;
-    background-color: var(--color-green);
+    background-color: #FF791F;
   }
 `;
 

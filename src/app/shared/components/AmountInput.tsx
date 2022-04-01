@@ -22,14 +22,19 @@ const ContainerStyled = styled.div`
 
 const LabelStyled = styled.div`
   display: inline-block;
-  vertical-align: bottom;
-  line-height: 26px;
+  line-height: 20px;
   color: black;
+  position: relative;
+  top: -3px;
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 const selectClassName = css`
   align-self: flex-start;
-  margin-top: 10px;
+  position: relative;
+  top: 10px;
+  right: 93px;
 `;
 
 const containerStyle = css`
@@ -49,7 +54,7 @@ const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d+)?$/;
 const rateStyle = css`
   position: absolute;
   top: 50px;
-  left: 0;
+  left: 12px;
 `;
 
 const AmountInput: React.FC<AmountInputProps> = ({

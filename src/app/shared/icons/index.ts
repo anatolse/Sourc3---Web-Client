@@ -13,7 +13,7 @@ import ArrowUpIcon from './icon-arrow-up.svg';
 import ArrowsTowards from './icon-arrows-towards.svg';
 
 import AssetIcon from './icon-asset.svg';
-import BeamIcon from './icon-beam.svg';
+import Sourc3Icon from './icon-beam.svg';
 import BeamXIcon from './icon-beamx.svg';
 import VerifiedIcon from './icon-verified.svg';
 
@@ -82,7 +82,7 @@ export {
   ArrowUpIcon,
   ArrowsTowards,
   AssetIcon,
-  BeamIcon,
+  Sourc3Icon,
   BeamXIcon,
   VerifiedIcon,
   EyeIcon,

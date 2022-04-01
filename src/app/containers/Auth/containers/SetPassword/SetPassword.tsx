@@ -84,6 +84,7 @@ const SetPassword = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             password
+            margin={16}
           />
           <Input
             type="password"

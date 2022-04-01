@@ -4,7 +4,6 @@ import { styled } from '@linaria/react';
 import {
   Button, Footer, Popup, Window,
 } from '@app/shared/components';
-import { ArrowRightIcon } from '@app/shared/icons';
 
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate } from 'react-router-dom';
@@ -75,8 +74,8 @@ font-size: 14px;
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
         <Footer>
-          <Button type="submit" disabled={!valid} icon={ArrowRightIcon}>
-            next
+          <Button type="submit" disabled={!valid}>
+            Confirm phrase
           </Button>
         </Footer>
       </form>
@@ -88,7 +87,7 @@ font-size: 14px;
         footer
         confirmButton={(
           <Button type="button" onClick={handlePrevious}>
-            generate
+            Generate
           </Button>
         )}
         onCancel={() => toggleWarning(false)}

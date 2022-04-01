@@ -45,7 +45,7 @@ position: absolute;
 top: 40px;
 font-size: 14px;
 line-height: 14px;
-font-weight: 500;
+font-weight: 700;
 }
 `;
 
@@ -67,11 +67,11 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   const signed = !!income;
   const sign = signed ? getSign(income) : '';
   const name = truncate(target?.metadata_pairs.UN) ?? '';
-  const label = `${sign}${amount} ${name}`;
+  const label = amount ? `${sign}${amount} ${name}` : `${sign}0.00 ${name}`;
 
   return (
     <ContainerStyled className={className}>
-      <AssetIcon asset_id={asset_id} className={iconClass || iconClassName} />
+      <AssetIcon size="large" asset_id={asset_id} className={iconClass || iconClassName} />
       <AmountStyled className="asset-name">{isBalanceHidden ? name : label}</AmountStyled>
       {showRate && !isBalanceHidden ? <Rate value={amount} income={income} className={rateStyle} /> : null}
     </ContainerStyled>

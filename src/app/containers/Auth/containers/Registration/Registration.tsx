@@ -7,8 +7,6 @@ import {
 
 import { ROUTES } from '@app/shared/constants';
 
-import { DoneIcon } from '@app/shared/icons';
-
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateRegistrationSeed } from '@app/containers/Auth/store/actions';
@@ -110,13 +108,13 @@ font-size: 14px;
       <Popup
         visible={warningVisible}
         title="Save secret phrase"
-        footer
         confirmButton={(
-          <Button icon={DoneIcon} onClick={handleNextClick}>
-            done
+          <Button onClick={handleNextClick}>
+            I understand
           </Button>
         )}
         onCancel={handleCancel}
+        agree
       >
         Please write the secret phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
         secure.

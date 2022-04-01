@@ -8,8 +8,9 @@ interface SectionProps {
   title?: string;
   subtitle?: string;
   collapse?: boolean;
-  variant?: 'regular' | 'gray' | 'receipt' | 'profile';
+  variant?: 'regular' | 'gray' | 'receipt' | 'profile' | 'send' | 'warning' | 'receive';
   showAllAction?: () => void;
+  className?: string,
 }
 
 const SectionStyled = styled.div`
@@ -58,26 +59,24 @@ const ProfileStyled = styled.div`
 
 const SectionGrayStyled = styled.div`
   position: relative;
-  // margin: 0 -30px;
-  // margin-bottom: 20px;
-  padding: 5px;
   background-color: rgba(255, 255, 255, 0.05);
   text-align: left;
 
   > .cancel-button {
     position: absolute;
-    top: 68px;
-    right: 20px;
+    top: 60px;
+    right: 12px;
     cursor: pointer;
   }
   > .send-input {
     width: 95%;
+    height: auto;
   }
 `;
 
 const ButtonStyled = styled.button`
   position: absolute;
-  top: 20px;
+  top: 11px;
   right: 20px;
   cursor: pointer;
   border: none;
@@ -95,8 +94,9 @@ const ShowAll = styled.div`
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #00f6d2;
+  color: black;
   cursor: pointer;
+  background: transparent;
 `;
 
 const TitleWrapper = styled.div`
@@ -106,7 +106,7 @@ const TitleWrapper = styled.div`
     font-size: 20px;
     line-height: 20px;
     text-transform: none;
-    padding: 24px 0 10px 16px;
+    padding: 24px 0 10px 12px;
 `;
 
 const ReceiptSectionStyled = styled(SectionStyled)`
@@ -118,6 +118,36 @@ box-shadow: none
 border-radius: none;
 `;
 
+const SendStyled = styled(SectionStyled)`
+width:327px;
+background: rgba(255, 121, 31, 0.1);
+border: 1px solid rgba(255, 121, 31, 0.1);
+padding: 12px;
+height:auto;
+`;
+const ReceiveStyled = styled(SectionGrayStyled)`
+.collapse{
+margin-top: 24px;
+border-radius: 8px;
+background: rgba(255, 121, 31, 0.1);
+padding: 12px;
+font-size: 16px;
+}
+`;
+
+const WarningStyled = styled(SectionStyled)`
+width: 327px;
+padding: 12px
+background: rgba(255, 121, 31, 0.1);
+border: 1px solid rgba(255, 121, 31, 0.1);
+box-sizing: border-box;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+color: rgba(0,0,0, 0.5)
+`;
+
 const Section: React.FC<SectionProps> = ({
   title,
   collapse = false,
@@ -125,6 +155,7 @@ const Section: React.FC<SectionProps> = ({
   subtitle,
   children,
   showAllAction,
+  className,
 }) => {
   const [hidden, setHidden] = useState(collapse);
 
@@ -137,17 +168,20 @@ const Section: React.FC<SectionProps> = ({
     gray: SectionGrayStyled,
     receipt: ReceiptSectionStyled,
     profile: ProfileStyled,
+    send: SendStyled,
+    receive: ReceiveStyled,
+    warning: WarningStyled,
   }[variant];
 
   return (
-    <SectionComponent>
+    <SectionComponent className={className}>
       {collapse && (
         <ButtonStyled type="button" onMouseDown={handleMouseDown}>
           <Angle value={hidden ? 180 : 0} margin={hidden ? 3 : 3} />
         </ButtonStyled>
       )}
       {!!title && (
-        <TitleWrapper>
+        <TitleWrapper className={collapse ? 'collapse' : ''}>
           <Title>{title}</Title>
           {showAllAction && <ShowAll onClick={showAllAction}>Show All</ShowAll>}
         </TitleWrapper>

@@ -31,11 +31,11 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
 
   const confirmButton = warned ? (
     <Button pallete="orange" onClick={handleConfirm}>
-      remove
+      Quit
     </Button>
   ) : (
     <Button pallete="orange" onClick={handleConfirm}>
-      proceed
+      Quit
     </Button>
   );
 
@@ -46,19 +46,30 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
       footer
       cancelButton={(
         <Button variant="ghost" onClick={onCancel}>
-          cancel
+          Cancel
         </Button>
       )}
       confirmButton={confirmButton}
       onCancel={onCancel}
     >
+      {' '}
+      <p>
+        Use your password to confirm erasing your current account
+      </p>
       {warned ? (
         <Input label={!error ? 'Password' : error} type="password" ref={inputRef} valid={!error} />
       ) : (
         <>
-          All data will be erased. Make sure you’ve saved your seed phrase if you want to restore this account later on!
-          <br />
-          Are you sure you want to quit your account?
+          {' '}
+          <p>
+            Are you sure you want to quit your account?
+          </p>
+          <p>
+            {' '}
+            All data will be erased. Make sure you’ve saved your
+            seed phrase if you want to restore this account later on.
+          </p>
+
         </>
       )}
     </Popup>

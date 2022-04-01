@@ -10,7 +10,7 @@ css`
       --color-green: #3FD05A ;
       --color-blue: #4DA2E6 ;
       --color-dark-blue: #042548;
-      --color-gray: #8196a4;
+      --color-gray: rgba(0,0,0, 0.5);
       --color-white: white;
       --color-violet: #c061e0;
       --color-orange: #FF791F ;

@@ -4,8 +4,6 @@ import {
 } from '@app/shared/components';
 import { ROUTES } from '@app/shared/constants';
 
-import { DoneIcon } from '@app/shared/icons';
-
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetRestoreState } from '@app/containers/Auth/store/actions';
@@ -37,17 +35,19 @@ const AuthBase: React.FC = () => {
         visible={warningVisible}
         title="Restore web client"
         confirmButton={(
-          <Button variant="agree" icon={DoneIcon} onClick={() => navigate(ROUTES.AUTH.RESTORE)}>
+          <Button pallete="orange" onClick={() => navigate(ROUTES.AUTH.RESTORE)}>
             I agree
           </Button>
         )}
         onCancel={() => toggleWarning(false)}
         footer
       >
-        You are trying to restore an existing SOURCE3 web client.
-        <br />
-        Please notice that if you use your client on another device, your balance will be up to date, but transaction
-        history and addresses will be kept separately on each device.
+        <p>You are trying to restore an existing SOURC3 web client.</p>
+        <p>
+          Please notice that if you use your client on another device, your balance will be up to date, but transaction
+          history and addresses will be kept separately on each device.
+
+        </p>
       </Popup>
     </>
   );

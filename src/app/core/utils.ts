@@ -3,11 +3,11 @@ import { Transaction } from '@core/types';
 
 export const copyToClipboard = (value: string) => navigator.clipboard.writeText(value);
 
-export function compact(value: string, stringLength: number = 5): string {
+export function compact(value: string, stringLength: number = 11): string {
   if (value.length <= 11) {
     return value;
   }
-  return `${value.substr(0, stringLength)}…${value.substr(-stringLength, stringLength)}`;
+  return `${value.substr(0, stringLength)}${value.substr(-stringLength, stringLength)}...`;
 }
 
 const LENGTH_MAX = 8;
@@ -27,7 +27,7 @@ export function truncate(value: string): string {
 export function toUSD(amount: number, rate: number): string {
   switch (true) {
     case amount === 0 || Number.isNaN(amount):
-      return '0 USD';
+      return '0.00 USD';
     case amount > 0.01: {
       const value = amount * rate;
       return `${value.toFixed(2)} USD`;

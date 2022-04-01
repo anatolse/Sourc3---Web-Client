@@ -4,14 +4,20 @@ import {
   Popup, Button, Input, Splash,
 } from '@app/shared/components';
 
-import { DoneIcon } from '@app/shared/icons';
-
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { startWallet } from '@app/containers/Auth/store/actions';
 import { setError } from '@app/shared/store/actions';
 import { selectErrorMessage } from '@app/shared/store/selectors';
+import { css } from '@linaria/core';
+
+const formClassName = css`
+position: absolute;
+left: 40px;
+bottom: 40px;
+right: 40px;
+`;
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,14 +42,14 @@ const Login: React.FC = () => {
   return (
     <>
       <Splash size="large">
-        <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <form autoComplete="off" noValidate onSubmit={handleSubmit} className={formClassName}>
           <p>Enter your password to access the web client</p>
           <Input
             autoFocus
             name="password"
             type="password"
             placeholder="Password"
-            margin="large"
+            margin={25}
             valid={!error}
             label={error}
             ref={inputRef}
@@ -67,7 +73,7 @@ const Login: React.FC = () => {
         title="Restore web client or create a new one"
         footer
         confirmButton={(
-          <Button icon={DoneIcon} onClick={() => navigate(ROUTES.AUTH.BASE)}>
+          <Button onClick={() => navigate(ROUTES.AUTH.BASE)}>
             I agree
           </Button>
         )}

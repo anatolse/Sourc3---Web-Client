@@ -13,7 +13,7 @@ interface SplashProps {
 }
 
 const ContainerStyled = styled.div<SplashProps>`
-  filter: ${({ blur }) => (blur ? 'blur(3px)' : 'none')};
+  // filter: ${({ blur }) => (blur ? 'blur(3px)' : 'none')};
   position: relative;
   height: 600px;
   padding: 0 30px 0;

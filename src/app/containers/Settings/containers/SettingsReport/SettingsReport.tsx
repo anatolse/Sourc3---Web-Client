@@ -52,7 +52,7 @@ const SettingsReport = () => {
   const logs: any = useSelector(selectLogs());
 
   const handlePrevious: React.MouseEventHandler = () => {
-    navigate(ROUTES.WALLET.BASE);
+    navigate(ROUTES.SETTINGS.BASE);
   };
 
   const mailClicked = () => {
@@ -78,7 +78,7 @@ const SettingsReport = () => {
   };
 
   return (
-    <Window type="page" title="Report a problem" onPrevious={handlePrevious}>
+    <Window title="Report a problem" onPrevious={handlePrevious}>
       <ReportStyled>
         <TitleStyled>To report a problem:</TitleStyled>
         <ListStyled>

@@ -6,29 +6,28 @@ import { EyeIcon, IconEye } from '../icons';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   valid?: boolean;
-  variant?: 'regular' | 'gray' | 'amount';
+  variant?: 'regular' | 'gray' | 'amount' | 'send';
   pallete?: 'purple' | 'blue' | 'corn-flower-blue' | 'black';
-  margin?: 'none' | 'large';
+  margin?: 'none' | number;
   password?: boolean;
 }
 
 const ContainerStyled = styled.div<InputProps>`
   position: relative;
-  min-height: 53px;
-  margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : 50)}px;
+  height: 44px;
+  margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : margin)}px;
 `;
 
 const InputStyled = styled.input<InputProps>`
   width: 100%;
   height: 44px;
-  line-height: 31px;
+  line-height: 20px;
+  font-weight: 500;
   border: none;
   background-color: rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 16px;
   color: black;
-  font-family: Verdana, Geneva, sans-serif;
-    letter-spacing: -.75px;
   border-radius: 8px;
   caret-color: orange;
   padding: 0 41px 0 10px;
@@ -54,24 +53,43 @@ const InputRegularStyled = styled(InputStyled)`
 `;
 
 const InputGrayStyled = styled(InputStyled)`
+  width:327px
   border-width: 1px;
   border-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'var(--color-red)')};
 `;
 
 const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.34px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
+  &::placeholder {
+    font-family: Visby;
+    color: black;
+    opacity: 0.5;
+    font-size: 24px;
+    transform: translateX(1px);
+  }
 `;
 
 const LabelStyled = styled.div<InputProps>`
+  margin-top: -5px;
+  color: ${({ valid }) => (valid ? 'rgba(0,0,0, 0.5)' : 'var(--color-red)')};
+  padding: 10px;
+  text-align:center;
+`;
+const LabelSendStyled = styled.div<InputProps>`
   margin-top: 4px;
-  // font-family: SFProDisplay;
-  padding: 10px
+  color: ${({ valid }) => (valid ? 'rgba(0,0,0, 0.5)' : 'var(--color-red)')};
+  width: 327px;
+  padding: 12px
+  background: rgba(255, 121, 31, 0.1);
+  border: 1px solid rgba(255, 121, 31, 0.1);
+  box-sizing: border-box;
+  border-radius: 8px;
   font-size: 14px;
-  font-style: italic;
-  color: ${({ valid }) => (valid ? 'var(--color-gray)' : 'var(--color-red)')};
+  font-weight: 500;
+  line-height: 20px;
 `;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -82,6 +100,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       regular: InputRegularStyled,
       gray: InputGrayStyled,
       amount: InputAmountStyled,
+      send: LabelSendStyled,
     }[variant];
     const [passwordShown, setPasswordShown] = useState(false);
     const handleShowPassword: React.MouseEventHandler = () => {

@@ -19,6 +19,7 @@ interface WindowProps {
   padding?:'auth' | 'page';
   type?: string
   // pallete?: 'default' | 'blue' | 'purple';
+  // eslint-disable-next-line react/no-unused-prop-types
   onPrevious?: React.MouseEventHandler | undefined;
 }
 
@@ -102,9 +103,9 @@ left: 11px;
 export const Window: React.FC<WindowProps> = ({
   title,
   children,
-  onPrevious,
   padding = 'page',
   type = '',
+  onPrevious,
 }) => {
   // const dispatch = useDispatch();
   // const wrapperRef = useRef(null);
@@ -120,7 +121,6 @@ export const Window: React.FC<WindowProps> = ({
   const handlePrevious: React.MouseEventHandler = () => {
     navigate(-1);
   };
-
   const handleBackClick = !onPrevious ? handlePrevious : onPrevious;
 
   const renderWindow = (window: string) => {
@@ -133,7 +133,7 @@ export const Window: React.FC<WindowProps> = ({
                 <Logo size="icon" />
               </FrameStyled>
               <CancelButton>
-                <Button variant="icon" icon={CancelIcon} onClick={handlePrevious} />
+                <Button variant="icon" icon={CancelIcon} onClick={handleBackClick} />
               </CancelButton>
             </HeadingStyled>
             <Title variant="auth">{title}</Title>
@@ -150,27 +150,14 @@ export const Window: React.FC<WindowProps> = ({
             </HeadingStyled>
           </>
         );
-      case 'page':
-        return (
-          <>
-            <HeadingStyled>
-              <Title variant="page">{title}</Title>
-              <BackButton>
-                <Button variant="icon" icon={IconBack} onClick={handlePrevious} />
-              </BackButton>
-            </HeadingStyled>
-          </>
-        );
       default:
         return (
-          <>
-            <HeadingStyled>
-              <Title variant="heading">{title}</Title>
-              <CancelButton>
-                <Button variant="icon" icon={CancelIcon} onClick={handleBackClick} />
-              </CancelButton>
-            </HeadingStyled>
-          </>
+          <HeadingStyled>
+            <Title variant="page">{title}</Title>
+            <BackButton>
+              <Button variant="icon" icon={IconBack} onClick={handleBackClick} />
+            </BackButton>
+          </HeadingStyled>
         );
         break;
     }

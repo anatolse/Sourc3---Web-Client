@@ -7,7 +7,7 @@ import {
   Window, Section, Button, Input, Toggle, Popup,
 } from '@app/shared/components';
 
-import { CopySmallIcon, DoneIcon, IconQrCode } from '@app/shared/icons';
+import { CopySmallIcon, IconQrCode } from '@app/shared/icons';
 
 import AmountInput from '@app/shared/components/AmountInput';
 
@@ -18,10 +18,32 @@ import { selectAddress, selectReceiveAmount } from '@app/containers/Wallet/store
 import { generateAddress, resetReceive, setReceiveAmount } from '@app/containers/Wallet/store/actions';
 import { compact, copyToClipboard } from '@core/utils';
 import { toast } from 'react-toastify';
+import { css } from '@linaria/core';
+
+const ReceiveContainer = styled.div`
+margin: 0 24px;
+`;
+
+const ButtonClassName = css`
+  margin: 0 17px 0 0 !important; 
+`;
+
+const buttonClassName = css`
+position: absolute;
+    bottom: 40px;
+    left: 56px;
+`;
+
+const warningClassName = css`
+height: auto;
+margin: 20px 0 100px;
+text-align: left;
+`;
 
 const AddressStyled = styled.div`
-  line-height: 24px;
-  text-align: center;
+position: absolute;
+top: 60px;
+right: 0;
 `;
 
 const TipStyled = styled.div`
@@ -43,6 +65,9 @@ const RowStyled = styled.div`
 
 const LabelStyled = styled.label`
   flex-grow: 1;
+  font-size: 16px;
+    font-weight: 600;
+    padding-left: 12px;
 `;
 
 const QrCodeWrapper = styled.div`
@@ -108,85 +133,103 @@ const Receive = () => {
 
   return (
     <Window title="Receive">
-      <Popup
-        visible={qrVisible}
-        title=""
-        onCancel={() => setQrVisible(false)}
-        confirmButton={(
-          <Button icon={CopySmallIcon} pallete="orange" onClick={copyAndCloseQr}>
-            copy and close
-          </Button>
+      <>
+        <Popup
+          visible={qrVisible}
+          title=""
+          onCancel={() => setQrVisible(false)}
+          confirmButton={(
+            <Button icon={CopySmallIcon} pallete="orange" onClick={copyAndCloseQr}>
+              copy and close
+            </Button>
         )}
-        footerClass="qr-code-popup"
-        cancelButton={null}
-        footer
-      >
-        <QrCodeWrapper>
-          <div className="qr-cd">
-            <QRCode value={`${addressFull}`} size={220} bgColor="white" />
-          </div>
+          footerClass="qr-code-popup"
+          cancelButton={null}
+          footer
+        >
+          <QrCodeWrapper>
+            <div className="qr-cd">
+              <QRCode value={`${addressFull}`} size={220} bgColor="white" />
+            </div>
+            {maxAnonymity ? (
+              <>
+                <div className="text"> Transaction can last at most 72 hours.</div>
+                <br />
+                <div className="text">Min transaction fee is 0.01 SC3.</div>
+              </>
+            ) : (
+              <>
+                <div className="text">Sender will be given a choice between regular and offline payment.</div>
+                <br />
+                <div className="text">
+                  For online payment to complete, you should get online during the 12 hours after coins are sent.
+                </div>
+              </>
+            )}
+          </QrCodeWrapper>
+        </Popup>
+        <ReceiveContainer>
+          <Section title={`Address ${maxAnonymity ? '(Maximum anonymity)' : ''}`} variant="gray">
+            <Input variant="gray" value={address} />
+            <AddressStyled>
+              <Button
+                className={ButtonClassName}
+                variant="icon"
+                pallete="white"
+                icon={CopySmallIcon}
+                onClick={copyAddress}
+              />
+              <Button
+                className={ButtonClassName}
+                variant="icon"
+                pallete="white"
+                icon={IconQrCode}
+                onClick={() => setQrVisible(true)}
+              />
+            </AddressStyled>
+          </Section>
+          <Section title="Advanced settings" variant="receive" collapse>
+            <Section title="Requested amount (optional)" variant="gray">
+              <AmountInput
+                value={amount}
+                asset_id={asset_id}
+                pallete="black"
+                onChange={(e) => dispatch(setReceiveAmount(e))}
+              />
+            </Section>
+            <RowStyled>
+              <LabelStyled htmlFor="ma">Maximum anonymity set </LabelStyled>
+              <Toggle id="ma" value={maxAnonymity} onChange={() => setMaxAnonymity((v) => !v)} />
+            </RowStyled>
+          </Section>
           {maxAnonymity ? (
-            <>
-              <div className="text"> Transaction can last at most 72 hours.</div>
+            <Section variant="warning" className={warningClassName}>
+              <span>Transaction can last at most 72 hours.</span>
               <br />
-              <div className="text">Min transaction fee is 0.01 SC3.</div>
-            </>
+              <span>Min transaction fee is 0.01 SC3.</span>
+            </Section>
           ) : (
-            <>
-              <div className="text">Sender will be given a choice between regular and offline payment.</div>
+            <Section variant="warning" className={warningClassName}>
+              <span>Sender will be given a choice between regular and offline payment.</span>
               <br />
-              <div className="text">
-                For online payment to complete, you should get online during the 12 hours after coins are sent.
-              </div>
-            </>
+              <span> For online payment to complete, you should get online during the 12 hours after coins are sent.</span>
+            </Section>
           )}
-        </QrCodeWrapper>
-      </Popup>
 
-      <Section title={`Address ${maxAnonymity ? '(Maximum anonymity)' : ''}`} variant="gray">
-        <AddressStyled>
-          {address}
-          &nbsp;
-          <Button variant="icon" pallete="white" icon={IconQrCode} onClick={() => setQrVisible(true)} />
-          <Button variant="icon" pallete="white" icon={CopySmallIcon} onClick={copyAddress} />
-        </AddressStyled>
-      </Section>
-      <Section title="requested amount (optional)" variant="gray">
-        <AmountInput
-          value={amount}
-          asset_id={asset_id}
-          pallete="black"
-          onChange={(e) => dispatch(setReceiveAmount(e))}
-        />
-      </Section>
-      <Section title="Advanced" variant="gray" collapse>
-        <RowStyled>
-          <LabelStyled htmlFor="ma">Maximum anonymity set </LabelStyled>
-          <Toggle id="ma" value={maxAnonymity} onChange={() => setMaxAnonymity((v) => !v)} />
-        </RowStyled>
-      </Section>
-      {maxAnonymity ? (
-        <WarningStyled>
-          Transaction can last at most 72 hours.
-          <br />
-          <br />
-          Min transaction fee is 0.01 SC3.
-        </WarningStyled>
-      ) : (
-        <WarningStyled>
-          Sender will be given a choice between regular and offline payment.
-          <br />
-          <br />
-          For online payment to complete, you should get online during the 12 hours after coins are sent.
-        </WarningStyled>
-      )}
-
-      {/* <Section title="Comment" variant="gray" collapse>
+          {/* <Section title="Comment" variant="gray" collapse>
           <Input variant="gray" />
         </Section> */}
-      <Button pallete="orange" type="button" onClick={submitForm}>
-        copy and close
-      </Button>
+          <Button
+            pallete="orange"
+            type="button"
+            onClick={submitForm}
+            className={buttonClassName}
+          >
+            copy and close
+          </Button>
+        </ReceiveContainer>
+
+      </>
     </Window>
   );
 };

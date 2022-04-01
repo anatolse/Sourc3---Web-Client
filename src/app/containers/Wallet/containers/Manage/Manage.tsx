@@ -188,7 +188,7 @@ function Manage() {
     );
   };
   return (
-    <Window type="page" title="Manage profiles">
+    <Window title="Manage profiles">
       <ProfileComponent>
         { data && data.map((item) => (
           <ContainerProfile item={item} key={item.id} />

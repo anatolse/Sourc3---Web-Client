@@ -44,9 +44,12 @@ const Restore: React.FC = () => {
     }, 200);
     updateInterval(i);
   };
+  const handlePrevious: React.MouseEventHandler = () => {
+    navigate('/');
+  };
 
   return (
-    <Window padding="auth" type="auth" title="Restore web client">
+    <Window padding="auth" type="auth" title="Restore web client" onPrevious={handlePrevious}>
       <p>Type in your seed phrase</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList data={errors} initial={cache} onInput={(e) => seedListHandler(e)} />

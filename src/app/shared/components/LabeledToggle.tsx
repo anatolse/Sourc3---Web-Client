@@ -11,33 +11,43 @@ interface LabeledToggleProps {
 const ContainerStyled = styled.button`
   display: flex;
   position: relative;
-  width: 224px;
-  height: 32px;
-  line-height: 32px;
-  padding: 0;
-  border-radius: 16px;
+  width: 189px;
+  height: 44px;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  font-family: 'SFProDisplay';
-  color: var(--color-gray);
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 `;
 
 const LabelStyled = styled.div`
-  width: 50%;
+background-color: rgba(0,0,0,0.03);
+    color: rgba(0,0,0,0.5);
+    width: 79px;
+    height: 44px;
+    padding: 12px;
+    line-height: 20px;
+    margin-right: 8px;
+    border-radius: 8px;
+
 `;
 
 const SliderStyled = styled.div<{ active: boolean }>`
   position: absolute;
   top: 0;
-  left: ${({ active }) => (!active ? '0' : '50%')};
-  width: 50%;
-  height: 100%;
-  line-height: 30px;
-  // border: 1px solid var(--color-green);
-  border-radius: 16px;
-  background-color: var(--color-blue);
-  color: white;
+  left: ${({ active }) => (!active ? '3.1%' : '49.1%')};
+  width: 79px;
+    height: 45px;
+    line-height: 20px;
+    border-radius: 8px;
+    border: 1px solid #FF791F;
+    background-color: rgba(255, 121, 31, 0.1);
+    color: black;
+    padding: 12px;
+    font-weight: 500;
 `;
 
 const LabeledToggle: React.FC<LabeledToggleProps> = ({

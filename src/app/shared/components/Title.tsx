@@ -2,7 +2,8 @@ import React from 'react';
 import { styled } from '@linaria/react';
 
 interface TitleProps {
-  variant?: 'regular' | 'subtitle' | 'heading' | 'auth' | 'page';
+  variant?: 'regular' | 'subtitle' | 'heading' | 'auth' | 'page',
+  className?: string
 }
 
 const STYLE_BASE = {
@@ -48,11 +49,11 @@ position: absolute;
 
 const TitleStyled = styled.h3`
   ${STYLE_BASE}
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
 `;
 
 const SubtitleStyled = styled.h4`
@@ -69,9 +70,9 @@ const VARIANTS = {
   page: PageStyled,
 };
 
-const Title: React.FC<TitleProps> = ({ variant = 'regular', children }) => {
+const Title: React.FC<TitleProps> = ({ variant = 'regular', children, className }) => {
   const TitleComponent = VARIANTS[variant];
-  return <TitleComponent>{children}</TitleComponent>;
+  return <TitleComponent className={className}>{children}</TitleComponent>;
 };
 
 export default Title;

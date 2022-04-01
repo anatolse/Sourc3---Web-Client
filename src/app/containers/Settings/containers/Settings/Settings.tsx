@@ -55,12 +55,15 @@ const Settings = () => {
   const stopWallet = () => {
     dispatch(actions.lockWallet());
   };
+  const handleBackClick = () => {
+    navigate(ROUTES.WALLET.BASE);
+  };
 
   const version = `v ${manifest.version} (${versionData.beam_branch_name})`;
 
   return (
     <>
-      <Window title="Settings">
+      <Window title="Settings" onPrevious={handleBackClick}>
         <ContainerStyled>
           {/* <VersionStyled>{version}</VersionStyled> */}
           <Button

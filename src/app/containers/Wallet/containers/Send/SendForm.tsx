@@ -7,7 +7,7 @@ import {
   AmountInput, Button, Input, Rate, Section, Title, Window,
 } from '@app/shared/components';
 
-import { ArrowRightIcon, ArrowUpIcon, IconCancel } from '@app/shared/icons';
+import { ArrowRightIcon, ArrowUpIcon, CancelIcon } from '@app/shared/icons';
 
 import { styled } from '@linaria/react';
 import LabeledToggle from '@app/shared/components/LabeledToggle';
@@ -42,15 +42,42 @@ const WarningStyled = styled.div`
   font-style: italic;
   color: var(--color-gray);
 `;
+const WrapperAvailable = styled.div`
+display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
 
 const maxButtonStyle = css`
-  position: absolute;
-  right: 20px;
-  top: 138px;
+position: absolute;
+    top: 38px;
+    right: 12px;
+}
 `;
 
 const formClassName = css`
-padding: 0 32px;
+padding: 0 24px;
+`;
+const titleClassName = css`
+margin-bottom: 16px;
+`;
+const availableClassName = css`
+font-weight: 800;
+font-size: 18px
+`;
+const typeClassNames = css`
+margin-bottom: 42px;
+`;
+const buttonClassName = css`
+position absolute;
+bottom: 40px;
+left:56px;
+`;
+const warningClassNames = css`
+margin-top: 8px;
+margin-bottom: 40px;
+text-align:left;
+height:auto;
 `;
 
 interface SendFormData {
@@ -350,13 +377,8 @@ const SendForm = () => {
               onInput={handleAddressChange}
               className="send-input"
             />
-            {values.address && <IconCancel className="cancel-button" onClick={() => setFieldValue('address', '')} />}
+            {values.address && <CancelIcon className="cancel-button" onClick={() => setFieldValue('address', '')} />}
           </Section>
-          {addressType === 'offline' && (
-            <Section title="Transaction Type" variant="gray">
-              <LabeledToggle left="Online" right="Offline" value={values.offline} onChange={(e) => handleOffline(e)} />
-            </Section>
-          )}
           <Section title="Amount" variant="gray">
             <AmountInput
               value={values.send_amount.amount}
@@ -365,20 +387,32 @@ const SendForm = () => {
               onChange={(e) => handleAssetChange(e)}
               pallete="black"
             />
-            <Title variant="subtitle">Available</Title>
-            {`${groths} ${truncate(selected.metadata_pairs.N)}`}
-            {selected.asset_id === 0 && !errors.send_amount && <Rate value={groths} />}
-            {groths > 0 && (
+          </Section>
+          {addressType === 'offline' && (
+            <Section title="Transaction Type" variant="gray" className={typeClassNames}>
+              <LabeledToggle left="Online" right="Offline" value={values.offline} onChange={(e) => handleOffline(e)} />
+            </Section>
+          )}
+          <Section variant="send">
+            <Title variant="regular" className={titleClassName}>Available</Title>
+            <WrapperAvailable>
+              <div className={availableClassName}>
+                {groths}
+                {' '}
+                {truncate(selected.metadata_pairs.N)}
+              </div>
+              {selected.asset_id === 0 && !errors.send_amount && <Rate value={groths} />}
+              {groths > 0 && (
               <Button
-                icon={ArrowUpIcon}
-                variant="link"
+                variant="max"
                 pallete="orange"
                 className={maxButtonStyle}
                 onClick={handleMaxAmount}
               >
                 max
               </Button>
-            )}
+              )}
+            </WrapperAvailable>
           </Section>
           {/* <Section title="Comment" variant="gray" collapse>
           <Input
@@ -387,9 +421,14 @@ const SendForm = () => {
             onInput={onCommentChange}
           />
         </Section> */}
-          <WarningStyled>{warning}</WarningStyled>
-          <Button pallete="orange" icon={ArrowRightIcon} type="submit" disabled={isFormDisabled()}>
-            next
+          {warning && <Section variant="warning" className={warningClassNames}>{warning}</Section>}
+          <Button
+            className={!warning ? `${buttonClassName}` : ''}
+            pallete="orange"
+            type="submit"
+            disabled={isFormDisabled()}
+          >
+            Next
           </Button>
         </form>
       ) : (

@@ -80,13 +80,12 @@ const MenuStyle = styled(BaseButtonStyled)`
 `;
 
 const GhostButtonStyled = styled(ButtonStyled)`
-  background-color: var(--color-red);
+  background-color: rgba(0,0,0, 0.3);
   color: white;
 
   &:hover,
   &:active {
-    box-shadow: 0 0 8px rgba(236, 26, 20, 0.5);
-    // background-color: rgba(236, 26, 20, 1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
 `;
 const AgreeButtonStyled = styled(GhostButtonStyled)`
@@ -207,6 +206,13 @@ margin:0;
   }
 `;
 
+const MaxButtonStyled = styled(ButtonStyled)`
+width:60px;
+height:28px;
+padding: 0;
+margin: 0;
+`;
+
 const VARIANTS = {
   regular: ButtonStyled,
   ghost: GhostButtonStyled,
@@ -220,6 +226,7 @@ const VARIANTS = {
   switch: SwitchButtonStyled,
   iconDropMenu: SwitchButtonStyled,
   linkDrop: LinkDropButtonStyled,
+  max: MaxButtonStyled,
 
 };
 

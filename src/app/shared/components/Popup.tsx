@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from '@linaria/react';
 
-import { CancelIcon } from '@app/shared/icons';
-
+import { css } from '@linaria/core';
 import Backdrop from './Backdrop';
 import Button from './Button';
 
@@ -14,6 +13,7 @@ interface PopupProps {
   onCancel?: React.MouseEventHandler;
   footerClass?: string;
   footer?: boolean;
+  agree?: boolean;
 }
 
 const ContainerStyled = styled.div`
@@ -23,11 +23,21 @@ const ContainerStyled = styled.div`
   top: 50%;
   left: 50%;
   width: 343px;
-  padding: 30px 20px;
-  border-radius: 10px;
+  padding: 24px;
   background-color: var(--color-white);
-  text-align: center;
-  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+box-sizing: border-box;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+border-radius: 8px;
+  text-align: left;
+  color: rgba(0,0,0,0.5);
+  font-size: 14px;
+  font-wight: 500;
+  line-height: 20px;
+  span:not(:first-child){
+    margin-top: 5px
+  }
+  
 
   > .cancel-header {
     right: 4px;
@@ -40,13 +50,15 @@ const TitleStyled = styled.h2`
   font-size: 16px;
   margin: 0;
   margin-bottom: 20px;
+  text-alight:left;
   color: black;
+  font-weight:800;
 `;
 
-const FooterStyled = styled.div`
+const FooterStyled = styled.div<PopupProps>`
   display: flex;
   margin: 0 -7px;
-  margin-top: 20px;
+  margin-top: 30px;
 
   > button {
     margin: 0 7px !important;
@@ -65,29 +77,40 @@ const FooterStyled = styled.div`
     }
   }
 `;
+const center = css`
+margin: 24px 0 !important;
+justify-content: center !important; 
+}
+`;
 
 const Popup: React.FC<PopupProps> = ({
   title,
   visible,
   onCancel,
   cancelButton = (
-    <Button variant="ghost" icon={CancelIcon} onClick={onCancel}>
-      cancel
+    <Button variant="ghost" onClick={onCancel}>
+      Cancel
     </Button>
   ),
   confirmButton,
   children,
   footerClass,
   footer,
+  agree = false,
 }) => (visible ? (
   <Backdrop onCancel={onCancel}>
     <ContainerStyled>
       <TitleStyled>{title}</TitleStyled>
-      <Button className="cancel-header" variant="icon" pallete="white" icon={CancelIcon} onClick={onCancel} />
+      {/* <Button className="cancel-header" variant="icon" pallete="white" icon={CancelIcon} onClick={onCancel} /> */}
       {children}
       { footer && (
-      <FooterStyled className={footerClass}>
-        {cancelButton}
+        <FooterStyled agree={agree} className={footerClass}>
+          {cancelButton}
+          {confirmButton}
+        </FooterStyled>
+      )}
+      {agree && (
+      <FooterStyled className={center}>
         {confirmButton}
       </FooterStyled>
       )}

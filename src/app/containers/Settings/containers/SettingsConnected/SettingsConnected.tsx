@@ -23,11 +23,11 @@ const SettingsConnected = () => {
   const sites: any = useSelector(selectConnectedSites());
 
   const handlePrevious: React.MouseEventHandler = () => {
-    navigate(ROUTES.WALLET.BASE);
+    navigate(ROUTES.SETTINGS.BASE);
   };
 
   return (
-    <Window type="page" title="Connected sites" onPrevious={handlePrevious}>
+    <Window title="Connected sites" onPrevious={handlePrevious}>
       <SitesStyled>
         {sites.length > 0 ? (
           <SitesList data={sites} />
