@@ -4,6 +4,7 @@ import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 import Backdrop from './Backdrop';
 import Button from './Button';
+import { CancelIcon } from '../icons';
 
 interface PopupProps {
   title?: string;
@@ -14,6 +15,7 @@ interface PopupProps {
   footerClass?: string;
   footer?: boolean;
   agree?: boolean;
+  closeButton?: boolean;
 }
 
 const ContainerStyled = styled.div`
@@ -96,12 +98,22 @@ const Popup: React.FC<PopupProps> = ({
   children,
   footerClass,
   footer,
+  closeButton = false,
   agree = false,
 }) => (visible ? (
   <Backdrop onCancel={onCancel}>
     <ContainerStyled>
       <TitleStyled>{title}</TitleStyled>
-      {/* <Button className="cancel-header" variant="icon" pallete="white" icon={CancelIcon} onClick={onCancel} /> */}
+      {closeButton
+        && (
+        <Button
+          className="cancel-header"
+          variant="icon"
+          pallete="white"
+          icon={CancelIcon}
+          onClick={onCancel}
+        />
+        )}
       {children}
       { footer && (
         <FooterStyled agree={agree} className={footerClass}>

@@ -139,19 +139,20 @@ const Receive = () => {
           title=""
           onCancel={() => setQrVisible(false)}
           confirmButton={(
-            <Button icon={CopySmallIcon} pallete="orange" onClick={copyAndCloseQr}>
-              copy and close
+            <Button pallete="orange" onClick={copyAndCloseQr}>
+              Share QR code
             </Button>
         )}
           footerClass="qr-code-popup"
           cancelButton={null}
           footer
+          closeButton
         >
           <QrCodeWrapper>
             <div className="qr-cd">
               <QRCode value={`${addressFull}`} size={220} bgColor="white" />
             </div>
-            {maxAnonymity ? (
+            {/* {maxAnonymity ? (
               <>
                 <div className="text"> Transaction can last at most 72 hours.</div>
                 <br />
@@ -165,7 +166,7 @@ const Receive = () => {
                   For online payment to complete, you should get online during the 12 hours after coins are sent.
                 </div>
               </>
-            )}
+            )} */}
           </QrCodeWrapper>
         </Popup>
         <ReceiveContainer>
