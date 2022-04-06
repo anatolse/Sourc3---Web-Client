@@ -61,6 +61,7 @@ const WarningStyled = styled(TipStyled)`
 
 const RowStyled = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const LabelStyled = styled.label`
@@ -123,7 +124,7 @@ const Receive = () => {
   const submitForm = async () => {
     await copyAddress();
 
-    navigate(ROUTES.WALLET.BASE);
+    navigate(ROUTES.WALLET.PROFILE);
   };
 
   const copyAndCloseQr = async () => {
@@ -152,21 +153,6 @@ const Receive = () => {
             <div className="qr-cd">
               <QRCode value={`${addressFull}`} size={220} bgColor="white" />
             </div>
-            {/* {maxAnonymity ? (
-              <>
-                <div className="text"> Transaction can last at most 72 hours.</div>
-                <br />
-                <div className="text">Min transaction fee is 0.01 SC3.</div>
-              </>
-            ) : (
-              <>
-                <div className="text">Sender will be given a choice between regular and offline payment.</div>
-                <br />
-                <div className="text">
-                  For online payment to complete, you should get online during the 12 hours after coins are sent.
-                </div>
-              </>
-            )} */}
           </QrCodeWrapper>
         </Popup>
         <ReceiveContainer>
@@ -207,13 +193,20 @@ const Receive = () => {
             <Section variant="warning" className={warningClassName}>
               <span>Transaction can last at most 72 hours.</span>
               <br />
-              <span>Min transaction fee is 0.01 SC3.</span>
+              <span>
+                Min transaction fee is
+                {' '}
+                <b>0.01 SC3</b>
+              </span>
             </Section>
           ) : (
             <Section variant="warning" className={warningClassName}>
               <span>Sender will be given a choice between regular and offline payment.</span>
               <br />
-              <span> For online payment to complete, you should get online during the 12 hours after coins are sent.</span>
+              <span>
+                For online payment to complete,
+                you should get online during the 12 hours after coins are sent.
+              </span>
             </Section>
           )}
 
@@ -226,7 +219,7 @@ const Receive = () => {
             onClick={submitForm}
             className={buttonClassName}
           >
-            copy and close
+            Copy and close
           </Button>
         </ReceiveContainer>
 

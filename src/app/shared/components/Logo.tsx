@@ -8,16 +8,18 @@ interface LogoProps {
 }
 
 const LogoClassName = css`
-  display: block;
-  margin-left: -30px;
+    display: block
+    position: absolute;
+    left: 95px;
+    top: 99px;
 `;
 const smallLogoClassName = css`
 `;
 
 const DIMENSIONS = {
   large: {
-    width: 375,
-    height: 332,
+    width: 207,
+    height: 75,
   },
   small: {
     width: 100,
@@ -30,7 +32,7 @@ const DIMENSIONS = {
 };
 
 const Logo: React.FC<LogoProps> = ({ size = 'large' }) => {
-  const viewBox = '0 0 375 332';
+  const viewBox = '0 0 207 75';
   const dimensions = DIMENSIONS[size];
   return size === 'icon' ? (
     <LogoIcon {...dimensions} className={smallLogoClassName} />

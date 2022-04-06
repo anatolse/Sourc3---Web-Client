@@ -60,7 +60,7 @@ const TitleStyled = styled.h2`
 const FooterStyled = styled.div<PopupProps>`
   display: flex;
   margin: 0 -7px;
-  margin-top: 30px;
+  margin-top: 40px;
 
   > button {
     margin: 0 7px !important;

@@ -23,15 +23,6 @@ const ListStyled = styled.ul`
 
 const baseClassName = css`
   position: relative;
-  display: inline-block;
-  width: 147px;
-  height: 44px;
-  margin-bottom: 10px;
-  padding-left: 30px;
-  background-color: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  margin-right: -18px;
 }
 
   &:before {
@@ -42,42 +33,77 @@ const baseClassName = css`
     width: 24px;
     height: 24px;
     line-height: 24px;
-    border: 1px solid black;
+    border: 1px solid rgba(255,255,255);
     border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(0,0,0, 0.5);
+    box-sizing: border-box;
+    font-weight: 700;
+    background: white;
+    z-index: 1;
+  }
+  &:focus-within:before {
+    border: 1px solid black;
     text-align: center;
     font-size: 12px;
     color: black;
     box-sizing: border-box;
+    font-weight: 700;
+
   }
 
   > input {
-    width: 97px;
-    height: 41px;
-    line-height: 20px;
-    background-color: transparent;
     color: black;
-    font-size: 16px
+    font-size: 16px;
     caret-color: orange;
-    border:none;
-
+    position: relative;
+    display: inline-block;
+    width: 147px;
+    height: 44px;
+    margin-bottom: 10px;
+    padding-left: 46px;
+    background-color: rgba(0,0,0, 0.03);
+    border: 1px solid rgba(0,0,0, 0.03);
+    border-radius: 8px;
+    margin-right: -18px;
+    font-weight:500;
+    &:focus{
+      border-color: rgba(0,0,0);
+    }
   }
 `;
 
 const errorClassName = css`
-  &:before {
+>input{
+  background: rgba(234, 0, 0, 0.03);
+  border: none;
+  color: #EA0000;
+}
+
+>input:focus-within{
+  background: rgba(234, 0, 0, 0.03);
+  border: 1px solid #EA0000;
+  color: #EA0000;
+}
+
+  &:before, &:focus-within:before {
     line-height: 24px;
     border: none;
-    background-color: var(--color-red);
+    background-color: #EA0000;
     color: var(--color-white);
   }
 `;
 
 const validClassName = css`
-  &:before {
+  &:before,&:focus-within:before {
     line-height: 24px;
     border: none;
     background-color: var(--color-black);
     color: var(--color-white);
+  }
+  >input{
+    border: 1px solid rgba(0, 0, 0, 0.05);
   }
 `;
 

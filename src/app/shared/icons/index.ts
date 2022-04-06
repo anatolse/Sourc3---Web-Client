@@ -69,6 +69,8 @@ import IconBack from './icon-back.svg';
 import IconDropMenu from './icon-drop-menu.svg';
 import IconEdit from './icon-edit.svg';
 import IconRemove from './icon-basket.svg';
+import IconBracketLeft from './icon-bracket-left.svg';
+import IconBracketRight from './icon-bracket-right.svg';
 
 export {
   AddIcon,
@@ -134,4 +136,6 @@ export {
   IconDropMenu,
   IconEdit,
   IconRemove,
+  IconBracketLeft,
+  IconBracketRight,
 };

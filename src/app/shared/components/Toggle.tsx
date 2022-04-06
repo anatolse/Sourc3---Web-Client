@@ -9,8 +9,8 @@ interface ToggleProps {
 
 const ContainerStyled = styled.label`
   position: relative;
-  width: 36px;
-  height: 20px;
+  width: 44px;
+  height: 24px;
   cursor: pointer;
 `;
 
@@ -26,7 +26,7 @@ const TrackStyled = styled.div`
   width: 100%;
   height: 100%;
   border: solid 1px var(--color-disabled);
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: rgba(255, 121, 31, 0.1);
   
   input[type='checkbox']:checked ~ & {
@@ -37,15 +37,16 @@ const TrackStyled = styled.div`
 
 const SliderStyled = styled.div<{ active: boolean }>`
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 0px;
+  left: 0px;
   background-color: rgba(0, 0, 0, 0.3);;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  margin: 2px
 
   input[type='checkbox']:checked ~ & {
-    left: 18px;
+    left: 20px;
     background-color: #FF791F;
   }
 `;

@@ -81,7 +81,7 @@ export function* sendTransactionSaga(action: ReturnType<typeof actions.sendTrans
 
     yield put(actions.sendTransaction.success());
     yield put(resetSendData());
-    yield put(navigate(ROUTES.WALLET.BASE));
+    yield put(navigate(ROUTES.WALLET.PROFILE));
   } catch (e) {
     yield put(actions.sendTransaction.failure(e));
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@linaria/react';
 // import { css } from '@linaria/core';
-import { CancelIcon, IconBack } from '@app/shared/icons';
+import { IconBack } from '@app/shared/icons';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -66,11 +66,11 @@ const HeadingStyled = styled.div`
 const FrameStyled = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
+  left: 133px;
   // width: 375px;
   // height: 56px;
-  text-align: left;
-  margin:11px 0 0 24px;
+  text-align: center;
+  margin:11px 0 0 0;
   width:108px
 `;
 
@@ -132,9 +132,9 @@ export const Window: React.FC<WindowProps> = ({
               <FrameStyled>
                 <Logo size="icon" />
               </FrameStyled>
-              <CancelButton>
-                <Button variant="icon" icon={CancelIcon} onClick={handleBackClick} />
-              </CancelButton>
+              <BackButton>
+                <Button variant="icon" icon={IconBack} onClick={handleBackClick} />
+              </BackButton>
             </HeadingStyled>
             <Title variant="auth">{title}</Title>
           </>

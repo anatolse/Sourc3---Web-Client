@@ -101,7 +101,7 @@ font-size: 14px;
         </SeedListStyled>
         <Footer margin="large">
           <Button type="button" onClick={() => toggleWarning(true)}>
-            Confirm Phrase
+            Confirm phrase
           </Button>
         </Footer>
       </Window>

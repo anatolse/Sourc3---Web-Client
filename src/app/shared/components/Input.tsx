@@ -16,6 +16,14 @@ const ContainerStyled = styled.div<InputProps>`
   position: relative;
   height: 44px;
   margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : margin)}px;
+  .eye {
+    display: none !important;
+  }
+  &:focus-within>.eye{
+    display: inline-block !important;
+  }
+
+  
 `;
 
 const InputStyled = styled.input<InputProps>`
@@ -24,13 +32,18 @@ const InputStyled = styled.input<InputProps>`
   line-height: 20px;
   font-weight: 500;
   border: none;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'rgba(234,0,0,0.03)')};
   border: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 16px;
-  color: black;
+  color: ${({ valid }) => (valid ? 'rgba(0,0,0)' : 'var(--color-red)')};
   border-radius: 8px;
   caret-color: orange;
   padding: 0 41px 0 10px;
+  &[type="password"]
+{
+  letter-spacing: 4px  !important;
+  
+}
 
   &::placeholder {
     font-family: Visby;
@@ -38,6 +51,7 @@ const InputStyled = styled.input<InputProps>`
     opacity: 0.5;
     font-size: 16px;
     transform: translateX(1px);
+    letter-spacing: 0; 
   }
 
   &[disabled] {
@@ -49,7 +63,7 @@ const InputStyled = styled.input<InputProps>`
 const InputRegularStyled = styled(InputStyled)`
 &:focus{
   border-color: ${({ valid }) => (valid ? ' rgba(0, 0, 0)' : 'var(--color-red)')};
-  }
+}
 `;
 
 const InputGrayStyled = styled(InputStyled)`
@@ -73,10 +87,10 @@ const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
 `;
 
 const LabelStyled = styled.div<InputProps>`
-  margin-top: -5px;
   color: ${({ valid }) => (valid ? 'rgba(0,0,0, 0.5)' : 'var(--color-red)')};
   padding: 10px;
-  text-align:center;
+  text-align:left;
+  font-weight: 600;
 `;
 const LabelSendStyled = styled.div<InputProps>`
   margin-top: 4px;
@@ -121,6 +135,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {!!ref && <LabelStyled valid={valid}>{label}</LabelStyled>}
             <Button
               type="button"
+              className="eye"
               variant="eye"
               icon={passwordShown ? EyeIcon : IconEye}
               onClick={handleShowPassword}

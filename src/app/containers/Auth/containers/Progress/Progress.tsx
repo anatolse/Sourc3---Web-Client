@@ -13,19 +13,23 @@ import {
 import { SyncStep } from '@app/containers/Auth/interfaces';
 import { ProgressBar } from '../../../../shared/components';
 
-const TitleStyled = styled.h2`
-  margin-top: 50px;
-  font-size: 16px;
-`;
+// const TitleStyled = styled.h2`
+//   margin-top: 50px;
+//   font-size: 16px;
+// `;
 
 const SubtitleStyled = styled.h3`
-  opacity: 0.5;
-  height: 17px;
-  margin: 30px 0;
-  color: black;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: italic;
+  height: 16px;
+  margin: 32px 0;
+  color: rgba(0,0,0, 0.5);
+  font-size: 16px;
+  font-weight: 500;
+`;
+
+const ProgressContainer = styled.div`
+position: absolute;
+    top: 395px;
+    left: 25px;
 `;
 
 // const wallet = WasmWallet.getInstance();
@@ -69,9 +73,11 @@ const Progress = () => {
 
   return (
     <Splash size="large">
-      <TitleStyled>Loading</TitleStyled>
-      <SubtitleStyled>{active && progress}</SubtitleStyled>
-      <ProgressBar active={active} percent={syncPercent} />
+      <ProgressContainer>
+        {/* <TitleStyled>Loading</TitleStyled> */}
+        <SubtitleStyled>{active && progress}</SubtitleStyled>
+        <ProgressBar active={active} percent={syncPercent} />
+      </ProgressContainer>
       {/* <Footer>
         { loading && (
         <Button variant="ghost" icon={CancelIcon} onClick={handleCancelClick}>

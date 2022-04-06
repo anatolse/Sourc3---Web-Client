@@ -4,10 +4,10 @@ import { styled } from '@linaria/react';
 const ContainerStyled = styled.div`
   overflow: hidden;
   position: relative;
-  width: 256px;
+  width: 327px;
   height: 4px
   margin: 0 auto;
-  border-radius: 2px;
+  border-radius: 8px;
 
   &:before {
     content: '';
@@ -18,6 +18,7 @@ const ContainerStyled = styled.div`
     width: 100%;
     height: 4px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 2px;
   }
 `;

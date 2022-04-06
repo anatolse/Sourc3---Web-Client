@@ -19,6 +19,7 @@ import {
   AddressLabel, AddressTip, AmountError, ASSET_BLANK,
 } from '@app/containers/Wallet/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { ROUTES } from '@app/shared/constants';
 import {
   resetSendData,
   sendTransaction,
@@ -43,15 +44,16 @@ const WarningStyled = styled.div`
   color: var(--color-gray);
 `;
 const WrapperAvailable = styled.div`
-display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+   flex-direction: column;
+  align-items: flex-start;
 `;
 
 const maxButtonStyle = css`
-position: absolute;
-    top: 38px;
-    right: 12px;
+  position: absolute;
+  top: 38px;
+  right: 12px;
+  border-radius: 4px !important;
 }
 `;
 
@@ -113,7 +115,6 @@ const validate = async (values: SendFormData, setHint: (string) => void) => {
       : 'transaction left. Ask receiver to come online to support more offline transactions.';
 
     const label = `${AddressLabel.OFFLINE} ${addressData.payments} ${warning}`;
-
     setHint(label);
   } else if (addressData.type === 'max_privacy' && values.address.length) {
     setHint(AddressLabel.MAX_PRIVACY);
@@ -372,7 +373,7 @@ const SendForm = () => {
               variant="gray"
               label={getAddressHint()}
               valid={isAddressValid()}
-              placeholder="Paste recipient address here"
+              placeholder="Paste the recipient address"
               value={values.address}
               onInput={handleAddressChange}
               className="send-input"

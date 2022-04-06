@@ -21,7 +21,7 @@ const PATH_DB = '/beam_wallet/wallet.db';
 const notificationManager = NotificationManager.getInstance();
 
 let WasmWalletClient;
-var MyModule;
+let MyModule;
 export interface WalletEvent<T = any> {
   id: number | RPCEvent | BackgroundEvent;
   result: T;
@@ -29,7 +29,7 @@ export interface WalletEvent<T = any> {
 }
 
 export enum ErrorMessage {
-  INVALID = 'Invalid password provided',
+  INVALID = 'Wrong password',
   EMPTY = 'Please, enter password',
 }
 
@@ -278,13 +278,14 @@ export default class WasmWallet {
     if (this.isRunning()) {
       this.emit(BackgroundEvent.UNLOCK_WALLET, true);
       if (notificationManager.notification && notificationManager.notification.type === NotificationType.AUTH) {
-        if (this.isConnectedSite({ 
-            appName: notificationManager.notification.params.appname, 
-            appUrl: notificationManager.notification.params.appurl })) {
-          if(!notificationManager.notification.params.is_reconnect) {
+        if (this.isConnectedSite({
+          appName: notificationManager.notification.params.appname,
+          appUrl: notificationManager.notification.params.appurl,
+        })) {
+          if (!notificationManager.notification.params.is_reconnect) {
             this.connectExternal(notificationManager.notification.params);
           } else {
-            for (let url in this.apps) {
+            for (const url in this.apps) {
               this.apps[url].walletUnlocked();
             }
           }
@@ -378,8 +379,7 @@ export default class WasmWallet {
   }
 
   removeConnectedSite(site: ExternalAppConnection) {
-    this.connectedApps.splice(this.connectedApps.findIndex(el => 
-      el.appUrl === site.appUrl && el.appName === site.appName), 1);
+    this.connectedApps.splice(this.connectedApps.findIndex((el) => el.appUrl === site.appUrl && el.appName === site.appName), 1);
 
     extensionizer.storage.local.set({
       sites: this.connectedApps,
@@ -618,7 +618,7 @@ export default class WasmWallet {
               is_running: true,
               notification,
             });
-            //notificationManager.openConnectNotification(params, params.appurl)
+            // notificationManager.openConnectNotification(params, params.appurl)
           }
         }
         break;
@@ -666,7 +666,7 @@ export default class WasmWallet {
         this.emit(id, WasmWallet.loadLogs());
         break;
       case WalletMethod.WalletLocked:
-        for (let url in this.apps) {
+        for (const url in this.apps) {
           this.apps[url].walletIsLocked();
         }
 

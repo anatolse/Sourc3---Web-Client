@@ -5,8 +5,6 @@ import {
   Window, Button, Input, Footer, Popup,
 } from '@app/shared/components';
 
-import { ArrowLeftIcon } from '@app/shared/icons';
-
 import { createWallet } from '@core/api';
 
 import { ROUTES } from '@app/shared/constants';
@@ -81,7 +79,7 @@ const SetPassword = () => {
           <Input
             autoFocus
             type="password"
-            placeholder="Password"
+            placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
             password
             margin={16}
@@ -90,14 +88,14 @@ const SetPassword = () => {
             type="password"
             valid={valid}
             label={error}
-            placeholder="Confirm password"
+            placeholder="Confirm your password"
             onChange={(e) => setConfirm(e.target.value)}
             password={!!useRef}
           />
-          <PasswordStrength value={pass} />
+          {pass && <PasswordStrength value={pass} />}
           <Footer>
             <Button type="submit" disabled={!ready}>
-              Get Started!
+              Get started!
             </Button>
           </Footer>
         </FormStyled>
@@ -106,8 +104,8 @@ const SetPassword = () => {
         visible={warningVisible}
         title="Return to seed phrase"
         confirmButton={(
-          <Button icon={ArrowLeftIcon} onClick={handleReturnClick}>
-            return
+          <Button onClick={handleReturnClick}>
+            Return
           </Button>
         )}
         onCancel={() => toggleWarning(false)}

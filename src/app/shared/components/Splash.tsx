@@ -17,18 +17,23 @@ const ContainerStyled = styled.div<SplashProps>`
   position: relative;
   height: 600px;
   padding: 0 30px 0;
-  // background-image: url('/assets/background.svg');
-  background: #fff;
+  background-image: url('/assets/background.svg');
+  // background: #fff;
   text-align: center;
 `;
 
-// const TitleStyled = styled.div<SplashProps>`
-//   margin-bottom: ${({ size }) => (size === 'small' ? 50 : 100)}px;
-//   text-align: center;
-//   font-size: 16px;
-//   font-weight: 700;
-//   color: var(--color-black);
-// `;
+const TitleStyled = styled.div`
+position: absolute;
+font-size: 24px;
+font-weight: 900;
+color: var(--color-black);
+top: 255px;
+left: 132px;
+width: 154px;
+height: 60px;
+text-align: right;
+line-height: 30px;
+`;
 
 const backButtonStyle = css`
   top: 23px;
@@ -40,7 +45,11 @@ export const Splash: React.FC<SplashProps> = ({
   <ContainerStyled blur={blur}>
     {onReturn && <BackButton onClick={onReturn} className={backButtonStyle} />}
     <Logo size={size} />
-    {/* <TitleStyled size={size}>Web Client</TitleStyled> */}
+    <TitleStyled>
+      Where Web3
+      Builds
+
+    </TitleStyled>
     {children}
   </ContainerStyled>
 );

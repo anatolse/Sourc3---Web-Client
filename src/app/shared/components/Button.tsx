@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const BaseButtonStyled = styled.button<ButtonProps>`
   &[disabled] {
-    opacity: 0.5;
+    opacity: 0.3;
 
     &:hover,
     &:active {

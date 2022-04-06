@@ -87,7 +87,7 @@ const IconItem = styled.li`
 margin-left: 52px
 `;
 const ParagraphStyled = styled.p`
-opacity: 0.5;
+color: rgba(0,0,0, 0.5);
 text-align: left;
 line-height:20px;
 font-size: 14px;

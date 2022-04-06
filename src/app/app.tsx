@@ -90,19 +90,22 @@ const App = () => {
           autoClose={3000}
           hideProgressBar
           newestOnTop={false}
-          closeOnClick
+          closeOnClick={null}
           rtl={false}
           pauseOnFocusLoss={false}
           draggable={false}
           pauseOnHover={false}
           icon={false}
+          closeButton={false}
           toastStyle={{
             textAlign: 'center',
-            background: 'var(--color-green)',
-            color: 'white',
+            background: 'linear-gradient(0deg, rgba(63, 208, 90, 0.05), rgba(63, 208, 90, 0.05)), #FFFFFF',
+            color: '#3FD05A',
             width: '90%',
             margin: '0 auto 16px',
-            borderRadius: '10px',
+            border: '1px solid #3FD05A',
+            boxSizing: 'border-box',
+            borderRadius: '8px',
           }}
         />
       </Scrollbars>

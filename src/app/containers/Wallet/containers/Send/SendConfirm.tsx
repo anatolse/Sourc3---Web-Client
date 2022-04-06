@@ -5,8 +5,6 @@ import {
   Section, Button, Rate, Title,
 } from '@app/shared/components';
 
-import { ArrowUpIcon } from '@app/shared/icons';
-
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
@@ -196,7 +194,7 @@ const SendConfirm = (props: SendConfirmProps) => {
         </Section>
         )} */}
         <Button type="submit" pallete="orange" style={{ margin: '94px 56px 0' }}>
-          send
+          Send
         </Button>
       </form>
 

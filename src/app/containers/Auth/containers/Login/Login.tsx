@@ -15,8 +15,11 @@ import { css } from '@linaria/core';
 const formClassName = css`
 position: absolute;
 left: 40px;
-bottom: 40px;
+top: 395px;
 right: 40px;
+`;
+const buttonClassName = css`
+margin-bottom: 20px !important;
 `;
 
 const Login: React.FC = () => {
@@ -43,19 +46,19 @@ const Login: React.FC = () => {
     <>
       <Splash size="large">
         <form autoComplete="off" noValidate onSubmit={handleSubmit} className={formClassName}>
-          <p>Enter your password to access the web client</p>
           <Input
             autoFocus
             name="password"
             type="password"
             placeholder="Password"
-            margin={25}
+            margin={40}
             valid={!error}
             label={error}
             ref={inputRef}
+            password
           />
-          <Button type="submit">
-            open your client
+          <Button type="submit" className={buttonClassName}>
+            Open
           </Button>
           <Button
             variant="link"
@@ -64,7 +67,7 @@ const Login: React.FC = () => {
               toggleWarning(true);
             }}
           >
-            Restore client or create a new one
+            Restore or create new
           </Button>
         </form>
       </Splash>

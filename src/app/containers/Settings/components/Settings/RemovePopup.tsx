@@ -52,12 +52,15 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
       confirmButton={confirmButton}
       onCancel={onCancel}
     >
-      {' '}
-      <p>
-        Use your password to confirm erasing your current account
-      </p>
       {warned ? (
-        <Input label={!error ? 'Password' : error} type="password" ref={inputRef} valid={!error} />
+
+        <>
+          <p>
+            Use your password to confirm erasing your current account
+          </p>
+          <Input label={!error ? 'Password' : error} type="password" ref={inputRef} valid={!error} />
+
+        </>
       ) : (
         <>
           {' '}
@@ -69,7 +72,6 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
             All data will be erased. Make sure you’ve saved your
             seed phrase if you want to restore this account later on.
           </p>
-
         </>
       )}
     </Popup>
