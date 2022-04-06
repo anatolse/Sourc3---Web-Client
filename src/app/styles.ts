@@ -52,7 +52,7 @@ css`
       font-family: 'Visby';
       src: url('/assets/fonts/VisbySemiBold.otf');
       font-weight: 600;
-      font-style: bold;
+      font-style: semi bold;
     }
 
     @font-face {
@@ -120,6 +120,7 @@ css`
 
     html * {
       font-family: 'Visby', sans-serif;
+      font-weight: 500;
     }
 
     body {

@@ -26,6 +26,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [warningVisible, toggleWarning] = useState(false);
+  const [pass, setPass] = useState('');
 
   const error = useSelector(selectErrorMessage());
 
@@ -35,13 +36,11 @@ const Login: React.FC = () => {
     (event: React.FormEvent) => {
       event.preventDefault();
       const { value } = inputRef.current;
-
       dispatch(setError(null));
       dispatch(startWallet.request(value));
     },
     [dispatch],
   );
-
   return (
     <>
       <Splash size="large">
@@ -50,14 +49,15 @@ const Login: React.FC = () => {
             autoFocus
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="Enter your password"
             margin={40}
             valid={!error}
             label={error}
             ref={inputRef}
+            onChange={(e) => setPass(e.target.value)}
             password
           />
-          <Button type="submit" className={buttonClassName}>
+          <Button type="submit" className={buttonClassName} disabled={!pass}>
             Open
           </Button>
           <Button

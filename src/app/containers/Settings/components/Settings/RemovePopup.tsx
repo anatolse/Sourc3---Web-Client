@@ -58,7 +58,7 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
           <p>
             Use your password to confirm erasing your current account
           </p>
-          <Input label={!error ? 'Password' : error} type="password" ref={inputRef} valid={!error} />
+          <Input label={error} type="password" ref={inputRef} valid={!error} placeholder="Enter your password" />
 
         </>
       ) : (

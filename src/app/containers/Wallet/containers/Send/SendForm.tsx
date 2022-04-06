@@ -7,7 +7,7 @@ import {
   AmountInput, Button, Input, Rate, Section, Title, Window,
 } from '@app/shared/components';
 
-import { ArrowRightIcon, ArrowUpIcon, CancelIcon } from '@app/shared/icons';
+import { IconCancel } from '@app/shared/icons';
 
 import { styled } from '@linaria/react';
 import LabeledToggle from '@app/shared/components/LabeledToggle';
@@ -378,7 +378,7 @@ const SendForm = () => {
               onInput={handleAddressChange}
               className="send-input"
             />
-            {values.address && <CancelIcon className="cancel-button" onClick={() => setFieldValue('address', '')} />}
+            {values.address && <IconCancel className="cancel-button" onClick={() => setFieldValue('address', '')} />}
           </Section>
           <Section title="Amount" variant="gray">
             <AmountInput
@@ -390,8 +390,8 @@ const SendForm = () => {
             />
           </Section>
           {addressType === 'offline' && (
-            <Section title="Transaction Type" variant="gray" className={typeClassNames}>
-              <LabeledToggle left="Online" right="Offline" value={values.offline} onChange={(e) => handleOffline(e)} />
+            <Section title="Transaction type" variant="gray" className={typeClassNames}>
+              <LabeledToggle left="online" right="offline" value={values.offline} onChange={(e) => handleOffline(e)} />
             </Section>
           )}
           <Section variant="send">

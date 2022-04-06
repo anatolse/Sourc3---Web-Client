@@ -39,11 +39,15 @@ height: auto;
 margin: 20px 0 100px;
 text-align: left;
 `;
+const inputClassName = css`
+background-color: #fff !important;
+border: #fff !important;
+`;
 
 const AddressStyled = styled.div`
 position: absolute;
 top: 60px;
-right: 0;
+left: 140px;
 `;
 
 const TipStyled = styled.div`
@@ -157,7 +161,7 @@ const Receive = () => {
         </Popup>
         <ReceiveContainer>
           <Section title={`Address ${maxAnonymity ? '(Maximum anonymity)' : ''}`} variant="gray">
-            <Input variant="gray" value={address} />
+            <Input variant="ghost" value={address} />
             <AddressStyled>
               <Button
                 className={ButtonClassName}

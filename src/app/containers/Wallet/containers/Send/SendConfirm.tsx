@@ -103,6 +103,7 @@ const SendConfirm = (props: SendConfirmProps) => {
           submitSend();
         }}
       >
+        {/* TODO:CREATE component */}
         <div className={wrapper}>
           <span className={subtitle}>Send to</span>
           <div className={receiptValue}><span>{compact(address)}</span></div>
@@ -123,7 +124,7 @@ const SendConfirm = (props: SendConfirmProps) => {
               {' '}
               {metadata_pairs.UN}
             </SC3Amount>
-
+            <Rate className={rateClassName} value={value} groths />
           </div>
         </div>
         <div className={wrapper}>
@@ -193,7 +194,7 @@ const SendConfirm = (props: SendConfirmProps) => {
           <Rate value={beamRemaining} groths />
         </Section>
         )} */}
-        <Button type="submit" pallete="orange" style={{ margin: '94px 56px 0' }}>
+        <Button type="submit" pallete="orange" style={{ margin: '56px 56px 0' }}>
           Send
         </Button>
       </form>

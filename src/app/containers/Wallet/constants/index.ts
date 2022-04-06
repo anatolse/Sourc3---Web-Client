@@ -5,7 +5,7 @@ export const AMOUNT_MAX = 253999999.9999999;
 export const FEE_DEFAULT = 100000;
 
 export enum AddressLabel {
-  ERROR = 'Invalid wallet address',
+  ERROR = 'Invalid address',
   MAX_PRIVACY = 'Guarantees maximum anonymity set of up to 64K.',
   OFFLINE = 'Offline address.',
   REGULAR = 'Online address',

@@ -6,8 +6,8 @@ import { EyeIcon, IconEye } from '../icons';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   valid?: boolean;
-  variant?: 'regular' | 'gray' | 'amount' | 'send';
-  pallete?: 'purple' | 'blue' | 'corn-flower-blue' | 'black';
+  variant?: 'regular' | 'gray' | 'amount' | 'send' | 'ghost';
+  pallete?: 'purple' | 'blue' | 'corn-flower-blue' | 'black' ;
   margin?: 'none' | number;
   password?: boolean;
 }
@@ -32,7 +32,7 @@ const InputStyled = styled.input<InputProps>`
   line-height: 20px;
   font-weight: 500;
   border: none;
-  background-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'rgba(234,0,0,0.03)')};
+  background-color: ${({ valid }) => (valid ? 'rgba(0,0,0,0.03)' : 'rgba(234,0,0,0.03)')};
   border: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 16px;
   color: ${({ valid }) => (valid ? 'rgba(0,0,0)' : 'var(--color-red)')};
@@ -47,11 +47,11 @@ const InputStyled = styled.input<InputProps>`
 
   &::placeholder {
     font-family: Visby;
-    color: black;
-    opacity: 0.5;
+    color: rgba(0,0,0, 0.3);
     font-size: 16px;
     transform: translateX(1px);
     letter-spacing: 0; 
+    font-weight: 500;
   }
 
   &[disabled] {
@@ -70,6 +70,12 @@ const InputGrayStyled = styled(InputStyled)`
   width:327px
   border-width: 1px;
   border-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'var(--color-red)')};
+`;
+const InputGhostStyled = styled(InputStyled)`
+  width:327px
+  border-width: 1px;
+  border: none;
+  background-color: #fff;
 `;
 
 const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
@@ -115,6 +121,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       gray: InputGrayStyled,
       amount: InputAmountStyled,
       send: LabelSendStyled,
+      ghost: InputGhostStyled,
     }[variant];
     const [passwordShown, setPasswordShown] = useState(false);
     const handleShowPassword: React.MouseEventHandler = () => {

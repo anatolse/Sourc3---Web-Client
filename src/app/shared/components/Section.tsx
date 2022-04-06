@@ -26,7 +26,7 @@ const SectionStyled = styled.div`
 
   > .cancel-button {
     position: absolute;
-    top: 76px;
+    top: 65px;
     right: 0px;
     cursor: pointer;
   }
@@ -47,7 +47,7 @@ const ProfileStyled = styled.div`
 
   > .cancel-button {
     position: absolute;
-    top: 76px;
+    top: 65px;
     right: 0px;
     cursor: pointer;
   }
@@ -64,7 +64,7 @@ const SectionGrayStyled = styled.div`
 
   > .cancel-button {
     position: absolute;
-    top: 60px;
+    top: 65px;
     right: 12px;
     cursor: pointer;
   }

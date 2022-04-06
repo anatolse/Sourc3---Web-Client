@@ -102,10 +102,12 @@ const App = () => {
             background: 'linear-gradient(0deg, rgba(63, 208, 90, 0.05), rgba(63, 208, 90, 0.05)), #FFFFFF',
             color: '#3FD05A',
             width: '90%',
-            margin: '0 auto 16px',
+            margin: '0 auto 105px',
             border: '1px solid #3FD05A',
             boxSizing: 'border-box',
             borderRadius: '8px',
+            boxShadow: 'none',
+            fontWeight: '600',
           }}
         />
       </Scrollbars>
