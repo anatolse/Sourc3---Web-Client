@@ -13,11 +13,16 @@ import { AddressData, AddressType } from '@core/types';
 import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces';
 
 const SC3Amount = styled.p`
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 19px;
   color: rgba(0,0,0, 0.5);
   margin: 0;
 `;
+const SC3 = css`
+font-weight: 800;
+font-size: 18px;
+line-height: 22px;`;
 
 const formMid = css`
     position: absolute;
@@ -33,21 +38,19 @@ const wrapper = css`
     margin-bottom: 16px;
 `;
 const subtitle = css`
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 14px;
+font-weight: 800 !important;
+font-size: 16px;
+line-height: 19px;
+letter-spacing: 0.1px;
     width: 100px;
     text-align: left;
 `;
 const receiptValue = css`
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+font-weight: 800 !important;
+font-size: 16px;
+line-height: 20px;
     color: rgba(0,0,0, 0.5);
     text-align: left;
-`;
-const rateClassName = css`
-    font-weight: 500;
 `;
 
 const getTxType = (type: AddressType, offline: boolean): string => {
@@ -119,12 +122,12 @@ const SendConfirm = (props: SendConfirmProps) => {
         <div className={wrapper}>
           <span className={subtitle}>Amount</span>
           <div className={receiptValue}>
-            <SC3Amount>
+            <SC3Amount className={SC3}>
               {fromGroths(value)}
               {' '}
               {metadata_pairs.UN}
             </SC3Amount>
-            <Rate className={rateClassName} value={value} groths />
+            <Rate value={value} groths />
           </div>
         </div>
         <div className={wrapper}>
@@ -135,7 +138,7 @@ const SendConfirm = (props: SendConfirmProps) => {
               {' '}
               SC3
             </SC3Amount>
-            <Rate className={rateClassName} value={fee} groths />
+            <Rate value={fee} groths />
           </div>
         </div>
         <div className={wrapper}>
@@ -146,7 +149,7 @@ const SendConfirm = (props: SendConfirmProps) => {
               {' '}
               {metadata_pairs.UN}
             </SC3Amount>
-            <Rate className={rateClassName} value={selected.asset_id === 0 ? change : asset_change} groths />
+            <Rate value={selected.asset_id === 0 ? change : asset_change} groths />
           </div>
         </div>
         <div className={wrapper}>
@@ -157,7 +160,7 @@ const SendConfirm = (props: SendConfirmProps) => {
               {' '}
               SC3
             </SC3Amount>
-            <Rate className={rateClassName} value={beamRemaining} groths />
+            <Rate value={beamRemaining} groths />
 
           </div>
         </div>

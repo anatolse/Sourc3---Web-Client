@@ -9,20 +9,15 @@ import {
 const WarningListStyled = styled.ol`
     list-style: auto;
     padding-left: 20px;
-    opacity: 0.5;
-    line-height: 24px;
+    color: rgba(0,0,0, 0.5);
     margin-bottom:24px;
     font-weight: 800;
   > li {
     position: relative;
     text-align: left;
-  }
-
-  p {
-    display: inline-block;
-    vertical-align: left;
-    line-height: normal;
-    margin: 0;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 24px;
   }
 `;
 
@@ -31,6 +26,7 @@ opacity: 0.5;
 text-align: left;
 line-height:20px;
 font-size: 14px;
+font-weight: 700;
 `;
 
 interface RegistrationWarningProps {

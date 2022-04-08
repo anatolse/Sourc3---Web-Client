@@ -1,7 +1,7 @@
 export type Pallete = 'green' | 'ghost' | 'purple' | 'blue' | 'red' | 'white' | 'orange' | 'black' | 'currentRole';
 
 export type ButtonVariant = 'regular' | 'ghost' | 'block'
-| 'link' | 'icon' | 'agree' | 'menu' | 'eye' | 'setting' | 'switch' | 'linkDrop' | 'max';
+| 'link' | 'icon' | 'agree' | 'menu' | 'eye' | 'setting' | 'switch' | 'linkDrop' | 'max' | 'manage';
 
 export type AddressType = 'regular' | 'regular_new' | 'max_privacy' | 'offline' | 'public_offline' | 'unknown';
 export interface CreateWalletParams {

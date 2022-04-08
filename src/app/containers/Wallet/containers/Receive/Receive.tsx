@@ -25,7 +25,7 @@ margin: 0 24px;
 `;
 
 const ButtonClassName = css`
-  margin: 0 17px 0 0 !important; 
+  margin: 0 21px 0 0 !important; 
 `;
 
 const buttonClassName = css`
@@ -39,28 +39,22 @@ height: auto;
 margin: 20px 0 100px;
 text-align: left;
 `;
-const inputClassName = css`
-background-color: #fff !important;
-border: #fff !important;
-`;
-
 const AddressStyled = styled.div`
-position: absolute;
-top: 60px;
-left: 140px;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+color: black;
 `;
 
-const TipStyled = styled.div`
-  line-height: 1.14;
-  margin-top: 10px;
-  font-size: 14px;
-  font-style: italic;
-  color: var(--color-gray);
+const BlockButtonStyled = styled.div`
+margin-left: 18px
 `;
 
-const WarningStyled = styled(TipStyled)`
-  margin-bottom: 20px;
-  text-align: center;
+const AddressContainer = styled.div`
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    margin: 10px 0;
 `;
 
 const RowStyled = styled.div`
@@ -71,8 +65,10 @@ const RowStyled = styled.div`
 const LabelStyled = styled.label`
   flex-grow: 1;
   font-size: 16px;
-    font-weight: 600;
-    padding-left: 12px;
+  font-weight: 800;
+  padding-left: 12px;
+  line-height: 19px;
+  letter-spacing: 0.1px;
 `;
 
 const QrCodeWrapper = styled.div`
@@ -161,23 +157,25 @@ const Receive = () => {
         </Popup>
         <ReceiveContainer>
           <Section title={`Address ${maxAnonymity ? '(Maximum anonymity)' : ''}`} variant="gray">
-            <Input variant="ghost" value={address} />
-            <AddressStyled>
-              <Button
-                className={ButtonClassName}
-                variant="icon"
-                pallete="white"
-                icon={CopySmallIcon}
-                onClick={copyAddress}
-              />
-              <Button
-                className={ButtonClassName}
-                variant="icon"
-                pallete="white"
-                icon={IconQrCode}
-                onClick={() => setQrVisible(true)}
-              />
-            </AddressStyled>
+            <AddressContainer>
+              <AddressStyled>{address}</AddressStyled>
+              <BlockButtonStyled>
+                <Button
+                  className={ButtonClassName}
+                  variant="icon"
+                  pallete="white"
+                  icon={CopySmallIcon}
+                  onClick={copyAddress}
+                />
+                <Button
+                  className={ButtonClassName}
+                  variant="icon"
+                  pallete="white"
+                  icon={IconQrCode}
+                  onClick={() => setQrVisible(true)}
+                />
+              </BlockButtonStyled>
+            </AddressContainer>
           </Section>
           <Section title="Advanced settings" variant="receive" collapse>
             <Section title="Requested amount (optional)" variant="gray">
@@ -189,8 +187,8 @@ const Receive = () => {
               />
             </Section>
             <RowStyled>
-              <LabelStyled htmlFor="ma">Maximum anonymity set </LabelStyled>
-              <Toggle id="ma" value={maxAnonymity} onChange={() => setMaxAnonymity((v) => !v)} />
+              <LabelStyled>Maximum anonymity set </LabelStyled>
+              <Toggle value={maxAnonymity} onChange={() => setMaxAnonymity((v) => !v)} />
             </RowStyled>
           </Section>
           {maxAnonymity ? (

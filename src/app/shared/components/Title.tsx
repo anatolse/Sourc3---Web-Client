@@ -50,7 +50,7 @@ position: absolute;
 const TitleStyled = styled.h3`
   ${STYLE_BASE}
   font-style: normal;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.1px;

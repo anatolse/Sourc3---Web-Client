@@ -116,8 +116,11 @@ font-size: 14px;
         onCancel={handleCancel}
         agree
       >
-        Please write the secret phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
-        secure.
+        <span>
+          Please write the secret phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
+          secure.
+
+        </span>
       </Popup>
     </>
   ) : (

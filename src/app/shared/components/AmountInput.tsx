@@ -17,7 +17,7 @@ import Rate from './Rate';
 const ContainerStyled = styled.div`
   position: relative;
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 29px;
 `;
 
 const LabelStyled = styled.div`
@@ -25,9 +25,9 @@ const LabelStyled = styled.div`
   line-height: 20px;
   color: black;
   position: relative;
-  top: -3px;
+  top: 0;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
 `;
 
 const selectClassName = css`

@@ -3,13 +3,16 @@ import { styled } from '@linaria/react';
 
 const FooterStyled = styled.div<FooterProps>`
   position: absolute;
-  bottom: ${({ margin }) => (margin === 'large' ? 88 : 38)}px;
+  bottom: ${({ margin }) => (margin === 'large' ? 56 : 37)}px;
   left: 0;
   width: 100%;
   padding: 0 30px;
 
   > button:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
+  }
+  > button:first-child {
+    margin-bottom: 32px !important;
   }
 `;
 

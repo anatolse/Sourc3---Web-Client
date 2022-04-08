@@ -69,7 +69,7 @@ font-size: 14px;
     >
       <AuthInfo>
         Enter the words from the secret phrase corresponding the numbers shown below.
-        You can skip the confrimation.
+        {/* You can skip the confrimation. */}
       </AuthInfo>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />

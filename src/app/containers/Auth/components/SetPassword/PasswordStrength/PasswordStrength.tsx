@@ -11,22 +11,22 @@ const STRENGTH_CRITERIA = [
   /^(?=.*?[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])/, // at least 1 special char
 ];
 
-function getStrengthTitle(value: number) {
-  switch (value) {
-    case 6:
-      return 'Very strong';
-    case 5:
-      return 'Strong';
-    case 3:
-      return 'Medium strength';
-    case 2:
-      return 'Weak';
-    case 1:
-      return 'Very Weak';
-    default:
-      return null;
-  }
-}
+// function getStrengthTitle(value: number) {
+//   switch (value) {
+//     case 6:
+//       return 'Very strong';
+//     case 5:
+//       return 'Strong';
+//     case 3:
+//       return 'Medium strength';
+//     case 2:
+//       return 'Weak';
+//     case 1:
+//       return 'Very Weak';
+//     default:
+//       return null;
+//   }
+// }
 
 function ratePassword(password: string): number {
   return STRENGTH_CRITERIA.reduce((result, regExp) => {
@@ -77,11 +77,11 @@ const ListItemStyled = styled.li<{ points: number }>`
   }};
 `;
 
-const StrengthTitleStyled = styled.span`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
+// const StrengthTitleStyled = styled.span`
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+// `;
 
 const IconItem = styled.li`
 margin-left: 52px
@@ -91,7 +91,7 @@ color: rgba(0,0,0, 0.5);
 text-align: left;
 line-height:20px;
 font-size: 14px;
-font-weight:500;
+font-weight: 700;
 width: 80%
 position: absolute;
 top: 18px;
@@ -99,12 +99,13 @@ left: 24px;
 `;
 
 const PopupListStyled = styled.ol`
-list-style: square;
+list-style: disc;
 color: rgba(0, 0, 0, 0.5);
 text-align: left;
 line-height:20px;
 font-size: 14px;
 margin-left: 24px;
+margin-top: 16px;
 `;
 
 const PopupListItemStyled = styled.li`
@@ -112,7 +113,7 @@ const PopupListItemStyled = styled.li`
 
 const PasswordStrength: React.FC<PasswordStrengthProps> = ({ value }) => {
   const points = ratePassword(value);
-  const title = getStrengthTitle(points);
+  // const title = getStrengthTitle(points);
   const bars = new Array(BARS_MAX).fill(null).map((v, index) => (index < points ? points : 0));
   const [popupVisible, setPopupVisible] = useState(false);
 
@@ -126,17 +127,18 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ value }) => {
           ))}
           <IconItem><Button variant="icon" icon={IconQuestion} onClick={() => setPopupVisible(true)} /></IconItem>
         </ListStyled>
-        {title && (
+        {/* {title && (
         <StrengthTitleStyled>
           {title}
           {' '}
           password
         </StrengthTitleStyled>
-        )}
+        )} */}
       </ContainerStyled>
       <Popup
         visible={popupVisible}
         onCancel={() => setPopupVisible(false)}
+        closeButton
       >
         <ParagraphStyled>Strong password needs to meet the following requirements:</ParagraphStyled>
         <br />

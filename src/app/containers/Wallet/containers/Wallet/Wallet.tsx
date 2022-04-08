@@ -29,24 +29,26 @@ const Profile = styled.div`
 display: flex;
 width: 100%;
 height: 105px;
-justify-content: space-between;
+justify-content: flex-start;
 align-items: center;
 padding: 0 24px
 `;
 const Avatar = styled.div`
 width: 56px;
 height: 56px;
-left: 24px;
+left: 38px;
 top: 81px;
 `;
 const Name = styled.p`
 margin: 0
-font-weight: 600;
+font-weight: 800;
 font-size: 20px;
 line-height: 20px;
 
-text-align: right;
+text-align: left;
 letter-spacing: 0.1px;
+margin-right: 31px;
+margin-left: 12px;
 `;
 const ButtonStyled = styled.div`
 display: flex
@@ -55,6 +57,9 @@ padding: 24px;
 flex-wrap: wrap;
 flex-direction: row;
 justify-content: space-around;
+& > button:nth-child(even){
+  margin-left: 17px;
+}
 `;
 
 const Wallet = () => {
@@ -63,7 +68,7 @@ const Wallet = () => {
   const assets = useSelector(selectAssets());
   const transactions = useSelector(selectTransactions());
   const rate = useSelector(selectRate());
-  const balance = (assets[0].available);
+  const credit = (assets[0].available);
   useEffect(() => {
     if (!rate) {
       dispatch(loadRate.request());
@@ -74,7 +79,7 @@ const Wallet = () => {
     <Window title="Profile">
       <ActionsStyled>
         <Profile>
-          <Button variant="icon" icon={IconProfileLarge} />
+          <Avatar><Button variant="manage" icon={IconProfileLarge} /></Avatar>
           <Name>Long John Silver</Name>
           <Button
             variant="link"
@@ -83,11 +88,11 @@ const Wallet = () => {
             Manage
           </Button>
         </Profile>
-        <Section title="Balance">
+        <Section title="Balance" variant="balance">
           <Assets data={assets} />
         </Section>
         <ButtonStyled>
-          {balance ? (
+          {credit ? (
             <Button
               variant="block"
               pallete="orange"
@@ -106,7 +111,7 @@ const Wallet = () => {
             receive
           </Button>
           {
-            balance
+            credit
               ? (
                 <Button
                   variant="block"

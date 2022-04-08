@@ -14,7 +14,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const ContainerStyled = styled.div<InputProps>`
   position: relative;
-  height: 44px;
+  height: auto;
   margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : margin)}px;
   .eye {
     display: none !important;
@@ -30,7 +30,7 @@ const InputStyled = styled.input<InputProps>`
   width: 100%;
   height: 44px;
   line-height: 20px;
-  font-weight: 500;
+  font-weight: 600;
   border: none;
   background-color: ${({ valid }) => (valid ? 'rgba(0,0,0,0.03)' : 'rgba(234,0,0,0.03)')};
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -46,12 +46,12 @@ const InputStyled = styled.input<InputProps>`
 }
 
   &::placeholder {
-    font-family: Visby;
+    font-family: VisbyCF;
     color: rgba(0,0,0, 0.3);
     font-size: 16px;
     transform: translateX(1px);
     letter-spacing: 0; 
-    font-weight: 500;
+    font-weight: 600;
   }
 
   &[disabled] {
@@ -80,11 +80,11 @@ const InputGhostStyled = styled(InputStyled)`
 
 const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
   font-size: 24px;
-  font-weight: 500;
-  line-height: 24px;
+  font-weight: 700;
+  line-height: 29px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
   &::placeholder {
-    font-family: Visby;
+    font-family: VisbyCF;
     color: black;
     opacity: 0.5;
     font-size: 24px;
@@ -94,7 +94,7 @@ const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
 
 const LabelStyled = styled.div<InputProps>`
   color: ${({ valid }) => (valid ? 'rgba(0,0,0, 0.5)' : 'var(--color-red)')};
-  padding: 10px;
+  padding: 4px 10px 0 10px;
   text-align:left;
   font-weight: 600;
 `;
@@ -108,7 +108,7 @@ const LabelSendStyled = styled.div<InputProps>`
   box-sizing: border-box;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
 `;
 

@@ -23,7 +23,7 @@ const SubtitleStyled = styled.h3`
   margin: 32px 0;
   color: rgba(0,0,0, 0.5);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const ProgressContainer = styled.div`

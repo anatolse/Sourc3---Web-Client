@@ -15,8 +15,8 @@ interface AssetsProps {
 const ListItemStyled = styled.li<{ opt_color?: string; asset_id: number }>`
   margin-bottom: 10px;
   position: relative;
-  padding: 20px;
-  padding-left: 56px;
+  padding: 12px 24px;
+  padding-left: 66px;
 
   &:before {
     opacity: 0.3;

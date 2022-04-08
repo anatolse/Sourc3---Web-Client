@@ -29,12 +29,15 @@ const AmountStyled = styled.span`
   flex-grow: 1;
   font-weight: 700;
   font-size: 32px;
-  line-height: 32px;
+  line-height: 38px;
 `;
 
 const iconClassName = css`
   position: absolute;
   right: 100%;
+  margin-right: 16px;
+  top: 5px;
+  
 `;
 
 const rateStyle = css`
@@ -44,7 +47,7 @@ color: black;
 position: absolute;
 top: 40px;
 font-size: 14px;
-line-height: 14px;
+line-height: 17px;
 font-weight: 700;
 }
 `;

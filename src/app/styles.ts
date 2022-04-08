@@ -16,7 +16,8 @@ css`
       --color-orange: #FF791F ;
       --color-corn-flower-blue: #4DA2E6
       --color-black: #000000;
-      
+      --toastify-toast-min-height: 48px;
+      --toastify-toast-max-height: 800px;
       --color-currentRole: gray;
       --color-rgba-blue: rgba(77,163,230, 0.2)
 
@@ -26,52 +27,38 @@ css`
 
       --color-disabled: #8da1ad;
     }
-
-    @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyRegular.otf');
-      font-weight: 400;
-      font-style: normal;
-    }
     
     @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyMedium.otf');
+      font-family: 'VisbyCF';
+      src: url('/assets/fonts/VisbyCF-Medium.ttf');
       font-weight: 500;
-      font-style: medium;
+      font-style: normal;
     }
 
     @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyItalic.otf');
-      font-weight: 400;
-      font-style: italic;
-    }
-
-    @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbySemiBold.otf');
+      font-family: 'VisbyCF';
+      src: url('/assets/fonts/VisbyCF-DemiBold.ttf');
       font-weight: 600;
-      font-style: semi bold;
+      font-style: normal;
     }
 
     @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyBold.otf');
+      font-family: 'VisbyCF';
+      src: url('/assets/fonts/VisbyCF-Bold.ttf');
       font-weight: 700;
-      font-style: bold;
+      font-style: normal;
     }
     @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyExtrabold.otf');
+      font-family: 'VisbyCF';
+      src: url('/assets/fonts/VisbyCF-ExtraBold.ttf');
       font-weight: 800;
-      font-style: extra bold;
+      font-style: normal;
     }
     @font-face {
-      font-family: 'Visby';
-      src: url('/assets/fonts/VisbyHeavy.otf');
+      font-family: 'VisbyCF';
+      src: url('/assets/fonts/VisbyCF-Heavy.ttf');
       font-weight: 900;
-      font-style: heavy bold;
+      font-style: normal;
     }
     
     @font-face {
@@ -119,8 +106,7 @@ css`
     }
 
     html * {
-      font-family: 'Visby', sans-serif;
-      font-weight: 500;
+      font-family: 'VisbyCF', sans-serif;
     }
 
     body {
@@ -130,9 +116,17 @@ css`
     }
 
     p {
-      font-weight: 500;
+      font-weight: 700;
       margin: 0;
       margin-bottom: 24px;
+    }
+    b {
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    span {
+      font-weight: 700;
     }
 
     ul,

@@ -16,7 +16,9 @@ const Ratetyled = styled.div`
   margin-top: 4px;
   color: rgba(0,0,0, 0.5);
   font-size:14px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
 `;
 
 const Rate: React.FC<Props> = ({

@@ -8,7 +8,7 @@ interface SectionProps {
   title?: string;
   subtitle?: string;
   collapse?: boolean;
-  variant?: 'regular' | 'gray' | 'receipt' | 'profile' | 'send' | 'warning' | 'receive';
+  variant?: 'regular' | 'gray' | 'receipt' | 'profile' | 'send' | 'warning' | 'receive' | 'balance';
   showAllAction?: () => void;
   className?: string,
 }
@@ -35,6 +35,25 @@ const SectionStyled = styled.div`
     width: 95%;
   }
 `;
+const BalanceSectionStyled = styled.div`
+  position: relative;
+  width: 359px;
+  height: 146px;
+  overflow:hidden;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  .balance{
+    font-weight: 700 !important;
+    font-size: 20px;
+    line-height: 20px;
+    padding-left:4px !important;
+  }
+
+`;
+
 const ProfileStyled = styled.div`
   position: relative;
   width: 174px;
@@ -61,6 +80,7 @@ const SectionGrayStyled = styled.div`
   position: relative;
   background-color: rgba(255, 255, 255, 0.05);
   text-align: left;
+  height: auto;
 
   > .cancel-button {
     position: absolute;
@@ -99,14 +119,14 @@ const ShowAll = styled.div`
   background: transparent;
 `;
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled.div<SectionProps>`
   display: flex;
   justify-content: space-between;
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
     text-transform: none;
-    padding: 24px 0 10px 12px;
+    padding: 24px 0 4px 12px;
 `;
 
 const ReceiptSectionStyled = styled(SectionStyled)`
@@ -124,10 +144,11 @@ background: rgba(255, 121, 31, 0.1);
 border: 1px solid rgba(255, 121, 31, 0.1);
 padding: 12px;
 height:auto;
+margin-top: 64px;
 `;
 const ReceiveStyled = styled(SectionGrayStyled)`
 .collapse{
-margin-top: 24px;
+margin-top: 42px;
 border-radius: 8px;
 background: rgba(255, 121, 31, 0.1);
 padding: 12px;
@@ -143,7 +164,7 @@ border: 1px solid rgba(255, 121, 31, 0.1);
 box-sizing: border-box;
 border-radius: 8px;
 font-size: 14px;
-font-weight: 500;
+font-weight: 700;
 line-height: 20px;
 color: rgba(0,0,0, 0.5)
 `;
@@ -165,6 +186,7 @@ const Section: React.FC<SectionProps> = ({
 
   const SectionComponent = {
     regular: SectionStyled,
+    balance: BalanceSectionStyled,
     gray: SectionGrayStyled,
     receipt: ReceiptSectionStyled,
     profile: ProfileStyled,
@@ -182,7 +204,7 @@ const Section: React.FC<SectionProps> = ({
       )}
       {!!title && (
         <TitleWrapper className={collapse ? 'collapse' : ''}>
-          <Title>{title}</Title>
+          <Title className="balance">{title}</Title>
           {showAllAction && <ShowAll onClick={showAllAction}>Show All</ShowAll>}
         </TitleWrapper>
       )}

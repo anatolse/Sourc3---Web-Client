@@ -15,8 +15,10 @@ export enum AddressLabel {
 export enum AddressTip {
   MAX_PRIVACY = 'Transaction can last at most 72 hours.',
   OFFLINE = 'Make sure the address is correct as offline transactions cannot be canceled.',
-  REGULAR = `To complete the transaction recipient must get online within the next 12 hours.
-  You should get online within 2 hours afterwards.`,
+  REGULAR = `
+  To complete the transaction recipient must get online within the next 12 hours.
+  You should get online within 2 hours afterwards.
+  `,
 }
 
 export enum AmountError {

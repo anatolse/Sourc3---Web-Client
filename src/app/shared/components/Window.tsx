@@ -40,7 +40,7 @@ const ContainerStyled = styled.div<WindowProps>`
   background: white;
 `;
 
-const HeadingStyled = styled.div`
+const HeadingStyled = styled.div<WindowProps>`
   position: fixed;
   z-index: 2;
   top: 0;
@@ -61,6 +61,9 @@ const HeadingStyled = styled.div`
   //   height: 100px;
   //   background-color: white;
   // }
+`;
+const HeadingAuthStyled = styled(HeadingStyled)`
+border: none;
 `;
 
 const FrameStyled = styled.div`
@@ -128,14 +131,14 @@ export const Window: React.FC<WindowProps> = ({
       case 'auth':
         return (
           <>
-            <HeadingStyled>
+            <HeadingAuthStyled>
               <FrameStyled>
                 <Logo size="icon" />
               </FrameStyled>
               <BackButton>
                 <Button variant="icon" icon={IconBack} onClick={handleBackClick} />
               </BackButton>
-            </HeadingStyled>
+            </HeadingAuthStyled>
             <Title variant="auth">{title}</Title>
           </>
         );

@@ -8,7 +8,7 @@ const TitleStyled = styled.h2`
 position: absolute;
     top: 50px;
     left: 29px;
-    font-weight: 800;
+    font-weight: 900;
 font-size: 24px;
 line-height: 24px;
 `;

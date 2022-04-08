@@ -18,7 +18,7 @@ const TransactionTabs = styled.div`
   .transaction-item {
     padding: 10px 30px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;

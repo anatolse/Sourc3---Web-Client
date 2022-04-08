@@ -15,7 +15,7 @@ const ContainerStyled = styled.button`
   height: 44px;
   line-height: 20px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: 8px;
   border: none;
   background-color: transparent;
@@ -47,7 +47,7 @@ const SliderStyled = styled.div<{ active: boolean }>`
     background-color: rgba(255, 121, 31, 0.1);
     color: black;
     padding: 12px;
-    font-weight: 500;
+    font-weight: 600;
 `;
 
 const LabeledToggle: React.FC<LabeledToggleProps> = ({

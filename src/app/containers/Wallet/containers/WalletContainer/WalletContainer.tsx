@@ -21,7 +21,6 @@ const routes = [
   {
     path: ROUTES_PATH.WALLET.SEND,
     element: <SendForm />,
-
   },
   {
     path: ROUTES_PATH.WALLET.RECEIVE,

@@ -29,7 +29,7 @@ font-weight: 900;
 color: var(--color-black);
 top: 255px;
 left: 132px;
-width: 154px;
+width: 155px;
 height: 60px;
 text-align: right;
 line-height: 30px;

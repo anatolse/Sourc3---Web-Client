@@ -18,7 +18,7 @@ const ListStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 20px 0 0;
 `;
 
 const baseClassName = css`
@@ -32,14 +32,14 @@ const baseClassName = css`
     content: attr(data-index);
     width: 24px;
     height: 24px;
-    line-height: 24px;
+    line-height: 23px;
     border: 1px solid rgba(255,255,255);
     border-radius: 50%;
     text-align: center;
     font-size: 12px;
     color: rgba(0,0,0, 0.5);
     box-sizing: border-box;
-    font-weight: 700;
+    font-weight: 900;
     background: white;
     z-index: 1;
   }
@@ -49,7 +49,7 @@ const baseClassName = css`
     font-size: 12px;
     color: black;
     box-sizing: border-box;
-    font-weight: 700;
+    font-weight: 900;
 
   }
 
@@ -67,7 +67,7 @@ const baseClassName = css`
     border: 1px solid rgba(0,0,0, 0.03);
     border-radius: 8px;
     margin-right: -18px;
-    font-weight:500;
+    font-weight: 600;
     &:focus{
       border-color: rgba(0,0,0);
     }

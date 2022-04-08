@@ -51,7 +51,7 @@ display: flex;
     .btnProfile:{
         font-size: 16px;
         line-height: 16px;
-        font-weight: 500;
+        font-weight: 600;
         padding: 2px  16px;
         margin: 0;
     }
@@ -65,9 +65,9 @@ margin: 16px 0;
 `;
 const Name = styled.p`
 margin: 0
-font-weight: 600;
+font-weight: 800;
 font-size: 16px;
-line-height: 16px;
+line-height: 19px;
 margin: 16px 10px 16px;
 text-align: right;
 letter-spacing: 0.1px;
@@ -134,7 +134,7 @@ function Manage() {
             <Button variant="icon" icon={item.avatar} />
             <Name>{item.name}</Name>
             <Button
-              pallete={item.active ? 'currentRole' : 'orange'}
+              pallete="orange"
               variant="switch"
             >
               {item.active ? ('Current role') : ('Switch')}

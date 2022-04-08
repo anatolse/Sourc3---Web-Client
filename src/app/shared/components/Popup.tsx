@@ -34,7 +34,7 @@ border-radius: 8px;
   text-align: left;
   color: rgba(0,0,0,0.5);
   font-size: 14px;
-  font-wight: 500;
+  font-weight: 700;
   line-height: 20px;
   span:not(:first-child){
     margin-top: 5px
@@ -49,9 +49,9 @@ border-radius: 8px;
 `;
 
 const TitleStyled = styled.h2`
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   text-alight:left;
   color: black;
   font-weight:800;
@@ -60,7 +60,7 @@ const TitleStyled = styled.h2`
 const FooterStyled = styled.div<PopupProps>`
   display: flex;
   margin: 0 -7px;
-  margin-top: 40px;
+  margin-top: 24px;
 
   > button {
     margin: 0 7px !important;
@@ -80,7 +80,7 @@ const FooterStyled = styled.div<PopupProps>`
   }
 `;
 const center = css`
-margin: 24px 0 !important;
+margin: 24px 0 0 0 !important;
 justify-content: center !important; 
 }
 `;

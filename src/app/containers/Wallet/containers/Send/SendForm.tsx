@@ -59,6 +59,11 @@ const maxButtonStyle = css`
 
 const formClassName = css`
 padding: 0 24px;
+&>div:not:first-child{
+  &div:first-child{
+    padding: 0 0 4px 0
+  }
+}
 `;
 const titleClassName = css`
 margin-bottom: 16px;
@@ -68,7 +73,7 @@ font-weight: 800;
 font-size: 18px
 `;
 const typeClassNames = css`
-margin-bottom: 42px;
+margin-bottom: -32px;
 `;
 const buttonClassName = css`
 position absolute;

@@ -15,11 +15,18 @@ import { css } from '@linaria/core';
 const formClassName = css`
 position: absolute;
 left: 40px;
-top: 395px;
+top: 380px;
 right: 40px;
+> button:last-child {
+  margin-bottom: 0 !important;
+}
+> button:first-child {
+  margin-bottom: 32px !important;
+}
+
 `;
 const buttonClassName = css`
-margin-bottom: 20px !important;
+margin-bottom: 32px !important;
 `;
 
 const Login: React.FC = () => {
@@ -50,7 +57,7 @@ const Login: React.FC = () => {
             name="password"
             type="password"
             placeholder="Enter your password"
-            margin={40}
+            margin={19}
             valid={!error}
             label={error}
             ref={inputRef}

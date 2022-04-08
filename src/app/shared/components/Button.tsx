@@ -33,7 +33,7 @@ const ButtonStyled = styled(BaseButtonStyled)`
   border-radius: 8px;
   background-color: ${({ pallete }) => `var(--color-${pallete})`};
   text-align: center;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 16px;
   color: var(--color-white);
 
@@ -102,15 +102,16 @@ const AgreeButtonStyled = styled(GhostButtonStyled)`
 const BlockButtonStyled = styled(ButtonStyled)`
   width: 155px;
   max-width: none;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ pallete }) => `var(--color-${pallete})`};
   font-size: 16px;
   text-align: center;
-  line-height: 16px;
+  line-height: 19px;
   color: white;
   > svg {
-    vertical-align: bottom;
     margin-right: 10px;
+    vertical-align: baseline;
+
   }
   &:hover,
   &:active {
@@ -137,14 +138,14 @@ const IconButtonStyled = styled(BaseButtonStyled)`
 
 const LinkButtonStyled = styled(IconButtonStyled)`
   margin: 0 0;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 900;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
 const SwitchButtonStyled = styled(IconButtonStyled)`
   margin: 0 0;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 900;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
 const LinkDropButtonStyled = styled(GhostButtonStyled)`
@@ -153,7 +154,7 @@ border-radius: 0;
 font-size: 16px;
 text-align: left;
 line-height: 16px;
-font-weight: 500;
+font-weight: 600;
 padding: 2px  16px;
 margin: 0;
 height: 40px;
@@ -191,10 +192,15 @@ border-radius: 0;
 font-size: 16px;
 text-align: left;
 letter-spacing: 0.1px;
-border-bottom: 1px solid rgba(0,0,0, 0.05);
+font-weight: 600;
+line-height: 19px;
 margin:0;
-  color: ${({ pallete }) => `var(--color-${pallete})`};
-
+color: ${({ pallete }) => `var(--color-${pallete})`};
+ &:after{
+   content: '';
+   border-bottom: 1px solid rgba(0,0,0, 0.05);
+   width: 311px
+ }
   &:hover,
   &:active {
     background-color: rgba(0, 0, 0, 0.1);
@@ -202,7 +208,7 @@ margin:0;
   }
   > svg {
     vertical-align: bottom;
-    margin-right: 10px;
+    margin-right: 19px;
   }
 `;
 
@@ -212,6 +218,9 @@ height:28px;
 padding: 0;
 margin: 0;
 `;
+
+const ManageComponent = styled(IconButtonStyled)`
+margin: 0`;
 
 const VARIANTS = {
   regular: ButtonStyled,
@@ -227,6 +236,7 @@ const VARIANTS = {
   iconDropMenu: SwitchButtonStyled,
   linkDrop: LinkDropButtonStyled,
   max: MaxButtonStyled,
+  manage: ManageComponent,
 
 };
 

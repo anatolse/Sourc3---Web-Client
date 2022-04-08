@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { Button, Footer, Window } from '@app/shared/components';
+import { css } from '@linaria/core';
+import { Button, Window } from '@app/shared/components';
 
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +10,13 @@ import { SeedList } from '@app/containers/Auth/components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegistrationSeed, setSeedResult, updateSeedList } from '@app/containers/Auth/store/actions';
 import { selectSeedCache, selectSeedErrors } from '@app/containers/Auth/store/selectors';
+
+const buttonClassName = css`
+position: absolute;
+bottom: 25px;
+left: 0;
+margin: 0 56px !important;
+`;
 
 const Restore: React.FC = () => {
   const [interval, updateInterval] = useState<null | NodeJS.Timer>(null);
@@ -53,11 +61,9 @@ const Restore: React.FC = () => {
       <p>Type in your seed phrase</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <SeedList data={errors} initial={cache} onInput={(e) => seedListHandler(e)} />
-        <Footer margin="small">
-          <Button type="submit" disabled={!valid}>
-            Submit
-          </Button>
-        </Footer>
+        <Button type="submit" disabled={!valid} className={buttonClassName}>
+          Submit
+        </Button>
       </form>
     </Window>
   );

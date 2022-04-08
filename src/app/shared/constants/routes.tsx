@@ -49,6 +49,7 @@ export const ROUTES_PATH = {
     BASE: '/',
     PROFILE: '/profile',
     SEND: '/send',
+    SEND_CONFIRM: '/send_confirm',
     RECEIVE: '/receive',
     UTXO: '/utxo',
     MANAGE: '/manage',

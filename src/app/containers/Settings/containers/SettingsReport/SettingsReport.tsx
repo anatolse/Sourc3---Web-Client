@@ -23,19 +23,21 @@ const ReportStyled = styled.div`
 `;
 
 const TitleStyled = styled.h4`
-font-size: 14px;
+    margin: 41px 0 24px 0;
+    font-size: 14px;
     color: rgba(0,0,0, 0.5);
-    font-weight: 500;
+    font-weight: 700;
     text-align: left;
+    line-height: 20px;
 `;
 
 const ListStyled = styled.ol`
     padding: 0px 19px;
     font-size: 14px;
     color: #808080;
-    font-weight: 500;
+    font-weight: 700;
     text-align: left;
-    line-height: 24px;
+    line-height: 20px;
     list-style: point;
 `;
 const ListItemStyled = styled.li`
@@ -43,7 +45,7 @@ const ListItemStyled = styled.li`
 `;
 const LinkStyled = styled.span`
   cursor: pointer;
-  color: orange;
+  color: #FF791F;;
   margin 0 3px;
 `;
 
@@ -82,7 +84,9 @@ const SettingsReport = () => {
       <ReportStyled>
         <TitleStyled>To report a problem:</TitleStyled>
         <ListStyled>
-          <ListItemStyled>Click “Save wallet logs” and choose a destination folder for log archive.</ListItemStyled>
+          <ListItemStyled>
+            Click “Save wallet logs” bellow and choose a destination folder for log archive.
+          </ListItemStyled>
           <ListItemStyled>
             Send email to
             <LinkStyled onClick={() => mailClicked()}>support@beam.mw</LinkStyled>
@@ -94,7 +98,7 @@ const SettingsReport = () => {
         </ListStyled>
       </ReportStyled>
       <Button type="button" onClick={() => saveLogsclicked()}>
-        save wallet logs
+        Save wallet logs
       </Button>
     </Window>
   );
