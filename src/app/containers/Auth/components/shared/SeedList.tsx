@@ -64,7 +64,7 @@ const baseClassName = css`
     margin-bottom: 10px;
     padding-left: 46px;
     background-color: rgba(0,0,0, 0.03);
-    border: 1px solid rgba(0,0,0, 0.03);
+    border: 1px solid transparent;
     border-radius: 8px;
     margin-right: -18px;
     font-weight: 600;

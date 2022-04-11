@@ -136,7 +136,12 @@ export const Window: React.FC<WindowProps> = ({
                 <Logo size="icon" />
               </FrameStyled>
               <BackButton>
-                <Button variant="icon" icon={IconBack} onClick={handleBackClick} />
+                <Button
+                  variant="icon"
+                  icon={IconBack}
+                  onClick={handleBackClick}
+                  style={{ verticalAlign: 'inherit !important' }}
+                />
               </BackButton>
             </HeadingAuthStyled>
             <Title variant="auth">{title}</Title>

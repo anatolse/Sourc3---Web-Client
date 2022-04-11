@@ -49,7 +49,7 @@ const Progress = () => {
       }
       case SyncStep.RESTORE: {
         const percent = databaseSyncProgress.total / databaseSyncProgress.done;
-        const title = 'Unpack blockchain info';
+        const title = 'Unpacking blockchain info';
         return { percent, title };
       }
       case SyncStep.SYNC: {

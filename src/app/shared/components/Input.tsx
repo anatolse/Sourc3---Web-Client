@@ -10,6 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   pallete?: 'purple' | 'blue' | 'corn-flower-blue' | 'black' ;
   margin?: 'none' | number;
   password?: boolean;
+  length?: number;
 }
 
 const ContainerStyled = styled.div<InputProps>`
@@ -31,9 +32,8 @@ const InputStyled = styled.input<InputProps>`
   height: 44px;
   line-height: 20px;
   font-weight: 600;
-  border: none;
   background-color: ${({ valid }) => (valid ? 'rgba(0,0,0,0.03)' : 'rgba(234,0,0,0.03)')};
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid ${({ length }) => ((length > 0) ? 'rgba(0,0,0,0.05)' : 'transparent')};
   font-size: 16px;
   color: ${({ valid }) => (valid ? 'rgba(0,0,0)' : 'var(--color-red)')};
   border-radius: 8px;
@@ -58,6 +58,9 @@ const InputStyled = styled.input<InputProps>`
     opacity: 0.5;
     cursor: not-allowed;
   }
+  &:focus{
+    border-color: ${({ valid }) => (valid ? ' rgba(0, 0, 0)' : 'var(--color-red)')};
+  }
 `;
 
 const InputRegularStyled = styled(InputStyled)`
@@ -70,6 +73,10 @@ const InputGrayStyled = styled(InputStyled)`
   width:327px
   border-width: 1px;
   border-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'var(--color-red)')};
+  &:focus{
+    border-color: ${({ valid }) => (valid ? ' rgba(0, 0, 0)' : 'var(--color-red)')};
+  }
+  
 `;
 const InputGhostStyled = styled(InputStyled)`
   width:327px
@@ -114,7 +121,7 @@ const LabelSendStyled = styled.div<InputProps>`
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({
-    label, valid = true, variant = 'regular', margin = 'none', pallete, className, password, ...rest
+    label, valid = true, variant = 'regular', margin = 'none', pallete, className, password, length = 0, ...rest
   }, ref) => {
     const InputComponent = {
       regular: InputRegularStyled,
@@ -138,6 +145,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               pallete={pallete}
               {...rest}
               type={passwordShown ? 'text' : 'password'}
+              length={length}
             />
             {!!ref && <LabelStyled valid={valid}>{label}</LabelStyled>}
             <Button

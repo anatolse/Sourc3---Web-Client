@@ -18,7 +18,7 @@ const SeedListStyled = styled.ol`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 14px;
+  padding: 0 10px;
   position: absolute;
     left: 0;
 
@@ -27,11 +27,11 @@ const SeedListStyled = styled.ol`
     display: inline-block;
     min-width: 115px;
     height: 20px;
-    line-height: 30px;
+    line-height: 20px;
     margin-bottom: 32px;
     border-radius: 16px;
     text-align: left;
-    font-weight: 600;
+    font-weight: 900;
     font-size: 16px;
 
     &:before {
@@ -39,12 +39,13 @@ const SeedListStyled = styled.ol`
       content: counter(counter);
       width: 20px;
       height: 20px;
-      line-height: 20px;
+      line-height: 18px;
       margin: 5px 10px 5px 9px;
       border-radius: 50%;
       background-color: black;
       text-align: center;
-      font-size: 10px;
+      font-size: 12px;
+      font-weight:900;
       color: white;
     }
 `;

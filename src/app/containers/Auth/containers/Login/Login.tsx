@@ -63,6 +63,7 @@ const Login: React.FC = () => {
             ref={inputRef}
             onChange={(e) => setPass(e.target.value)}
             password
+            length={pass.length}
           />
           <Button type="submit" className={buttonClassName} disabled={!pass}>
             Open

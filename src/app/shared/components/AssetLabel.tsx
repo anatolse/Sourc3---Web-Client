@@ -27,7 +27,7 @@ const ContainerStyled = styled.div`
 
 const AmountStyled = styled.span`
   flex-grow: 1;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 32px;
   line-height: 38px;
 `;

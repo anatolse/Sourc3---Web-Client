@@ -8,7 +8,9 @@ import {
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
-import { fromGroths, compact, toGroths } from '@core/utils';
+import {
+  fromGroths, compact, toGroths, truncate,
+} from '@core/utils';
 import { AddressData, AddressType } from '@core/types';
 import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces';
 
@@ -136,7 +138,7 @@ const SendConfirm = (props: SendConfirmProps) => {
             <SC3Amount>
               {fromGroths(fee)}
               {' '}
-              SC3
+              {truncate(metadata_pairs.UN)}
             </SC3Amount>
             <Rate value={fee} groths />
           </div>
@@ -156,14 +158,26 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Remaining</span>
           <div className={receiptValue}>
             <SC3Amount>
-              {fromGroths(beamRemaining)}
+              {fromGroths(remaining)}
               {' '}
-              SC3
+              {truncate(metadata_pairs.UN)}
             </SC3Amount>
-            <Rate value={beamRemaining} groths />
-
+            <Rate value={remaining} groths />
           </div>
         </div>
+        {selected.asset_id !== 0 && (
+        <div className={wrapper}>
+          <span className={subtitle}>SC3 Remaining</span>
+          <div className={receiptValue}>
+            <SC3Amount>
+              {fromGroths(beamRemaining)}
+              {' '}
+              {truncate(metadata_pairs.UN)}
+            </SC3Amount>
+            <Rate value={beamRemaining} groths />
+          </div>
+        </div>
+        )}
         {/* <Section variant="receipt" subtitle="Send to">{compact(address)}</Section>
         <Section variant="receipt" subtitle="Transaction type">{txType}</Section>
         <Section variant="receipt" subtitle="Amount">
