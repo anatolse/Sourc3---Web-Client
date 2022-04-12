@@ -21,7 +21,7 @@ import { TransactionContainer } from './containers/Transactions';
 const trackStyle = css`
   z-index: 999;
   border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0,0,0, 0.03);
 `;
 
 const routes = [

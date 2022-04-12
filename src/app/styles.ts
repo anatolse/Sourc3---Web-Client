@@ -56,7 +56,7 @@ css`
     }
     @font-face {
       font-family: 'VisbyCF';
-      src: url('/assets/fonts/VisbyCF-Heavy.ttf');
+      src: url('/assets/fonts/VisbyHeavy.otf');
       font-weight: 900;
       font-style: normal;
     }

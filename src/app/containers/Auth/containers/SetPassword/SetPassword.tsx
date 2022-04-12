@@ -83,6 +83,7 @@ const SetPassword = () => {
             onChange={(e) => setPassword(e.target.value)}
             password
             margin={16}
+            length={pass.length}
           />
           <Input
             type="password"
@@ -91,6 +92,7 @@ const SetPassword = () => {
             placeholder="Confirm your password"
             onChange={(e) => setConfirm(e.target.value)}
             password={!!useRef}
+            length={confirm.length}
           />
           {pass && <PasswordStrength value={pass} />}
           <Footer>

@@ -69,7 +69,7 @@ const Progress = () => {
   const syncPercent = Math.floor(100 / percent);
 
   const active = percent > 0;
-  const progress = `${title} ${syncPercent}%`;
+  const progress = `${title} (${syncPercent}%)`;
 
   return (
     <Splash size="large">

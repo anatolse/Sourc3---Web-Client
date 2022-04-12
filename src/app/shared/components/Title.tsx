@@ -23,6 +23,7 @@ const HeadingStyled = styled.h2`
   width:220px;
   height: 24px;
   text-align:left;
+  letter-spacing: 0.3px;
 `;
 const PageStyled = styled.h2`
   font-size: 24px;
@@ -32,6 +33,7 @@ const PageStyled = styled.h2`
   width:220px;
   height: 24px;
   text-align:left;
+  letter-spacing: 0.3px;
 `;
 
 const AuthTitleStyled = styled.h2`

@@ -22,37 +22,37 @@ const SC3Amount = styled.p`
   margin: 0;
 `;
 const SC3 = css`
-font-weight: 800;
-font-size: 18px;
-line-height: 22px;`;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;`;
 
 const formMid = css`
-    position: absolute;
-    top: 155px;
+  position: absolute;
+  top: 155px;
 };`;
 
 const wrapper = css`
-    width: 300px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 24px;
-    margin-bottom: 16px;
+  width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 24px;
+  margin-bottom: 16px;
 `;
 const subtitle = css`
-font-weight: 800 !important;
-font-size: 16px;
-line-height: 19px;
-letter-spacing: 0.1px;
-    width: 100px;
-    text-align: left;
+  font-weight: 800 !important;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.1px;
+  width: 100px;
+   text-align: left;
 `;
 const receiptValue = css`
-font-weight: 800 !important;
-font-size: 16px;
-line-height: 20px;
-    color: rgba(0,0,0, 0.5);
-    text-align: left;
+  font-weight: 800 !important;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0,0,0, 0.5);
+  text-align: left;
 `;
 
 const getTxType = (type: AddressType, offline: boolean): string => {
@@ -111,14 +111,12 @@ const SendConfirm = (props: SendConfirmProps) => {
         {/* TODO:CREATE component */}
         <div className={wrapper}>
           <span className={subtitle}>Send to</span>
-          <div className={receiptValue}><span>{compact(address)}</span></div>
+          <div className={receiptValue}>{compact(address)}</div>
         </div>
         <div className={wrapper}>
           <span className={subtitle}>Type</span>
           <div className={receiptValue}>
-            <span>
-              {txType}
-            </span>
+            {txType}
           </div>
         </div>
         <div className={wrapper}>

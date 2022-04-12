@@ -76,7 +76,7 @@ const SettingsReport = () => {
       saveAs(content, `source-web-client-${version}-report.zip`);
     });
 
-    navigate(ROUTES.WALLET.BASE);
+    navigate(ROUTES.SETTINGS.BASE);
   };
 
   return (

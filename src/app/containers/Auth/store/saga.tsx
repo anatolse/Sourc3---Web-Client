@@ -133,8 +133,8 @@ export function* handleDatabaseRestore(payload: DatabaseSyncProgress) {
 
 function* startWalletSaga(action: ReturnType<typeof actions.startWallet.request>): Generator {
   try {
-    yield put(navigate(ROUTES.AUTH.PROGRESS));
     yield call(startWallet, action.payload);
+    // yield put(navigate(ROUTES.AUTH.PROGRESS));
   } catch (e) {
     yield put(setError(e));
     yield put(actions.startWallet.failure(e));
