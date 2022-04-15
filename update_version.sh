@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REGEX="Sourc3(\-?([a-z]*))@([0-9]+\.[0-9]+\.[0-9]+)"
-OUTPUT=$(npm list | grep Sourc3*)
+REGEX="beam-wasm-client(\-?([a-z]*))@([0-9]+\.[0-9]+\.[0-9]+)"
+OUTPUT=$(npm list | grep beam-wasm-client*)
 MANIFEST="src/manifest.json"
 REVISION=$(git rev-list HEAD --count)
 
