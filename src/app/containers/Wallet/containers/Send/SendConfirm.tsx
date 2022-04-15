@@ -99,7 +99,6 @@ const SendConfirm = (props: SendConfirmProps) => {
   const txType = getTxType(addressType, offline);
 
   const beamRemaining = beam.available - fee;
-  console.log(offline, txType);
 
   return (
     <>

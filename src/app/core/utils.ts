@@ -65,7 +65,7 @@ export const getTxType = (type: AddressType, offline: boolean): string => {
     return 'Public offline';
   }
   if (type === 'regular') {
-    return 'regular';
+    return 'Online';
   }
 
   return offline ? 'Offline' : 'Online';

@@ -216,7 +216,6 @@ const SendForm = () => {
 
   const validateAmountHandler = (total: TransactionAmount, offline: boolean) => {
     const { amount, asset_id } = total;
-    console.log(offline);
     if (amount === '0' || !amount) {
       setFieldValue('send_amount', total, true);
       return;
@@ -265,6 +264,14 @@ const SendForm = () => {
         validateAmountHandler(values.send_amount, true);
         return;
       }
+      if (addressData.type === 'regular') {
+        setWarning(AddressTip.REGULAR);
+        setHint(AddressLabel.REGULAR);
+        setFieldValue('offline', false, true);
+        validateAmountHandler(values.send_amount, false);
+        return;
+      }
+
       validateAmountHandler(values.send_amount, values.offline);
 
       if (values.offline) {
