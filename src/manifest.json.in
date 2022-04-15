@@ -3,7 +3,7 @@
   "name": "Sourc3%BEAM_NETWORK%",
   "short_name": "Sourc3%BEAM_NETWORK%",
   "description": "Sourc3%BEAM_NETWORK%",
-  "version": "%Sourc3_VERSION%",
+  "version": "%BEAM_VERSION%",
   "cross_origin_embedder_policy": {
     "value": "require-corp"
   },

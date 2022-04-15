@@ -32,5 +32,5 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v1
         with:
-          name: sourc3-web-client${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
+          name: sourc3${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
           path: dist
