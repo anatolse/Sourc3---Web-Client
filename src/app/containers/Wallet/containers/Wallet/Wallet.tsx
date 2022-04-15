@@ -75,8 +75,11 @@ const Wallet = () => {
     }
   }, [dispatch, rate]);
 
+  const handlePrevious: React.MouseEventHandler = () => {
+    navigate(ROUTES.WALLET.BASE);
+  };
   return (
-    <Window title="Profile">
+    <Window title="Profile" onPrevious={handlePrevious}>
       <ActionsStyled>
         <Profile>
           <Avatar><Button variant="manage" icon={IconProfileLarge} /></Avatar>

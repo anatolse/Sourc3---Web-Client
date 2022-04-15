@@ -9,7 +9,7 @@ import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
 import {
-  fromGroths, compact, toGroths, truncate,
+  fromGroths, compact, toGroths, truncate, getTxType,
 } from '@core/utils';
 import { AddressData, AddressType } from '@core/types';
 import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces';
@@ -55,16 +55,18 @@ const receiptValue = css`
   text-align: left;
 `;
 
-const getTxType = (type: AddressType, offline: boolean): string => {
-  if (type === 'max_privacy') {
-    return 'Maximum anonymity';
-  }
-  if (type === 'public_offline') {
-    return 'Public offline';
-  }
-
-  return offline ? 'Offline' : 'Online';
-};
+// const getTxType = (type: AddressType, offline: boolean): string => {
+//   if (type === 'max_privacy') {
+//     return 'Maximum anonymity';
+//   }
+//   if (type === 'public_offline') {
+//     return 'Public offline';
+//   }
+//   // if (type === 'regular') {
+//   //   return 'Online';
+//   // }
+//   return offline ? 'Offline' : 'Regular';
+// };
 
 interface SendConfirmProps {
   address: string;
@@ -97,6 +99,7 @@ const SendConfirm = (props: SendConfirmProps) => {
   const txType = getTxType(addressType, offline);
 
   const beamRemaining = beam.available - fee;
+  console.log(offline, txType);
 
   return (
     <>

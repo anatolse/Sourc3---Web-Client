@@ -216,7 +216,7 @@ const SendForm = () => {
 
   const validateAmountHandler = (total: TransactionAmount, offline: boolean) => {
     const { amount, asset_id } = total;
-
+    console.log(offline);
     if (amount === '0' || !amount) {
       setFieldValue('send_amount', total, true);
       return;

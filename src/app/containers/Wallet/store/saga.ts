@@ -78,7 +78,6 @@ export function* validateAmount(action: ReturnType<typeof actions.validateAmount
 export function* sendTransactionSaga(action: ReturnType<typeof actions.sendTransaction.request>): Generator {
   try {
     yield call(sendTransaction, action.payload);
-
     yield put(actions.sendTransaction.success());
     yield put(resetSendData());
     yield put(navigate(ROUTES.WALLET.PROFILE));

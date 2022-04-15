@@ -1,5 +1,5 @@
 import { GROTHS_IN_BEAM } from '@app/containers/Wallet/constants';
-import { Transaction } from '@core/types';
+import { Transaction, AddressType } from '@core/types';
 
 export const copyToClipboard = (value: string) => navigator.clipboard.writeText(value);
 
@@ -56,3 +56,17 @@ export function createdComparator({ create_time: a }: Transaction, { create_time
 
   return a < b ? 1 : -1;
 }
+
+export const getTxType = (type: AddressType, offline: boolean): string => {
+  if (type === 'max_privacy') {
+    return 'Maximum anonymity';
+  }
+  if (type === 'public_offline') {
+    return 'Public offline';
+  }
+  if (type === 'regular') {
+    return 'regular';
+  }
+
+  return offline ? 'Offline' : 'Online';
+};

@@ -123,7 +123,6 @@ const Receive = () => {
 
   const submitForm = async () => {
     await copyAddress();
-
     navigate(ROUTES.WALLET.PROFILE);
   };
 

@@ -2281,10 +2281,10 @@
   "resolved" "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   "version" "0.6.1"
 
-"beam-wasm-client-masternet@6.2.12186":
-  "integrity" "sha512-JayKf77B8Zifuojacp7pjHBmM302Upu9W7vG5sRnJbp58XyUEoDiDYJVyYPSiAiDVEsCgK3t4irHsK+oQqrROA=="
-  "resolved" "https://registry.npmjs.org/beam-wasm-client-masternet/-/beam-wasm-client-masternet-6.2.12186.tgz"
-  "version" "6.2.12186"
+"beam-wasm-client-masternet@6.3.12632":
+  "integrity" "sha512-B6ptv8yOXVRGVjdI4CeFzzhe23fv9mo7hRmzsOIShP/jkh60c61ldEFLRl8GeAJwmyBo+nXrGOvu8C+901Te/g=="
+  "resolved" "https://registry.npmjs.org/beam-wasm-client-masternet/-/beam-wasm-client-masternet-6.3.12632.tgz"
+  "version" "6.3.12632"
 
 "big.js@^5.2.2":
   "integrity" "sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ=="
