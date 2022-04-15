@@ -1,14 +1,14 @@
 #!/bin/bash
 
-REGEX="beam-wasm-client(\-?([a-z]*))@([0-9]+\.[0-9]+\.[0-9]+)"
-OUTPUT=$(npm list | grep beam-wasm-client*)
+REGEX="Sourc3(\-?([a-z]*))@([0-9]+\.[0-9]+\.[0-9]+)"
+OUTPUT=$(npm list | grep Sourc3*)
 MANIFEST="src/manifest.json"
 REVISION=$(git rev-list HEAD --count)
 
 if [[ $OUTPUT =~ $REGEX ]]; then
 	VERSION="${BASH_REMATCH[3]}.$REVISION"
 	echo -n $VERSION > version.gen
-	sed "s/%BEAM_VERSION%/$VERSION/" $MANIFEST.in > $MANIFEST.tmp;
+	sed "s/%SOURC3_VERSION%/$VERSION/" $MANIFEST.in > $MANIFEST.tmp;
 fi
 
 SUFFIX=${BASH_REMATCH[1]}

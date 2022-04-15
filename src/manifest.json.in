@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Beam Web Wallet%BEAM_NETWORK%",
-  "short_name": "Beam Web Wallet%BEAM_NETWORK%",
-  "description": "Beam Web Wallet%BEAM_NETWORK%",
-  "version": "%BEAM_VERSION%",
+  "name": "Sourc3%BEAM_NETWORK%",
+  "short_name": "Sourc3%BEAM_NETWORK%",
+  "description": "Sourc3%BEAM_NETWORK%",
+  "version": "%Sourc3_VERSION%",
   "cross_origin_embedder_policy": {
     "value": "require-corp"
   },
