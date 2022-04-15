@@ -8,7 +8,7 @@ REVISION=$(git rev-list HEAD --count)
 if [[ $OUTPUT =~ $REGEX ]]; then
 	VERSION="${BASH_REMATCH[3]}.$REVISION"
 	echo -n $VERSION > version.gen
-	sed "s/%SOURC3_VERSION%/$VERSION/" $MANIFEST.in > $MANIFEST.tmp;
+	sed "s/%BEAM_VERSION%/$VERSION/" $MANIFEST.in > $MANIFEST.tmp;
 fi
 
 SUFFIX=${BASH_REMATCH[1]}
