@@ -25,9 +25,9 @@ const InputStyled = styled.input`
 const TrackStyled = styled.div`
   width: 100%;
   height: 100%;
-  border: solid 1px var(--color-disabled);
+  border: solid 1px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  background-color: rgba(255, 121, 31, 0.1);
+  background-color: #F7F7F7;
   
   input[type='checkbox']:checked ~ & {
     border-color: #FF791F;
@@ -39,7 +39,7 @@ const SliderStyled = styled.div<{ active: boolean }>`
   position: absolute;
   top: 0px;
   left: 0px;
-  background-color: rgba(0, 0, 0, 0.3);;
+  background-color: rgba(0, 0, 0, 0.2);;
   width: 20px;
   height: 20px;
   border-radius: 50%;

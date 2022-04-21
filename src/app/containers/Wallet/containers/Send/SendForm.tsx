@@ -401,7 +401,7 @@ const SendForm = () => {
               pallete="black"
             />
           </Section>
-          {addressType === 'offline' && (
+          {values.address && addressType === 'offline' && (
             <Section title="Transaction type" variant="gray" className={typeClassNames}>
               <LabeledToggle left="online" right="offline" value={values.offline} onChange={(e) => handleOffline(e)} />
             </Section>

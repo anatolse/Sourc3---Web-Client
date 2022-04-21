@@ -92,7 +92,7 @@ const Login: React.FC = () => {
           toggleWarning(false);
         }}
       >
-        If you&apos;ll restore a wallet all transaction history and addresses will be lost
+        If you&apos;ll restore a wallet all transactions history and addresses will be lost
       </Popup>
     </>
   );

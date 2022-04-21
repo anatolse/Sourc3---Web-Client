@@ -55,19 +55,6 @@ const receiptValue = css`
   text-align: left;
 `;
 
-// const getTxType = (type: AddressType, offline: boolean): string => {
-//   if (type === 'max_privacy') {
-//     return 'Maximum anonymity';
-//   }
-//   if (type === 'public_offline') {
-//     return 'Public offline';
-//   }
-//   // if (type === 'regular') {
-//   //   return 'Online';
-//   // }
-//   return offline ? 'Offline' : 'Regular';
-// };
-
 interface SendConfirmProps {
   address: string;
   offline: boolean;
@@ -125,11 +112,11 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Amount</span>
           <div className={receiptValue}>
             <SC3Amount className={SC3}>
-              {fromGroths(value)}
+              {amount}
               {' '}
               {metadata_pairs.UN}
             </SC3Amount>
-            <Rate value={value} groths />
+            {selected.asset_id === 0 && <Rate value={value} groths />}
           </div>
         </div>
         <div className={wrapper}>
