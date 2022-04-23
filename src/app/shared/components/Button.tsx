@@ -132,7 +132,7 @@ const IconButtonStyled = styled(BaseButtonStyled)`
   color: ${({ pallete }) => `var(--color-${pallete})`};
 
   > svg {
-    vertical-align: sub;
+    vertical-align: initial;
   }
 `;
 

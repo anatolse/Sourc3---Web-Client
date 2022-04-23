@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
@@ -20,15 +20,15 @@ const ContainerStyled = styled.div`
   display: flex;
   position: relative;
   text-align: left;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 600;
   color: black;
 `;
 
-const AmountStyled = styled.span`
+const AmountStyled = styled.span<AssetLabelProps>`
   flex-grow: 1;
   font-weight: 800;
-  font-size: 32px;
+  font-size: 26px;
   line-height: 38px;
   display: flex;
 `;
@@ -37,7 +37,7 @@ const iconClassName = css`
   position: absolute;
   right: 100%;
   margin-right: 16px;
-  top: 5px;
+  top: 7px;
   
 `;
 
@@ -53,7 +53,9 @@ font-weight: 700;
 }
 `;
 const Name = styled.div`
-margin-left: 14px
+margin-left: 5px
+`;
+const Label = styled.div`
 `;
 
 const AssetLabel: React.FC<AssetLabelProps> = ({
@@ -74,14 +76,22 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   const signed = !!income;
   const sign = signed ? getSign(income) : '';
   const name = truncate(target?.metadata_pairs.UN) ?? '';
-  const label = amount < 0.00001 ? `${sign}0.00` : `${sign} ${amount.toFixed(7)}`;
+  const checkAmount = amount < 0.00001 ? `${sign}0.00` : `${sign} ${amount.toFixed(8)}`;
+  const [label, setLabel] = useState(checkAmount);
+
+  useEffect(() => {
+    console.log(checkAmount);
+    if (checkAmount.length > 14) {
+      setLabel(`${checkAmount.substring(15, -1)}..`);
+    }
+  }, [checkAmount]);
 
   return (
     <ContainerStyled className={className}>
       <>
         <AssetIcon size="large" asset_id={asset_id} className={iconClass || iconClassName} />
         <AmountStyled className="asset-name">
-          {label}
+          <Label>{label}</Label>
           <Name>{name}</Name>
         </AmountStyled>
 
