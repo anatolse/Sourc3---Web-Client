@@ -30,7 +30,7 @@ const PageStyled = styled.h2`
   font-weight: 900;
   line-height: 24px;
   margin: 16px 0 0 60px;
-  width:220px;
+  width:auto;
   height: 24px;
   text-align:left;
   letter-spacing: 0.3px;

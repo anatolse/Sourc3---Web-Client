@@ -70,3 +70,5 @@ export const getTxType = (type: AddressType, offline: boolean): string => {
 
   return offline ? 'Offline' : 'Online';
 };
+
+export const convertLowAmount = (amount: number) => (+amount <= 0.0000001 ? amount.toFixed(Number(amount.toString().replace('1e-', ''))) : amount);

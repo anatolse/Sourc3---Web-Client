@@ -14,29 +14,28 @@ import { copyToClipboard } from '@core/utils';
 
 const TransactionTabs = styled.div`
   display: flex;
-  margin: 0 -30px;
   .transaction-item {
     padding: 10px 30px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 800;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: 3px;
     text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    opacity: 0.5;
+    color: #000;
+    // text-transform: uppercase;
+    // opacity: 0.5;
     cursor: pointer;
     &.active {
       opacity: 1;
-      border-bottom: 3px solid #00f6d2;
+      border-bottom: 3px solid #FF791F;
     }
   }
 `;
 
 const TransactionDetailWrapper = styled.div`
-  padding: 30px 0;
+  padding: 30px 24px;
 `;
 
 const TransactionDetail = () => {
@@ -73,7 +72,7 @@ const TransactionDetail = () => {
   }, []);
 
   return (
-    <Window title="Transaction Info">
+    <Window title="Transaction details">
       <TransactionTabs>
         <div
           role="link"

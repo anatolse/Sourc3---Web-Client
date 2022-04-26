@@ -8,10 +8,11 @@ import { selectAssets } from '@app/containers/Wallet/store/selectors';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@app/shared/constants';
 import TransactionItem from './TransactionItem';
+
 import EmptyTransaction from './EmptyTransaction';
 
 const ListStyled = styled.ul`
-  margin: 0 -20px;
+  padding-left: 24px;
 `;
 
 interface TransactionsProps {
@@ -20,13 +21,10 @@ interface TransactionsProps {
 }
 
 const ListItemStyled = styled.li`
-  position: relative;
-  padding: 20px;
-  padding-left: 56px;
-
-  &:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
+  padding: 16px 24px 16px 0px;
+  height: 75px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 `;
 
 const fromInvokeData = (data: Contract, fee: number): Partial<Transaction> => {

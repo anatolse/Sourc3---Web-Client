@@ -6,7 +6,7 @@ import { compact } from '@core/utils';
 import { Button } from '@app/shared/components';
 import { CopySmallIcon, ExternalLink } from '@app/shared/icons';
 import config from '@app/config';
-import { InformationItem } from './GeneralTransactionInformation';
+import { InformationItem } from '@app/shared/components/DetailInformationLayout';
 import AssetLabel from '../../../../shared/components/AssetLabel';
 
 interface PaymentProofInformationInterface {
@@ -58,6 +58,7 @@ const PaymentProofInformation = ({ paymentProof, isBalanceHidden, copy }: Paymen
           iconClass="iconClass"
           showRate={false}
           isBalanceHidden={isBalanceHidden}
+          icon={false}
         />
         {/* <div className="amount-comment">
           {toUSD(fromGroths(paymentProof.amount), rate)}
@@ -75,6 +76,19 @@ const PaymentProofInformation = ({ paymentProof, isBalanceHidden, copy }: Paymen
           pallete="white"
           icon={ExternalLink}
           onClick={() => window.open(config.explorer_url + paymentProof.kernel)}
+        />
+      </div>
+    </InformationItem>
+
+    <InformationItem>
+      <div className="title">Code:</div>
+      <div className="value">
+        <p>{paymentProof.payment_proof}</p>
+        <Button
+          variant="icon"
+          pallete="white"
+          icon={CopySmallIcon}
+          onClick={() => copy(paymentProof.payment_proof, 'Code copied to clipboard')}
         />
       </div>
     </InformationItem>

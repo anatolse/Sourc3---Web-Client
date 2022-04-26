@@ -266,13 +266,20 @@ export interface Transaction {
   value: number;
   invoke_data: Contract[];
   appname: string;
+  rates: Rate[];
 }
-
+export interface Rate {
+  from: string | number;
+  rate: number;
+  rate_str: string;
+  to: string;
+}
 export interface TransactionDetail extends Transaction {
   failure_reason: string;
   sender_identity: string;
   receiver_identity: string;
   token: string;
+  address_type: AddressType;
 }
 
 export interface WalletChangeEvent {
@@ -343,4 +350,5 @@ export interface PaymentProof {
   kernel: string;
   receiver: string;
   sender: string;
+  payment_proof: string;
 }
