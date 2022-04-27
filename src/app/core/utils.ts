@@ -72,4 +72,4 @@ export const getTxType = (type: AddressType, offline: boolean): string => {
 };
 
 export const convertLowAmount = (amount: number) => (+amount <= 0.0000001
-  ? amount.toFixed(Number(amount.toString().replace('1e-', ''))) : amount);
+  ? amount.toFixed(Number(amount.toString().replace(`${amount.toString()[0]}e-`, ''))) : amount);
