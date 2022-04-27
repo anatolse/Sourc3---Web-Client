@@ -1,22 +1,57 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from '@linaria/react';
+import { Transactions } from '@app/containers/Transactions';
 
 import { Window } from '@app/shared/components';
+import { Content, TabItem, TabsMenu } from '@app/shared/components/TabsMenu';
 
-const TitleStyled = styled.h2`
-position: absolute;
-    top: 50px;
-    left: 29px;
-    font-weight: 900;
-font-size: 24px;
-line-height: 24px;
-`;
+const Activity = () => {
+  const [selectedId, setSelectedId] = useState(2);
+  const toggleTabs = (idx) => {
+    setSelectedId(idx);
+  };
 
-const Activity = () => (
-  <Window type="pageMain">
-    <TitleStyled>Activity</TitleStyled>
-  </Window>
-);
+  const renderContent = (i) => {
+    switch (i) {
+      case 1:
+        return (
+          <Content>
+            <p>Activity</p>
+          </Content>
+        );
+      case 2:
+        return (
+          <Content>
+            <Transactions />
+          </Content>
+        );
+      default: return (
+        <><p>Activity</p></>
+      );
+    }
+  };
+  return (
+    <Window type="pageMain">
+      <>
+        <TabsMenu>
+          <TabItem
+            active={selectedId === 1}
+            onClick={() => (toggleTabs(1))}
+          >
+            Activity
+          </TabItem>
+          <TabItem
+            active={selectedId === 2}
+            onClick={() => (toggleTabs(2))}
+          >
+            Transaction
+          </TabItem>
+        </TabsMenu>
+        {renderContent(selectedId)}
+      </>
+    </Window>
+  );
+};
 
 export default Activity;

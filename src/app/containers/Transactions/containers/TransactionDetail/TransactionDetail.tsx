@@ -11,32 +11,11 @@ import { selectAssets } from '@app/containers/Wallet/store/selectors';
 import { selectIsBalanceHidden } from '@app/shared/store/selectors';
 import { toast } from 'react-toastify';
 import { copyToClipboard } from '@core/utils';
-
-const TransactionTabs = styled.div`
-  display: flex;
-  margin: 0 -30px;
-  .transaction-item {
-    padding: 10px 30px;
-    font-size: 14px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 3px;
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    opacity: 0.5;
-    cursor: pointer;
-    &.active {
-      opacity: 1;
-      border-bottom: 3px solid #00f6d2;
-    }
-  }
-`;
+import { TabItem, TabsMenu } from '@app/shared/components/TabsMenu';
 
 const TransactionDetailWrapper = styled.div`
-  padding: 30px 0;
+  padding: 30px 24px;
+  margin-top: 40px;
 `;
 
 const TransactionDetail = () => {
@@ -73,29 +52,36 @@ const TransactionDetail = () => {
   }, []);
 
   return (
-    <Window title="Transaction Info">
-      <TransactionTabs>
-        <div
-          role="link"
-          className={`transaction-item ${activeTab === 'general' ? 'active' : ''}`}
-          onClick={() => setActiveTab('general')}
-          onKeyDown={handleButton}
-          tabIndex={0}
-        >
-          General
-        </div>
-        {paymentProof && (
-          <div
-            role="link"
-            className={`transaction-item ${activeTab === 'payment-proof' ? 'active' : ''}`}
+    <Window title="Transaction details">
+      {transactionDetail && (transactionDetail.status_string === 'sent' || 'sent offline') ? (
+        <TabsMenu>
+          <TabItem
+            active={activeTab === 'general'}
+            onClick={() => setActiveTab('general')}
+            onKeyDown={handleButton}
+            tabIndex={0}
+          >
+            General
+          </TabItem>
+          {paymentProof && (
+          <TabItem
+            active={activeTab === 'payment-proof'}
             onClick={() => setActiveTab('payment-proof')}
             onKeyDown={handleButton}
             tabIndex={-1}
           >
             Payment proof
-          </div>
-        )}
-      </TransactionTabs>
+          </TabItem>
+          )}
+        </TabsMenu>
+      ) : (
+        <GeneralTransactionInformation
+          transactionDetail={transactionDetail}
+          assets={assets}
+          isBalanceHidden={isBalanceHidden}
+          copy={copy}
+        />
+      )}
       <TransactionDetailWrapper>
         {activeTab === 'general' && transactionDetail && (
           <GeneralTransactionInformation
@@ -106,7 +92,12 @@ const TransactionDetail = () => {
           />
         )}
         {activeTab === 'payment-proof' && (
-          <PaymentProofInformation paymentProof={paymentProof} isBalanceHidden={isBalanceHidden} copy={copy} />
+          <PaymentProofInformation
+            paymentProof={paymentProof}
+            transactionDetail={transactionDetail}
+            isBalanceHidden={isBalanceHidden}
+            copy={copy}
+          />
         )}
       </TransactionDetailWrapper>
     </Window>

@@ -34,6 +34,7 @@ import SaveIcon from './icon-save.svg';
 import IconLogoLarge from './icon-logo-large.svg';
 import IconSR3Asset from './icon-SR3.svg';
 import IconStar from './icon-star.svg';
+import IconLittleSC3 from './IconLittleSC3.svg';
 
 import TxCanceledIcon from './icon-tx-canceled.svg';
 import TxCanceledMPIcon from './icon-tx-canceled-mp.svg';
@@ -138,4 +139,5 @@ export {
   IconRemove,
   IconBracketLeft,
   IconBracketRight,
+  IconLittleSC3,
 };

@@ -10,7 +10,7 @@ const TransactionInfo = () => {
     navigate(ROUTES.WALLET.BASE);
   };
 
-  return <Window title="Transaction info" onPrevious={handlePrevious} />;
+  return <Window title="Transaction details" onPrevious={handlePrevious} />;
 };
 
 export default TransactionInfo;

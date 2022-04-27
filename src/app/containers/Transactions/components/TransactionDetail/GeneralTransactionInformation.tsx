@@ -1,126 +1,27 @@
 import React, { useCallback, useMemo } from 'react';
 import { styled } from '@linaria/react';
-import { TransactionDetail, WalletTotal } from '@core/types';
-import { compact, fromGroths, truncate } from '@core/utils';
+import { TransactionDetail } from '@core/types';
+import {
+  fromGroths, getTxType, toUSD, truncate,
+} from '@core/utils';
 import { Button } from '@app/shared/components';
 import { CopySmallIcon, ExternalLink } from '@app/shared/icons';
-import { PALLETE_ASSETS } from '@app/shared/constants';
 import AssetLabel from '@app/shared/components/AssetLabel';
 import { MultipleAssets } from '@app/containers/Transactions/components/Transactions/TransactionItem';
 import { AssetTotal } from '@app/containers/Wallet/interfaces';
 import config from '@app/config';
 
+import { InformationItem } from '@app/shared/components/DetailInformationLayout';
 import AssetIcon from '../../../../shared/components/AssetIcon';
 
-interface AssetIconProps extends Partial<WalletTotal> {
-  asset_id?: number;
-  className?: string;
-}
+// interface AssetIconProps extends Partial<WalletTotal> {
+//   asset_id?: number;
+//   className?: string;
+// }
 
 const GeneralTransactionWrapper = styled.div`
   text-align: left;
 `;
-
-export const InformationItem = styled.div<AssetIconProps>`
-  margin-bottom: 30px;
-  .title {
-    opacity: 0.5;
-    font-size: 14px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 1px;
-    color: #fff;
-    text-transform: uppercase;
-  }
-  .value {
-    display: flex;
-    margin: 10px 0 0;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #fff;
-    align-items: center;
-    word-break: break-word;
-
-    .asset-label {
-      align-items: center;
-      .iconClass {
-        position: relative;
-      }
-      .asset-name {
-        color: ${({ asset_id }) => (PALLETE_ASSETS[asset_id] ? PALLETE_ASSETS[asset_id] : PALLETE_ASSETS[asset_id % PALLETE_ASSETS.length])};
-      }
-      &.income {
-        .asset-name {
-          color: #0bccf7;
-        }
-      }
-      &.outcome {
-        .asset-name {
-          color: #c061e0;
-        }
-      }
-    }
-
-    &.asset {
-      display: block;
-      .amount-comment {
-        font-size: 12px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #fff;
-        opacity: 0.5;
-        margin-left: 36px;
-      }
-      &.mlt-asset {
-        display: flex;
-        margin-top: -5px;
-        .multi-asset {
-          margin-left: 0;
-        }
-
-        .multi-asset-title {
-          padding-top: 20px;
-          font-weight: 600;
-          font-size: 16px;
-
-          &::after {
-            content: '';
-            padding: 0;
-          }
-        }
-      }
-    }
-
-    > p {
-      width: 90%;
-      margin: 0;
-      display: inline-block;
-    }
-
-    > span {
-      &::after {
-        content: '|';
-        padding: 0 12px;
-      }
-
-      &:last-child {
-        &::after {
-          display: none;
-        }
-      }
-    }
-  }
-`;
-
 interface GeneralTransactionInformationProps {
   transactionDetail: TransactionDetail;
   // rate: number;
@@ -150,6 +51,26 @@ const GeneralTransactionInformation = ({
     return title;
   }, [transactionDetail, assets, isBalanceHidden]);
 
+  const assetRate = useMemo(() => {
+    console.log(transactionDetail);
+
+    let rate = transactionDetail?.rates.find((a) => a.from === transactionDetail.asset_id && a.to === 'usd');
+
+    if (!rate && transactionDetail.invoke_data?.length && transactionDetail.invoke_data[0].amounts.length === 1) {
+      rate = transactionDetail?.rates.find(
+        (a) => a.from === transactionDetail.invoke_data[0].amounts[0].asset_id && a.to === 'usd',
+      );
+    }
+
+    return rate;
+  }, [transactionDetail]);
+
+  const feeRate = useMemo(() => {
+    const rate = transactionDetail?.rates.find((a) => a.from === 0 && a.to === 'usd');
+
+    return rate;
+  }, [transactionDetail]);
+
   const getTransactionDate = () => {
     const txDate = new Date(transactionDetail.create_time * 1000);
     const time = txDate.toLocaleTimeString(undefined, { timeStyle: 'short' });
@@ -161,8 +82,10 @@ const GeneralTransactionInformation = ({
 
     return (
       <>
-        <span>{date}</span>
-        <span>{time}</span>
+        <span>
+          {`${time},`}
+        </span>
+        <span>{` ${date}`}</span>
       </>
     );
   };
@@ -209,13 +132,17 @@ const GeneralTransactionInformation = ({
               asset_id={transactionDetail.invoke_data[0].amounts[0].asset_id}
               comment=""
               className={`asset-label ${transactionDetail.income ? 'income' : 'outcome'}`}
-              iconClass="iconClass"
+              // iconClass="iconClass"
               showRate={false}
               isBalanceHidden={isBalanceHidden}
+              icon={false}
             />
-            {/*   <div className="amount-comment">
-              {toUSD(fromGroths(transactionDetail.value), rate)} (сalculated with the exchange rate at the current time)
-            </div> */}
+            <div className="amount-comment">
+              {assetRate?.rate
+                ? `${toUSD(fromGroths(transactionDetail.value), fromGroths(assetRate?.rate))} `
+                  + '(сalculated with the exchange rate at the time of the transaction)'
+                : 'Exchange rate was not available at the time of transaction'}
+            </div>
           </div>
         </InformationItem>
       );
@@ -229,17 +156,21 @@ const GeneralTransactionInformation = ({
             asset_id={transactionDetail.asset_id}
             comment=""
             className={`asset-label ${transactionDetail.income ? 'income' : 'outcome'}`}
-            iconClass="iconClass"
+            // iconClass="iconClass"
             showRate={false}
             isBalanceHidden={isBalanceHidden}
+            icon={false}
           />
-          {/*   <div className="amount-comment">
-              {toUSD(fromGroths(transactionDetail.value), rate)} (сalculated with the exchange rate at the current time)
-            </div> */}
+          <div className="amount-comment">
+            {assetRate?.rate
+              ? `${toUSD(fromGroths(transactionDetail.value), fromGroths(assetRate?.rate))} `
+                + '(сalculated with the exchange rate at the time of the transaction)'
+              : 'Exchange rate was not available at the time of transaction'}
+          </div>
         </div>
       </InformationItem>
     ) : null;
-  }, [transactionDetail, isBalanceHidden, multipleAssetsTitle]);
+  }, [transactionDetail, isBalanceHidden, assetRate?.rate, multipleAssetsTitle]);
 
   return (
     <GeneralTransactionWrapper>
@@ -251,12 +182,12 @@ const GeneralTransactionInformation = ({
         <InformationItem>
           <div className="title">Sending address:</div>
           <div className="value">
-            <p>{compact(transactionDetail.sender, 16)}</p>
+            <p>{transactionDetail.sender}</p>
             <Button
               variant="icon"
               pallete="white"
-              icon={CopySmallIcon}
-              onClick={() => copy(transactionDetail.sender, 'Address copied to clipboard')}
+              // icon={CopySmallIcon}
+              // onClick={() => copy(transactionDetail.sender, 'Address copied to clipboard')}
             />
           </div>
         </InformationItem>
@@ -265,13 +196,29 @@ const GeneralTransactionInformation = ({
         <InformationItem>
           <div className="title">Receiving address:</div>
           <div className="value">
-            <p>{compact(transactionDetail.receiver, 16)}</p>
+            <p>{transactionDetail.receiver}</p>
             <Button
               variant="icon"
               pallete="white"
-              icon={CopySmallIcon}
-              onClick={() => copy(transactionDetail.receiver, 'Address copied to clipboard')}
+              // icon={CopySmallIcon}
+              // onClick={() => copy(transactionDetail.receiver, 'Address copied to clipboard')}
             />
+          </div>
+        </InformationItem>
+      )}
+
+      {transactionDetail.address_type && transactionDetail.tx_type === 7 ? (
+        <InformationItem>
+          <div className="title">Address type:</div>
+          <div className="value">
+            <p>{getTxType(transactionDetail.address_type, transactionDetail.address_type === 'offline')}</p>
+          </div>
+        </InformationItem>
+      ) : (
+        <InformationItem>
+          <div className="title">Address type:</div>
+          <div className="value">
+            <p>Online</p>
           </div>
         </InformationItem>
       )}
@@ -286,17 +233,22 @@ const GeneralTransactionInformation = ({
               value={transactionDetail.fee}
               asset_id={0}
               comment=""
-              className="asset-label"
-              iconClass="iconClass"
+              className="asset-label fee"
+              // iconClass="iconClass"
               showRate={false}
               isBalanceHidden={isBalanceHidden}
+              icon={false}
             />
-            {/*   <div className="amount-comment">{toUSD(fromGroths(transactionDetail.fee), rate)}</div> */}
+            <div className="amount-comment">
+              {feeRate?.rate
+                ? toUSD(fromGroths(transactionDetail.fee), fromGroths(feeRate?.rate))
+                : 'Exchange rate was not available at the time of transaction'}
+            </div>
           </div>
         </InformationItem>
       )}
 
-      {/*  <InformationItem>
+      {/* <InformationItem>
         <div className="title">Source:</div>
         <div className="value">{transactionDetail.appname ?? 'Wallet'}</div>
       </InformationItem> */}
@@ -311,10 +263,7 @@ const GeneralTransactionInformation = ({
       <InformationItem>
         <div className="title">Transaction Id:</div>
         <div className="value">
-          <p>
-            {' '}
-            {transactionDetail.txId}
-          </p>
+          <p>{transactionDetail.txId}</p>
           <Button
             variant="icon"
             pallete="white"

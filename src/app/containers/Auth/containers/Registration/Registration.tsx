@@ -39,7 +39,7 @@ const SeedListStyled = styled.ol`
       content: counter(counter);
       width: 20px;
       height: 20px;
-      line-height: 18px;
+      line-height: 20px;
       margin: 5px 10px 5px 9px;
       border-radius: 50%;
       background-color: black;

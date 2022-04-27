@@ -4,6 +4,7 @@ import React from 'react';
 export interface ITab {
   id?: string | number;
   label?: string | number
+  active?: boolean
 }
 
 export interface ITabsProps {

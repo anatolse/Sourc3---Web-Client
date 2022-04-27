@@ -16,6 +16,7 @@ interface AssetLabelProps extends Partial<Transaction> {
   iconClass?: string;
   showRate?: boolean;
   isBalanceHidden?: boolean;
+  icon?: boolean;
 }
 
 const ContainerStyled = styled.div`
@@ -70,6 +71,7 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   iconClass,
   showRate = true,
   isBalanceHidden,
+  icon = true,
 }) => {
   const assets = useSelector(selectAssets());
   const target = assets.find(({ asset_id: id }) => id === asset_id);
@@ -90,7 +92,7 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   return (
     <ContainerStyled className={className}>
       <>
-        <AssetIcon size="large" asset_id={asset_id} className={iconClass || iconClassName} />
+        {icon && <AssetIcon size="large" asset_id={asset_id} className={iconClass || iconClassName} />}
         <AmountStyled className="asset-name">
           <Label>{label}</Label>
           <Name>{name}</Name>
