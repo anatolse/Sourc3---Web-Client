@@ -52,8 +52,6 @@ const GeneralTransactionInformation = ({
   }, [transactionDetail, assets, isBalanceHidden]);
 
   const assetRate = useMemo(() => {
-    console.log(transactionDetail);
-
     let rate = transactionDetail?.rates.find((a) => a.from === transactionDetail.asset_id && a.to === 'usd');
 
     if (!rate && transactionDetail.invoke_data?.length && transactionDetail.invoke_data[0].amounts.length === 1) {
