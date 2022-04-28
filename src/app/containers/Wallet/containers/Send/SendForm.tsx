@@ -23,6 +23,7 @@ import { ROUTES } from '@app/shared/constants';
 import {
   resetSendData,
   sendTransaction,
+  setSelectedAssetId,
   validateAmount,
   validateSendAddress,
 } from '@app/containers/Wallet/store/actions';
@@ -31,6 +32,7 @@ import {
   selectAssets,
   selectChange,
   selectIsSendReady,
+  selectSelectedAssetId,
   selectSendAddressData,
   selectSendFee,
 } from '@app/containers/Wallet/store/selectors';
@@ -167,6 +169,7 @@ const SendForm = () => {
   const change = useSelector(selectChange());
   const asset_change = useSelector(selectAssetChange());
   const is_send_ready = useSelector(selectIsSendReady());
+  const selected_asset_id = useSelector(selectSelectedAssetId());
 
   const beam = useMemo(() => assets.find((a) => a.asset_id === 0), [assets]);
 
@@ -198,9 +201,20 @@ const SendForm = () => {
 
   const { type: addressType } = addressData;
 
+  useEffect(() => {
+    if (selected_asset_id !== 0) {
+      const current_asset = assets.find((a) => a.asset_id === selected_asset_id);
+
+      setSelected(current_asset);
+      setFieldValue('send_amount', { amount: 0, asset_id: selected_asset_id }, true);
+      setFieldValue('misc.selected', current_asset, true);
+    }
+  }, [selected_asset_id, setFieldValue, assets, dispatch]);
+
   useEffect(
     () => () => {
       dispatch(resetSendData());
+      dispatch(setSelectedAssetId(0));
     },
     [dispatch],
   );

@@ -65,10 +65,10 @@ justify-content: space-around;
 const Wallet = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const assets = useSelector(selectAssets());
+  const assets = useSelector(selectAssets()).filter((item) => item.asset_id === 0);
   const transactions = useSelector(selectTransactions());
   const rate = useSelector(selectRate());
-  const credit = (assets[0].available);
+  console.log(assets);
   useEffect(() => {
     if (!rate) {
       dispatch(loadRate.request());
@@ -95,7 +95,7 @@ const Wallet = () => {
           <Assets data={assets} />
         </Section>
         <ButtonStyled>
-          {credit ? (
+          {assets[0].available ? (
             <Button
               variant="block"
               pallete="orange"
@@ -114,7 +114,7 @@ const Wallet = () => {
             receive
           </Button>
           {
-            credit
+            assets[0].available
               ? (
                 <Button
                   variant="block"

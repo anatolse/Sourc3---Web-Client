@@ -39,7 +39,7 @@ const baseClassName = css`
     font-size: 12px;
     color: rgba(0,0,0, 0.5);
     box-sizing: border-box;
-    font-weight: 900;
+    font-weight: 400;
     background: white;
     z-index: 1;
   }
@@ -49,7 +49,7 @@ const baseClassName = css`
     font-size: 12px;
     color: black;
     box-sizing: border-box;
-    font-weight: 900;
+    font-weight: 400;
 
   }
 

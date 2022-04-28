@@ -351,4 +351,5 @@ export interface PaymentProof {
   receiver: string;
   sender: string;
   payment_proof: string;
+  rates: Rate[];
 }

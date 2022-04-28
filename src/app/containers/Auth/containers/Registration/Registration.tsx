@@ -27,11 +27,11 @@ const SeedListStyled = styled.ol`
     display: inline-block;
     min-width: 115px;
     height: 20px;
-    line-height: 20px;
+    line-height: 19px;
     margin-bottom: 32px;
     border-radius: 16px;
     text-align: left;
-    font-weight: 900;
+    font-weight: 400;
     font-size: 16px;
 
     &:before {
@@ -39,13 +39,13 @@ const SeedListStyled = styled.ol`
       content: counter(counter);
       width: 20px;
       height: 20px;
-      line-height: 18px;
+      line-height: 19px;
       margin: 5px 10px 5px 9px;
       border-radius: 50%;
       background-color: black;
       text-align: center;
       font-size: 12px;
-      font-weight:900;
+      font-weight:400;
       color: white;
     }
 `;

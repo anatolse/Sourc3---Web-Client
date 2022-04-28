@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
-import { fromGroths, getSign, truncate } from '@core/utils';
+import {
+  convertLowAmount, fromGroths, getSign, truncate,
+} from '@core/utils';
 import { Transaction } from '@core/types';
 import { useSelector } from 'react-redux';
 import { selectAssets } from '@app/containers/Wallet/store/selectors';
@@ -78,11 +80,10 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   const signed = !!income;
   const sign = signed ? getSign(income) : '';
   const name = truncate(target?.metadata_pairs.UN) ?? '';
-  const checkAmount = amount < 0.00001 ? `${sign}0.00` : `${sign} ${amount.toFixed(8)}`;
+  const checkAmount = amount < 0.00001 ? `${sign}0.00` : `${sign}${convertLowAmount(amount)}`;
   const [label, setLabel] = useState(checkAmount);
 
   useEffect(() => {
-    console.log(checkAmount);
     if (checkAmount.length > 14) {
       setLabel(`${checkAmount.substring(15, -1)}..`);
     }

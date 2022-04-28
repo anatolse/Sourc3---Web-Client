@@ -86,15 +86,14 @@ const InputGhostStyled = styled(InputStyled)`
 `;
 
 const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 29px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
   &::placeholder {
     font-family: VisbyCF;
-    color: black;
-    opacity: 0.5;
-    font-size: 24px;
+    color: rgba(0,0,0, 0.5);
+    font-size: 20px;
     transform: translateX(1px);
   }
 `;

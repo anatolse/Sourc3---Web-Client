@@ -4,42 +4,7 @@ import { styled } from '@linaria/react';
 import { Transactions } from '@app/containers/Transactions';
 
 import { Window } from '@app/shared/components';
-import { ITab } from '@app/shared/components/Tabs';
-
-interface ActivityProps {
-  id?: string | number
-  active?:boolean,
-}
-
-const tabs: ITab[] = [
-  { id: 1, label: 'Activity', active: true },
-  { id: 2, label: 'Transactions', active: false },
-];
-
-const WrapperNav = styled.ul<ActivityProps>`
-  position: absolute;
-  top: 73px;
-  left: 47px;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 30px;
-  display: flex;
-
-    &>li:not(:first-child){
-      margin-left:40px;
-    }
-`;
-const NavItem = styled.li<ActivityProps>`
-color: ${({ active }) => (active ? '#FF791F' : 'rgba(0,0,0, 0.2)')};
-cursor: pointer;  
-`;
-const Frame = styled.div`
-position: absolute;
-    top: 115px;
-    left: 0;
-    background: white;
-    width: 100%;
-`;
+import { Content, TabItem, TabsMenu } from '@app/shared/components/TabsMenu';
 
 const Activity = () => {
   const [selectedId, setSelectedId] = useState(2);
@@ -51,15 +16,15 @@ const Activity = () => {
     switch (i) {
       case 1:
         return (
-          <Frame>
+          <Content>
             <p>Activity</p>
-          </Frame>
+          </Content>
         );
       case 2:
         return (
-          <Frame>
+          <Content>
             <Transactions />
-          </Frame>
+          </Content>
         );
       default: return (
         <><p>Activity</p></>
@@ -69,20 +34,20 @@ const Activity = () => {
   return (
     <Window type="pageMain">
       <>
-        <WrapperNav>
-          <NavItem
+        <TabsMenu>
+          <TabItem
             active={selectedId === 1}
             onClick={() => (toggleTabs(1))}
           >
             Activity
-          </NavItem>
-          <NavItem
+          </TabItem>
+          <TabItem
             active={selectedId === 2}
             onClick={() => (toggleTabs(2))}
           >
             Transaction
-          </NavItem>
-        </WrapperNav>
+          </TabItem>
+        </TabsMenu>
         {renderContent(selectedId)}
       </>
     </Window>

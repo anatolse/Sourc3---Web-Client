@@ -71,6 +71,7 @@ const TransactionDate = styled.div`
   width: 100%;
   > span {
     font-weight:600;
+      margin-right:6px;
     }
 
     &:last-child {
@@ -135,7 +136,7 @@ const TransactionItem = ({
       const n = truncate(tg?.metadata_pairs.UN) ?? '';
       const am = fromGroths(fee_only ? fee : a.amount);
       if (!isBalanceHidden) {
-        title += `${am > 0 ? `+ ${am}` : `- ${Math.abs(am)}`} ${n} `;
+        title += `${am > 0 ? `+${am}` : `-${Math.abs(am)}`} ${n} `;
       } else {
         title += `${n} `;
       }
@@ -174,7 +175,7 @@ const TransactionItem = ({
     return (
       <>
         <span>
-          {`${time}, `}
+          {`${time},`}
         </span>
         <span>{date}</span>
       </>

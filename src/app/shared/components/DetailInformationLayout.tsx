@@ -37,15 +37,11 @@ margin-bottom: 16px;
   &.asset {
     display: block;
     .amount-comment {
-      font-size: 12px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: black;
-      opacity: 0.5;
-      margin-left: 36px;
+      font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+      color: rgba(0,0,0, 0.5);
+      // margin-left: 36px;
     }
     &.mlt-asset {
       display: flex;
@@ -58,7 +54,6 @@ margin-bottom: 16px;
         padding-top: 20px;
         font-weight: 600;
         font-size: 16px;
-
         &::after {
           content: '';
           padding: 0;
@@ -74,8 +69,8 @@ margin-bottom: 16px;
   }
 
   > span {
+    margin-right: 6px;
     &::after {
-      content: ' ';
       padding: 0 12px;
     }
 

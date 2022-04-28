@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { styled } from '@linaria/react';
 import { TransactionDetail } from '@core/types';
 import {
-  compact, fromGroths, getTxType, toUSD, truncate,
+  fromGroths, getTxType, toUSD, truncate,
 } from '@core/utils';
 import { Button } from '@app/shared/components';
 import { CopySmallIcon, ExternalLink } from '@app/shared/icons';
@@ -52,7 +52,7 @@ const GeneralTransactionInformation = ({
   }, [transactionDetail, assets, isBalanceHidden]);
 
   const assetRate = useMemo(() => {
-    console.log(transactionDetail.rates);
+    console.log(transactionDetail);
 
     let rate = transactionDetail?.rates.find((a) => a.from === transactionDetail.asset_id && a.to === 'usd');
 
@@ -83,9 +83,9 @@ const GeneralTransactionInformation = ({
     return (
       <>
         <span>
-          {`${time}, `}
+          {`${time},`}
         </span>
-        <span>{date}</span>
+        <span>{` ${date}`}</span>
       </>
     );
   };
@@ -182,12 +182,12 @@ const GeneralTransactionInformation = ({
         <InformationItem>
           <div className="title">Sending address:</div>
           <div className="value">
-            <p>{compact(transactionDetail.sender, 16)}</p>
+            <p>{transactionDetail.sender}</p>
             <Button
               variant="icon"
               pallete="white"
-              icon={CopySmallIcon}
-              onClick={() => copy(transactionDetail.sender, 'Address copied to clipboard')}
+              // icon={CopySmallIcon}
+              // onClick={() => copy(transactionDetail.sender, 'Address copied to clipboard')}
             />
           </div>
         </InformationItem>
@@ -196,12 +196,12 @@ const GeneralTransactionInformation = ({
         <InformationItem>
           <div className="title">Receiving address:</div>
           <div className="value">
-            <p>{compact(transactionDetail.receiver, 16)}</p>
+            <p>{transactionDetail.receiver}</p>
             <Button
               variant="icon"
               pallete="white"
-              icon={CopySmallIcon}
-              onClick={() => copy(transactionDetail.receiver, 'Address copied to clipboard')}
+              // icon={CopySmallIcon}
+              // onClick={() => copy(transactionDetail.receiver, 'Address copied to clipboard')}
             />
           </div>
         </InformationItem>
@@ -218,7 +218,7 @@ const GeneralTransactionInformation = ({
         <InformationItem>
           <div className="title">Address type:</div>
           <div className="value">
-            <p>Regular</p>
+            <p>Online</p>
           </div>
         </InformationItem>
       )}
@@ -247,7 +247,6 @@ const GeneralTransactionInformation = ({
           </div>
         </InformationItem>
       )}
-
       <InformationItem>
         <div className="title">Source:</div>
         <div className="value">{transactionDetail.appname ?? 'Wallet'}</div>
