@@ -42,7 +42,8 @@ export function fromGroths(value: number): number {
 }
 
 export function toGroths(value: number): number {
-  return value > 0 ? Math.floor(value * GROTHS_IN_BEAM) : 0;
+  const val = Number(parseFloat((value * GROTHS_IN_BEAM).toString()).toPrecision(12));
+  return value > 0 ? Math.floor(val) : 0;
 }
 
 export function getSign(positive: boolean): string {
@@ -71,5 +72,10 @@ export const getTxType = (type: AddressType, offline: boolean): string => {
   return offline ? 'Offline' : 'Online';
 };
 
-export const convertLowAmount = (amount: number) => (+amount <= 0.0000001
-  ? amount.toFixed(Number(amount.toString().replace(`${amount.toString()[0]}e-`, ''))) : amount);
+export const convertLowAmount = (amount: number) => {
+  if (amount.toString().includes('e-')) {
+    const exp = amount.toString().split('e-');
+    return amount.toFixed(Number(exp[1]));
+  }
+  return amount;
+};

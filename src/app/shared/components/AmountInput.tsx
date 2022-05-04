@@ -81,6 +81,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
   return (
     <ContainerStyled>
       <Input
+        type="number"
         variant="amount"
         valid={!error}
         label={error}

@@ -31,7 +31,7 @@ const SeedListStyled = styled.ol`
     margin-bottom: 32px;
     border-radius: 16px;
     text-align: left;
-    font-weight: 400;
+    font-weight: 900;
     font-size: 16px;
 
     &:before {
@@ -45,7 +45,7 @@ const SeedListStyled = styled.ol`
       background-color: black;
       text-align: center;
       font-size: 12px;
-      font-weight:400;
+      font-weight: 800;
       color: white;
     }
 `;

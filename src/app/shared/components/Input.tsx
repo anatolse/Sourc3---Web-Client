@@ -96,6 +96,11 @@ const InputAmountStyled = styled(InputGrayStyled)<{ pallete: string }>`
     font-size: 20px;
     transform: translateX(1px);
   }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const LabelStyled = styled.div<InputProps>`

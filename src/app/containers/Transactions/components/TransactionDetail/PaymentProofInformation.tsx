@@ -85,7 +85,7 @@ const PaymentProofInformation = ({
       </InformationItem>
 
       <InformationItem>
-        <div className="title">Kernel id:</div>
+        <div className="title">Kernel ID:</div>
         <div className="value">
           <p>{paymentProof.kernel}</p>
           <Button

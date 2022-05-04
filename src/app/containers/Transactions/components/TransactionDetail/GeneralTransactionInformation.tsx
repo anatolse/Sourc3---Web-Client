@@ -258,7 +258,7 @@ const GeneralTransactionInformation = ({
       )}
 
       <InformationItem>
-        <div className="title">Transaction Id:</div>
+        <div className="title">Transaction ID:</div>
         <div className="value">
           <p>{transactionDetail.txId}</p>
           <Button
@@ -272,7 +272,7 @@ const GeneralTransactionInformation = ({
 
       {transactionDetail.kernel && (
         <InformationItem>
-          <div className="title">kernel Id:</div>
+          <div className="title">Kernel ID:</div>
           <div className="value">
             <p>{transactionDetail.kernel}</p>
             <Button
