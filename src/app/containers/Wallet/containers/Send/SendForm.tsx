@@ -139,14 +139,23 @@ const validate = async (values: SendFormData, setHint: (string) => void) => {
   const { available } = selected;
   const value = toGroths(parseFloat(send_amount.amount));
 
-  const total = value + fee;
+  const total = value + (send_amount.asset_id === 0 ? fee : 0);
+
+  if (
+    Number(send_amount.amount) < 0.00000001
+    && Number(send_amount.amount) !== 0
+    && send_amount.amount !== ''
+    && send_amount.asset_id === 0
+  ) {
+    errors.send_amount = AmountError.LESS;
+  }
 
   if (beam.available < fee) {
     errors.send_amount = AmountError.FEE;
   }
 
   if (total > available) {
-    const max = fromGroths(available - fee);
+    const max = fromGroths(available - (send_amount.asset_id === 0 ? fee : 0));
     errors.send_amount = `${AmountError.AMOUNT} ${max} ${truncate(selected.metadata_pairs.UN)}`;
   }
 
@@ -330,7 +339,8 @@ const SendForm = () => {
     const { available } = selected;
     const { send_amount } = values;
     const isMaxPrivacy = addressData.type === 'max_privacy';
-    const total = send_amount.asset_id === 0 ? Math.max(available - fee, 0) : available;
+    const currentFee = values.offline || isMaxPrivacy ? 1100000 : fee;
+    const total = send_amount.asset_id === 0 ? Math.max(available - currentFee, 0) : available;
     const new_amount = fromGroths(total).toString();
 
     const amount = {

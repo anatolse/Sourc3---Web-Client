@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState, useMemo,
+} from 'react';
 import { styled } from '@linaria/react';
 import { useParams } from 'react-router-dom';
 import { Window } from '@app/shared/components';
@@ -50,6 +52,26 @@ const TransactionDetail = () => {
     }
   };
 
+  const assetRate = useMemo(() => {
+    if (!transactionDetail) return null;
+    let rate = transactionDetail?.rates.find((a) => a.from === transactionDetail.asset_id && a.to === 'usd');
+
+    if (!rate && transactionDetail.invoke_data?.length && transactionDetail.invoke_data[0].amounts.length === 1) {
+      rate = transactionDetail?.rates.find(
+        (a) => a.from === transactionDetail.invoke_data[0].amounts[0].asset_id && a.to === 'usd',
+      );
+    }
+
+    return rate;
+  }, [transactionDetail]);
+
+  const feeRate = useMemo(() => {
+    if (!transactionDetail) return null;
+    const rate = transactionDetail?.rates.find((a) => a.from === 0 && a.to === 'usd');
+
+    return rate;
+  }, [transactionDetail]);
+
   const copy = useCallback((value, tM) => {
     toast(tM);
     copyToClipboard(value);
@@ -84,6 +106,8 @@ const TransactionDetail = () => {
             assets={assets}
             isBalanceHidden={isBalanceHidden}
             copy={copy}
+            assetRate={assetRate}
+            feeRate={feeRate}
           />
         )}
         {activeTab === 'payment-proof' && (
@@ -92,6 +116,8 @@ const TransactionDetail = () => {
             transactionDetail={transactionDetail}
             isBalanceHidden={isBalanceHidden}
             copy={copy}
+            assetRate={assetRate}
+
           />
         )}
       </TransactionDetailWrapper>
