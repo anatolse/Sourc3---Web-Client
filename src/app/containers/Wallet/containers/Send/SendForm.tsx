@@ -12,7 +12,9 @@ import { IconCancel } from '@app/shared/icons';
 import { styled } from '@linaria/react';
 import LabeledToggle from '@app/shared/components/LabeledToggle';
 import { css } from '@linaria/core';
-import { fromGroths, toGroths, truncate } from '@core/utils';
+import {
+  convertLowAmount, fromGroths, toGroths, truncate,
+} from '@core/utils';
 import { useFormik } from 'formik';
 
 import {
@@ -434,9 +436,7 @@ const SendForm = () => {
             <Title variant="regular" className={titleClassName}>Available</Title>
             <WrapperAvailable>
               <div className={availableClassName}>
-                {groths}
-                {' '}
-                {truncate(selected.metadata_pairs.N)}
+                {`${convertLowAmount(groths)} ${truncate(selected.metadata_pairs.N)}`}
               </div>
               {selected.asset_id === 0 && !errors.send_amount && <Rate value={groths} />}
               {groths > 0 && (

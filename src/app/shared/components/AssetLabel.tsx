@@ -80,7 +80,7 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
   const signed = !!income;
   const sign = signed ? getSign(income) : '';
   const name = truncate(target?.metadata_pairs.UN) ?? '';
-  const checkAmount = amount < 0.00001 ? `${sign}0.00` : `${sign}${convertLowAmount(amount)}`;
+  const checkAmount = amount === 0 ? `${sign}0.00` : `${sign}${convertLowAmount(amount)}`;
   const [label, setLabel] = useState(checkAmount);
 
   useEffect(() => {
