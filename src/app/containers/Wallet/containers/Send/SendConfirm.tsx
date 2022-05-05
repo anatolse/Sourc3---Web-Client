@@ -9,9 +9,9 @@ import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 
 import {
-  fromGroths, compact, toGroths, truncate, getTxType,
+  fromGroths, compact, toGroths, truncate, getTxType, convertLowAmount,
 } from '@core/utils';
-import { AddressData, AddressType } from '@core/types';
+import { AddressData } from '@core/types';
 import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces';
 
 const SC3Amount = styled.p`
@@ -112,9 +112,9 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Amount</span>
           <div className={receiptValue}>
             <SC3Amount className={SC3}>
-              {amount}
+              {convertLowAmount(Number(amount))}
               {' '}
-              {metadata_pairs.UN}
+              {truncate(metadata_pairs.UN)}
             </SC3Amount>
             {selected.asset_id === 0 && <Rate value={value} groths />}
           </div>
@@ -123,7 +123,7 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Fee</span>
           <div className={receiptValue}>
             <SC3Amount>
-              {fromGroths(fee)}
+              {convertLowAmount(fromGroths(fee))}
               {' '}
               {truncate(metadata_pairs.UN)}
             </SC3Amount>
@@ -134,9 +134,9 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Change</span>
           <div className={receiptValue}>
             <SC3Amount>
-              {fromGroths(selected.asset_id === 0 ? change : asset_change)}
+              {convertLowAmount(fromGroths(selected.asset_id === 0 ? change : asset_change))}
               {' '}
-              {metadata_pairs.UN}
+              {truncate(metadata_pairs.UN)}
             </SC3Amount>
             <Rate value={selected.asset_id === 0 ? change : asset_change} groths />
           </div>
@@ -145,7 +145,7 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>Remaining</span>
           <div className={receiptValue}>
             <SC3Amount>
-              {fromGroths(remaining)}
+              {convertLowAmount(fromGroths(remaining))}
               {' '}
               {truncate(metadata_pairs.UN)}
             </SC3Amount>
@@ -157,7 +157,7 @@ const SendConfirm = (props: SendConfirmProps) => {
           <span className={subtitle}>SC3 Remaining</span>
           <div className={receiptValue}>
             <SC3Amount>
-              {fromGroths(beamRemaining)}
+              {convertLowAmount(fromGroths(beamRemaining))}
               {' '}
               {truncate(metadata_pairs.UN)}
             </SC3Amount>
