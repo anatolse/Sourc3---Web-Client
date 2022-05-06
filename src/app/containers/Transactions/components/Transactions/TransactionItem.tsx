@@ -69,9 +69,9 @@ const TransactionDate = styled.div`
   color: rgba(0,0,0,0.5);
   text-align: right;
   width: 100%;
-  > span {
+  > span:not:last-child {
     font-weight:600;
-      margin-right:6px;
+    margin-right:6px;
     }
 
     &:last-child {
