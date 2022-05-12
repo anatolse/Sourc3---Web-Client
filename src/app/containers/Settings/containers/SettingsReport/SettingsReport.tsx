@@ -58,12 +58,12 @@ const SettingsReport = () => {
   };
 
   const mailClicked = () => {
-    const mailText = 'mailto:support@beam.mw';
+    const mailText = 'mailto:Hello@SOURC3.xyz';
     window.location.href = mailText;
   };
 
   const githubClicked = () => {
-    window.open('https://github.com/PitDotDev/web-wallet/issues', '_blank');
+    window.open('https://github.com/SOURC3XYZ/Sourc3-Web-Client.git', '_blank');
   };
 
   const saveLogsclicked = () => {
@@ -89,7 +89,7 @@ const SettingsReport = () => {
           </ListItemStyled>
           <ListItemStyled>
             Send email to
-            <LinkStyled onClick={() => mailClicked()}>support@beam.mw</LinkStyled>
+            <LinkStyled onClick={() => mailClicked()}>Hello@SOURC3.xyz</LinkStyled>
             or open a ticket in
             <LinkStyled onClick={() => githubClicked()}>Github</LinkStyled>
             {' '}
