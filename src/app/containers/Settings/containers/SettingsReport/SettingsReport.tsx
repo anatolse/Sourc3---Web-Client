@@ -63,7 +63,7 @@ const SettingsReport = () => {
   };
 
   const githubClicked = () => {
-    window.open('https://github.com/SOURC3XYZ/Sourc3-Web-Client.git', '_blank');
+    window.open('https://github.com/SOURC3XYZ/Sourc3-Web-Client/issues', '_blank');
   };
 
   const saveLogsclicked = () => {
