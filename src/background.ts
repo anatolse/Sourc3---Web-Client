@@ -18,6 +18,10 @@ let notificationPort = null;
 let connected = false;
 let activeTab = null;
 
+chrome.storage.sync.get(['activePid'], (result) => {
+  console.log(`Value  is ${Object.values(result)}`);
+});
+
 function postMessage(data) {
   if (port && connected) {
     port.postMessage(data);

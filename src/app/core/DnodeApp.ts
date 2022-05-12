@@ -32,7 +32,7 @@ export default class DnodeApp {
 
   walletUnlocked() {
     this.appApiHandler(JSON.stringify({
-      is_locked: false
+      is_locked: false,
     }));
   }
 
@@ -56,7 +56,18 @@ export default class DnodeApp {
         if (localStorage.getItem('locked')) {
           notificationManager.openAuthNotification(params, params.appurl);
         }
-      }
+      },
+      localStorage: async () => {
+        let a;
+        await new Promise((resolve, reject) => {
+          chrome.storage.sync.get(['activePid'], (result) => {
+            a = result;
+            resolve(result);
+            console.log(`Value currenty is ${Object.values(result)}`);
+          });
+        });
+        return a;
+      },
     };
   }
 

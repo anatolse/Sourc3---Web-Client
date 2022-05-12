@@ -9,6 +9,7 @@ async function setupInpageApi() {
   });
 
   const inpageApi = {};
+
   const dnode = setupDnode(connectionStream, inpageApi);
   await new Promise((resolve) => {
     dnode.once('remote', (remoteApi) => {
@@ -16,6 +17,12 @@ async function setupInpageApi() {
     });
   }).then((api) => {
     global.BeamApi = api;
+    console.log(global.BeamApi.api);
+
+    // chrome.storage.sync.get(['profile'], (result) => {
+    //   console.log(`Value currently is ${Object.values(result)}`);
+    //   a = Object.values(result);
+    // });
     window.postMessage('apiInjected', window.origin);
     // eslint-disable-next-line no-console
     console.log('Source client API INJECTED');

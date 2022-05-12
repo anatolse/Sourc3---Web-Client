@@ -1,67 +1,73 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Button, Section, Window,
-} from '@app/shared/components';
+import { Button, Section, Window } from '@app/shared/components';
 import {
   IconDropMenu,
   IconEdit,
-  IconProfileLarge, IconProfileLarge2, IconProfileLarge3, IconProfileLarge4, IconRemove,
+  IconProfileLarge,
+  IconProfileLarge2,
+  IconProfileLarge3,
+  IconProfileLarge4,
+  IconRemove,
 } from '@app/shared/icons';
 import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
 import useOutsideClick from '@app/shared/hooks/OutsideClickHook';
+import { profile } from '@app/shared/constants/profile';
 
 const ProfileComponent = styled.div`
-display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    &>div:nth-child(odd){
-        margin: 8px 7px 0 8px;
-    }
-    &>div:nth-child(even){
-        margin: 8px 8px 0 4px; 
-    }
-    margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  & > div:nth-child(odd) {
+    margin: 8px 7px 0 8px;
+  }
+  & > div:nth-child(even) {
+    margin: 8px 8px 0 4px;
+  }
+  margin-bottom: 16px;
 
-    .wrapper{
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 172px;
-      height: 80px;
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      box-sizing: border-box;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      z-index: 999;
+  .wrapper {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 172px;
+    height: 80px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    z-index: 999;
+    height: auto;
+  }
+  .wrapperItems {
+    height: 100%;
+    & > li:nth-child(even) > .btnProfile:hover,
+    .btnProfile:active {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
-    .wrapperItems{
-      height: 100%;
-        &>li:nth-child(even)>.btnProfile:hover, .btnProfile:active{
-          border-bottom-left-radius:8px;
-          border-bottom-right-radius:8px;
-        }
-        &>li:nth-child(odd)>.btnProfile:hover, .btnProfile:active{
-          border-top-left-radius:8px;
-          border-top-right-radius:8px;
-        }
+    & > li:nth-child(odd) > .btnProfile:hover,
+    .btnProfile:active {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
-    .btnProfile:{
-        font-size: 16px;
-        line-height: 16px;
-        font-weight: 600;
-        padding: 2px  16px;
-        margin: 0;
-    }
+  }
+  .btnprofile: {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    padding: 2px 16px;
+    margin: 0;
+  }
 `;
 const Profile = styled.div`
-display: flex;
-width: 100%;
-flex-direction: column;
-align-items: center;
-margin: 16px 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px 0;
 `;
 const Name = styled.p`
 margin: 0
@@ -79,44 +85,67 @@ const style = css`
   right: 0;
 `;
 const overlay = css`
-background: rgba(0,0,0,0.05);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    margin: 0 0 !important;
+  background: rgba(0, 0, 0, 0.05);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  margin: 0 0 !important;
 `;
 
-const data = [
-  {
-    id: 1,
-    avatar: IconProfileLarge,
-    name: 'Long John Silver',
-    active: true,
-  },
-  {
-    id: 2,
-    avatar: IconProfileLarge2,
-    name: 'Mister X',
-    active: false,
-  },
-  {
-    id: 3,
-    avatar: IconProfileLarge3,
-    name: 'John Doe',
-    active: false,
-  },
-  {
-    id: 4,
-    avatar: IconProfileLarge4,
-    name: 'Master Splinter',
-    active: false,
-  },
-];
-
 function Manage() {
+  const avatar = [IconProfileLarge,
+    IconProfileLarge2,
+    IconProfileLarge3,
+    IconProfileLarge4];
+
+  const [data, setData] = useState([]);
+  // const [allData, setAllData] = useState(data);
+  useEffect(() => {
+    if (localStorage.length === 0 || (JSON.parse(localStorage.getItem('default'))) === null) {
+      localStorage.setItem('default', JSON.stringify(profile));
+    }
+    setData((JSON.parse(localStorage.getItem('default'))));
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('default', JSON.stringify(data));
+    const activePid = JSON.parse(localStorage.getItem('default')).filter((item) => item.active === true);
+    chrome.storage.sync.set({ activePid }, () => {
+      console.log(`Value is set to ${Object.values(activePid)}`);
+    });
+    // localStorage.setItem('name', activePid.name);
+  }, [data]);
+
+  const addUser = () => {
+    const ava = [Math.floor(Math.random() * 4)];
+    const newData = {
+      id: `${data.length}`, name: `user${data.length}`, active: false, avatar: ava,
+    };
+    setData([...data, newData]);
+  };
+
+  // const removeProfile = (id) => {
+  //   if (data.length > 1) {
+  //     const removeData = data.filter((item) => item.id !== id);
+  //     setData(removeData);
+  //   } else {
+  //     console.log('No remove last acc');
+  //   }
+  //   // localStorage.setItem('default', JSON.stringify(data));
+  // };
+  const selectProfile = (id) => {
+    const newData = data.map((item) => {
+      if (item.id === id) {
+        item.active = true;
+        return item;
+      }
+      item.active = false;
+      return item;
+    });
+    setData(newData);
+  };
   const ContainerProfile = ({ item }) => {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -131,21 +160,17 @@ function Manage() {
       <>
         <Section variant="profile" key={item.id}>
           <Profile>
-            <Button variant="icon" icon={item.avatar} />
+            <Button variant="icon" icon={avatar[item.avatar]} />
             <Name>{item.name}</Name>
-            <Button
-              pallete="orange"
-              variant="switch"
-            >
-              {item.active ? ('Current role') : ('Switch')}
-
+            <Button onClick={() => selectProfile(item.id)} pallete="orange" variant="switch">
+              {item.active ? 'Current role' : 'Switch'}
             </Button>
           </Profile>
           <Button
             className={style}
             variant="icon"
             icon={IconDropMenu}
-            onClick={() => (setVisible(true))}
+            onClick={() => setVisible(true)}
             aria-hidden="true"
           />
           {visible && (
@@ -153,18 +178,14 @@ function Manage() {
               <div className="wrapper" key={item.id} ref={wrapperRef}>
                 <ul className="wrapperItems" aria-hidden="true">
                   <li>
-                    <Button
-                      className="btnProfile"
-                      variant="linkDrop"
-                      pallete="black"
-                      icon={IconEdit}
-                    >
+                    <Button className="btnProfile" variant="linkDrop" pallete="black" icon={IconEdit}>
                       Edit profile
                     </Button>
-
                   </li>
                   <li>
+                    {data.length > 1 && (
                     <Button
+                      // onClick={() => removeProfile(item.id)}
                       className="btnProfile"
                       variant="linkDrop"
                       pallete="black"
@@ -172,15 +193,11 @@ function Manage() {
                     >
                       Remove profile
                     </Button>
-
+                    )}
                   </li>
                 </ul>
               </div>
-              {
-        visible && (
-          <div className={overlay} />
-        )
-      }
+              {visible && <div className={overlay} />}
             </>
           )}
         </Section>
@@ -189,12 +206,9 @@ function Manage() {
   };
   return (
     <Window title="Manage profiles">
-      <ProfileComponent>
-        { data && data.map((item) => (
-          <ContainerProfile item={item} key={item.id} />
-        ))}
-      </ProfileComponent>
-      <Button>Add new profile</Button>
+      {console.log(data)}
+      <ProfileComponent>{data && data.map((item) => <ContainerProfile item={item} key={item.id} />)}</ProfileComponent>
+      <Button onClick={addUser}>Add new profile</Button>
     </Window>
   );
 }

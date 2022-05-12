@@ -15,6 +15,7 @@ import { selectAssets, selectRate } from '@app/containers/Wallet/store/selectors
 
 import { loadRate } from '@app/containers/Wallet/store/actions';
 import { selectTransactions } from '@app/containers/Transactions/store/selectors';
+import { avatar } from '@app/shared/constants/profile';
 import { Assets } from '../../components/Wallet';
 
 // const TXS_MAX = 4;
@@ -29,7 +30,7 @@ const Profile = styled.div`
 display: flex;
 width: 100%;
 height: 105px;
-justify-content: flex-start;
+justify-content: space-between;
 align-items: center;
 padding: 0 24px
 `;
@@ -68,7 +69,14 @@ const Wallet = () => {
   const assets = useSelector(selectAssets()).filter((item) => item.asset_id === 0);
   const transactions = useSelector(selectTransactions());
   const rate = useSelector(selectRate());
-  console.log(assets);
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setData((JSON.parse(localStorage.getItem('default'))).filter((item) => item.active === true));
+  }, []);
+  // const [name, setName] = useState('');
+  // const [av, setAv] = useState(null);
+
   useEffect(() => {
     if (!rate) {
       dispatch(loadRate.request());
@@ -82,8 +90,13 @@ const Wallet = () => {
     <Window title="Profile" onPrevious={handlePrevious}>
       <ActionsStyled>
         <Profile>
-          <Avatar><Button variant="manage" icon={IconProfileLarge} /></Avatar>
-          <Name>Long John Silver</Name>
+          {data && data.map((item) => (
+            <>
+              <Avatar><Button variant="manage" icon={avatar[item.avatar]} /></Avatar>
+              <Name>{item.name}</Name>
+
+            </>
+          ))}
           <Button
             variant="link"
             onClick={() => navigate(ROUTES.WALLET.MANAGE)}

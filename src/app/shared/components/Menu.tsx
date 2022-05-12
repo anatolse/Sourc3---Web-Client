@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
@@ -8,6 +8,7 @@ import { IconProfile, IconSettings } from '@app/shared/icons';
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button';
+import { avatar } from '../constants/profile';
 
 const MENU_ITEMS = [
   {
@@ -48,6 +49,18 @@ const buttonStyle = css`
   left: 24px;
   margin: 0;
 `;
+const avatarSmall = css`
+ svg{
+   width:32px;
+   height:32px;
+  //  viewBox: 0 0 32px 32px;
+   &>circle {
+     cx:16;
+     cy:16;
+     r:16;
+   }
+ }
+`;
 
 interface MenuProps {
   onCancel?: React.MouseEventHandler;
@@ -61,29 +74,37 @@ const Menu: React.FC<MenuProps> = ({ onCancel }) => {
     const index = parseInt(currentTarget.dataset.index, 10);
     navigate(MENU_ITEMS[index].value);
   };
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setData((JSON.parse(localStorage.getItem('default'))).filter((item) => item.active === true));
+  }, []);
 
   return (
-    // <ContainerStyled>
-    //   <ListStyled>
-    //     {MENU_ITEMS.map(({ title, value }, index) => (
-    //       <ListItemStyled key={value} active={location.pathname === value} data-index={index} onClick={handleClick}>
-    //         {title}
-    //       </ListItemStyled>
-    //     ))}
-    //   </ListStyled>
-    // </ContainerStyled>
+
     <ContainerStyled>
       <ListStyled>
-        {/* <ListItemStyled>
-        Profile
-      </ListItemStyled>
-      <ListItemStyled>
-        <Button variant="link" icon={IconSettings} />
-      </ListItemStyled> */}
-        {MENU_ITEMS.map(({ title, value, icon }, index) => (
+        {/* {MENU_ITEMS.map(({ title, value, icon }, index) => (
           <ListItemStyled key={value} data-index={index} onClick={handleClick}>
             <Button variant="icon" icon={icon} />
           </ListItemStyled>
+        ))} */}
+        {data && data.map((item) => (
+          <>
+            <ListItemStyled data-index={0} key={ROUTES.WALLET.PROFILE} onClick={handleClick}>
+              <Button
+                variant="icon"
+                icon={avatar[item.avatar]}
+                className={avatarSmall}
+              />
+            </ListItemStyled>
+            <ListItemStyled data-index={1} key={ROUTES.SETTINGS.BASE} onClick={handleClick}>
+              <Button
+                variant="icon"
+                icon={IconSettings}
+              />
+            </ListItemStyled>
+
+          </>
         ))}
       </ListStyled>
     </ContainerStyled>
