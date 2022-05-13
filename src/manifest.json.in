@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "Sourc3%BEAM_NETWORK%",
   "short_name": "Sourc3%BEAM_NETWORK%",
-  "description": "Sourc3%BEAM_NETWORK%",
-  "version": "%BEAM_VERSION%",
+  "description": "Sourc3 Web Client (built on Beam Wallet %BEAM_VERSION%%BEAM_NETWORK%)",
+  "version": "%VERSION%",
   "cross_origin_embedder_policy": {
     "value": "require-corp"
   },
