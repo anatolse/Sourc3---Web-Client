@@ -23,7 +23,7 @@ async function setupInpageApi() {
     //   console.log(`Value currently is ${Object.values(result)}`);
     //   a = Object.values(result);
     // });
-    window.postMessage('apiInjected', window.origin);
+    window.postMessage({ type: 'apiInjected' }, window.origin);
     // eslint-disable-next-line no-console
     console.log('Source client API INJECTED');
     return api;

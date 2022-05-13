@@ -3,6 +3,8 @@ import { Environment, ConnectRequest } from '@core/types';
 import PortStream from '@core/PortStream';
 import PostMessageStream from 'post-message-stream';
 
+document.documentElement.setAttribute('sourc3-extension-installed', 'true');
+
 function setupConnection() {
   const backgroundPort = extensionizer.runtime.connect({
     name: Environment.CONTENT,
