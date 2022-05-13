@@ -121,7 +121,7 @@ function Manage() {
   const addUser = () => {
     const ava = [Math.floor(Math.random() * 4)];
     const newData = {
-      id: `${data.length}`, name: `user${data.length}`, active: false, avatar: ava,
+      id: `${data.length}`, name: `User${data.length + 1}`, active: false, avatar: ava,
     };
     setData([...data, newData]);
   };

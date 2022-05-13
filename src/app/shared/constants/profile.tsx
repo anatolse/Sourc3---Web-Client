@@ -8,5 +8,5 @@ export const avatar = [IconProfileLarge,
   IconProfileLarge4];
 
 export const profile = [{
-  id: 0, name: 'User1', active: true, avatar: 0,
+  id: 0, name: 'User 1', active: true, avatar: 0,
 }];
