@@ -8,7 +8,7 @@ import { IconProfile, IconSettings } from '@app/shared/icons';
 import { ROUTES } from '@app/shared/constants';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button';
-import { avatar } from '../constants/profile';
+import { avatar, profile } from '../constants/profile';
 
 const MENU_ITEMS = [
   {
@@ -76,6 +76,9 @@ const Menu: React.FC<MenuProps> = ({ onCancel }) => {
   };
   const [data, setData] = useState([]);
   useEffect(() => {
+    if (localStorage.length === 0 || (JSON.parse(localStorage.getItem('default'))) === null) {
+      localStorage.setItem('default', JSON.stringify(profile));
+    }
     setData((JSON.parse(localStorage.getItem('default'))).filter((item) => item.active === true));
   }, []);
 

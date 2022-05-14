@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Section, Window } from '@app/shared/components';
+import {
+  Button, Input, Popup, Section, Window,
+} from '@app/shared/components';
 import {
   IconDropMenu,
   IconEdit,
@@ -102,26 +104,27 @@ function Manage() {
     IconProfileLarge4];
 
   const [data, setData] = useState([]);
-  // const [allData, setAllData] = useState(data);
+  const [visiblePopup, setVisiblePopup] = useState(false);
+  const inputRef = useRef<HTMLInputElement>();
+
   useEffect(() => {
     if (localStorage.length === 0 || (JSON.parse(localStorage.getItem('default'))) === null) {
       localStorage.setItem('default', JSON.stringify(profile));
     }
     setData((JSON.parse(localStorage.getItem('default'))));
   }, []);
+
   useEffect(() => {
     localStorage.setItem('default', JSON.stringify(data));
     const activePid = JSON.parse(localStorage.getItem('default')).filter((item) => item.active === true);
     chrome.storage.sync.set({ activePid }, () => {
-      console.log(`Value is set to ${Object.values(activePid)}`);
     });
-    // localStorage.setItem('name', activePid.name);
   }, [data]);
 
-  const addUser = () => {
+  const addUser = (name) => {
     const ava = [Math.floor(Math.random() * 4)];
     const newData = {
-      id: `${data.length}`, name: `User${data.length + 1}`, active: false, avatar: ava,
+      id: `${data.length}`, name: name || `User ${data.length + 1}`, active: false, avatar: ava,
     };
     setData([...data, newData]);
   };
@@ -135,6 +138,12 @@ function Manage() {
   //   }
   //   // localStorage.setItem('default', JSON.stringify(data));
   // };
+
+  const handleConfirm: React.MouseEventHandler = () => {
+    const { value } = inputRef.current;
+    addUser(value);
+    setVisiblePopup(false);
+  };
   const selectProfile = (id) => {
     const newData = data.map((item) => {
       if (item.id === id) {
@@ -146,10 +155,21 @@ function Manage() {
     });
     setData(newData);
   };
+  // const editUserName = (id, name) => {
+  //   const newData = data.map((item) => {
+  //     if (item.id === id) {
+  //       item.name = name;
+  //     }
+  //     return item;
+  //   });
+  //   setData(newData);
+  // };
+
   const ContainerProfile = ({ item }) => {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
     const { isOutside } = useOutsideClick(wrapperRef);
+
     useEffect(() => {
       if (isOutside) {
         setVisible(false);
@@ -178,7 +198,12 @@ function Manage() {
               <div className="wrapper" key={item.id} ref={wrapperRef}>
                 <ul className="wrapperItems" aria-hidden="true">
                   <li>
-                    <Button className="btnProfile" variant="linkDrop" pallete="black" icon={IconEdit}>
+                    <Button
+                      className="btnProfile"
+                      variant="linkDrop"
+                      pallete="black"
+                      icon={IconEdit}
+                    >
                       Edit profile
                     </Button>
                   </li>
@@ -205,11 +230,33 @@ function Manage() {
     );
   };
   return (
-    <Window title="Manage profiles">
-      {console.log(data)}
-      <ProfileComponent>{data && data.map((item) => <ContainerProfile item={item} key={item.id} />)}</ProfileComponent>
-      <Button onClick={addUser}>Add new profile</Button>
-    </Window>
+    <>
+      <Window title="Manage profiles">
+        {console.log(data)}
+        <ProfileComponent>
+          {data && data.map((item) => (
+            <ContainerProfile
+              item={item}
+              key={item.id}
+            />
+          ))}
+        </ProfileComponent>
+        <Button onClick={() => setVisiblePopup(true)}>Add new profile</Button>
+      </Window>
+      <Popup
+        visible={visiblePopup}
+        onCancel={() => setVisiblePopup(false)}
+        title="Enter your name account"
+        confirmButton={(
+          <Button pallete="orange" onClick={handleConfirm}>
+            Add user
+          </Button>
+      )}
+        footer
+      >
+        <Input ref={inputRef} maxLength={17} placeholder={`User ${data.length + 1}`} />
+      </Popup>
+    </>
   );
 }
 

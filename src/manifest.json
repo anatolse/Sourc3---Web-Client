@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Sourc3 (masternet)",
   "short_name": "Sourc3 (masternet)",
-  "description": "Sourc3 Web Client (built on Beam Wallet 7.0.12678 (masternet))",
+  "description": "Sourc3 Web Client",
   "version": "0.0.378",
   "cross_origin_embedder_policy": {
     "value": "require-corp"

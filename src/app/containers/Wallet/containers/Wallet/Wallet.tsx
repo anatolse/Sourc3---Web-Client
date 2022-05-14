@@ -15,7 +15,8 @@ import { selectAssets, selectRate } from '@app/containers/Wallet/store/selectors
 
 import { loadRate } from '@app/containers/Wallet/store/actions';
 import { selectTransactions } from '@app/containers/Transactions/store/selectors';
-import { avatar } from '@app/shared/constants/profile';
+import { avatar, profile } from '@app/shared/constants/profile';
+import { css } from '@linaria/core';
 import { Assets } from '../../components/Wallet';
 
 // const TXS_MAX = 4;
@@ -48,7 +49,6 @@ line-height: 20px;
 
 text-align: left;
 letter-spacing: 0.1px;
-margin-right: 31px;
 margin-left: 12px;
 `;
 const ButtonStyled = styled.div`
@@ -62,6 +62,10 @@ justify-content: space-around;
   margin-left: 17px;
 }
 `;
+const manageStyled = css`
+position: relative !important;
+right:-10px !important;
+`;
 
 const Wallet = () => {
   const dispatch = useDispatch();
@@ -72,6 +76,9 @@ const Wallet = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
+    if (localStorage.length === 0 || (JSON.parse(localStorage.getItem('default'))) === null) {
+      localStorage.setItem('default', JSON.stringify(profile));
+    }
     setData((JSON.parse(localStorage.getItem('default'))).filter((item) => item.active === true));
   }, []);
   // const [name, setName] = useState('');
@@ -100,6 +107,7 @@ const Wallet = () => {
           <Button
             variant="link"
             onClick={() => navigate(ROUTES.WALLET.MANAGE)}
+            className={manageStyled}
           >
             Manage
           </Button>
