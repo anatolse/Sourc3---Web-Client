@@ -116,3 +116,11 @@ wallet.initSendHandler((req, info, cb) => {
 });
 
 extensionizer.runtime.onConnect.addListener(handleConnect);
+
+chrome.runtime.getPlatformInfo(info => {
+    console.log("Platform: ", info);
+    setTimeout(() => {
+        // Increasing body size enforces the popup redrawing
+        document.body.style.height = "600px";
+    }, 250); // 250ms is enough to finish popup open animation
+});
