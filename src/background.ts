@@ -87,6 +87,8 @@ function handleConnect(remote) {
             } else {
               notificationManager.openConnectNotification(msg, remote.sender.origin);
             }
+            // msg.appurl = remote.sender.origin;
+            // wallet.connectExternal(msg);
           }
         } else {
           notificationManager.openAuthNotification(msg, remote.sender.origin);
