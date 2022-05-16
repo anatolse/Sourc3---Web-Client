@@ -28,8 +28,8 @@ font-size: 24px;
 font-weight: 900;
 color: var(--color-black);
 top: 255px;
-left: 132px;
-width: 155px;
+left: 96px;
+width: 190px;
 height: 60px;
 text-align: right;
 line-height: 30px;
@@ -46,8 +46,8 @@ export const Splash: React.FC<SplashProps> = ({
     {onReturn && <BackButton onClick={onReturn} className={backButtonStyle} />}
     <Logo size={size} />
     <TitleStyled>
-      Where Web3
-      Builds
+      Building<br/>
+      the Web3-way
 
     </TitleStyled>
     {children}
