@@ -107,6 +107,7 @@ function Manage() {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
+  const [name, setName] = useState('');
   const inputRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
@@ -123,9 +124,8 @@ function Manage() {
     });
   }, [data]);
 
-  const addUser = (name) => {
-    const ava = [Math.floor(Math.random() * 4)];
-    console.log(ava);
+  const addUser = (newName) => {
+    const ava = Math.floor(Math.random() * 4);
 
     // let id = null;
     // const randomMath = () => {
@@ -141,7 +141,7 @@ function Manage() {
     //   return id;
     // };
     const newData = {
-      id: data.length, name: name || `User ${data.length + 1}`, active: false, avatar: ava,
+      id: data.length, name: newName || `User ${data.length + 1}`, active: false, avatar: ava,
     };
     setData([...data, newData]);
   };
@@ -156,11 +156,10 @@ function Manage() {
   //   // localStorage.setItem('default', JSON.stringify(data));
   // };
 
-  const handleEdit = (idx, name) => {
+  const handleEdit = (idx, newName) => {
     const newData = data.map((item) => {
       if (item.id === idx) {
-        item.name = name;
-        console.log(item.name);
+        item.name = newName;
         return item;
       }
       return item;
@@ -170,8 +169,8 @@ function Manage() {
 
   const handleConfirm: React.MouseEventHandler = (idx?) => {
     if (edit) {
-      handleEdit(idx, inputRef.current.value);
-      console.log(idx);
+      const { value } = inputRef.current;
+      handleEdit(idx, value);
       setEdit(false);
     } else {
       const { value } = inputRef.current;
@@ -191,7 +190,6 @@ function Manage() {
     setData(newData);
   };
 
-  const [name, setName] = useState('');
   const ContainerProfile = ({ item }) => {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -265,7 +263,6 @@ function Manage() {
   return (
     <>
       <Window title="Manage profiles">
-        {console.log(data)}
         <ProfileComponent>
           {data && data.map((item) => (
             <ContainerProfile
@@ -279,7 +276,7 @@ function Manage() {
       {edit ? (
         <Popup
           visible={edit}
-          onCancel={() => setVisiblePopup(false)}
+          onCancel={() => setEdit(false)}
           title="Edit your name account"
           confirmButton={(
             <Button pallete="orange" onClick={() => handleConfirm(id)}>
