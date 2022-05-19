@@ -17,7 +17,6 @@ async function setupInpageApi() {
     });
   }).then((api) => {
     global.BeamApi = api;
-    console.log(global.BeamApi.api);
 
     // chrome.storage.sync.get(['profile'], (result) => {
     //   console.log(`Value currently is ${Object.values(result)}`);
@@ -25,7 +24,6 @@ async function setupInpageApi() {
     // });
     window.postMessage({ type: 'apiInjected' }, window.origin);
     // eslint-disable-next-line no-console
-    console.log('Source client API INJECTED');
     return api;
   });
 }

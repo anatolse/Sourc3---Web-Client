@@ -78,19 +78,15 @@ window.addEventListener('message', (event) => {
     is_reconnect: event.data.is_reconnect,
   };
 
-  console.log("Event", event);
   if (event.data.type === 'create_sourc3_api') {
     if (event.data.is_reconnect) {
-      console.log("Reconnect!", reqData);
       extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
       extensionPort.postMessage(reqData);
     } else {
-      console.log("Setup content!", reqData);
       setupConnection();
       extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
       extensionPort.postMessage(reqData);
       extensionPort.onMessage.addListener((msg) => {
-        console.log("Msg:", msg);
         if (msg.result && shouldInjectProvider()) {
           injectScript();
         } else if (!msg.result) {

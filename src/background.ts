@@ -19,7 +19,6 @@ let connected = false;
 let activeTab = null;
 
 chrome.storage.sync.get(['activePid'], (result) => {
-  console.log(`Value  is ${Object.values(result)}`);
 });
 
 function postMessage(data) {
@@ -32,7 +31,6 @@ function handleConnect(remote) {
   port = remote;
   connected = true;
   // eslint-disable-next-line no-console
-  console.log(`remote connected to "${port.name}"`);
 
   port.onDisconnect.addListener(() => {
     connected = false;
@@ -118,7 +116,6 @@ wallet.initSendHandler((req, info, cb) => {
 extensionizer.runtime.onConnect.addListener(handleConnect);
 
 chrome.runtime.getPlatformInfo(info => {
-    console.log("Platform: ", info);
     setTimeout(() => {
         // Increasing body size enforces the popup redrawing
         document.body.style.height = "600px";

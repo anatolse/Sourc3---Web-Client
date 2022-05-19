@@ -63,7 +63,6 @@ export default class DnodeApp {
           chrome.storage.sync.get(['activePid'], (result) => {
             a = result;
             resolve(result);
-            console.log(`Value currenty is ${Object.values(result)}`);
           });
         });
         return a;

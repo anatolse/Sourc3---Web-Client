@@ -139,7 +139,6 @@ const ApproveInvoke = () => {
   const amounts = JSON.parse(notification.params.amounts);
   const info = JSON.parse(notification.params.info);
   // eslint-disable-next-line no-console
-  console.log(amounts, info);
 
   const assets = useSelector(selectAssets());
   const text = getNotificationText(info, amounts, notification.params.appname);
