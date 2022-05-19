@@ -9,7 +9,7 @@ import {
   IconProfileLarge2,
   IconProfileLarge3,
   IconProfileLarge4,
-  IconRemove,
+  // IconRemove,
 } from '@app/shared/icons';
 import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
@@ -105,6 +105,8 @@ function Manage() {
 
   const [data, setData] = useState([]);
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [id, setId] = useState(null);
+  const [edit, setEdit] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
@@ -123,8 +125,23 @@ function Manage() {
 
   const addUser = (name) => {
     const ava = [Math.floor(Math.random() * 4)];
+    console.log(ava);
+
+    // let id = null;
+    // const randomMath = () => {
+    //   const rNum = Math.floor(Math.random() * 100);
+    //   console.log(rNum);
+    //   data.map((item) => {
+    //     // const uId = rNum();
+    //     if (item.id === rNum) {
+    //       randomMath();
+    //     } else { id = rNum; }
+    //     return item;
+    //   });
+    //   return id;
+    // };
     const newData = {
-      id: `${data.length}`, name: name || `User ${data.length + 1}`, active: false, avatar: ava,
+      id: data.length, name: name || `User ${data.length + 1}`, active: false, avatar: ava,
     };
     setData([...data, newData]);
   };
@@ -139,14 +156,32 @@ function Manage() {
   //   // localStorage.setItem('default', JSON.stringify(data));
   // };
 
-  const handleConfirm: React.MouseEventHandler = () => {
-    const { value } = inputRef.current;
-    addUser(value);
-    setVisiblePopup(false);
-  };
-  const selectProfile = (id) => {
+  const handleEdit = (idx, name) => {
     const newData = data.map((item) => {
-      if (item.id === id) {
+      if (item.id === idx) {
+        item.name = name;
+        console.log(item.name);
+        return item;
+      }
+      return item;
+    });
+    setData(newData);
+  };
+
+  const handleConfirm: React.MouseEventHandler = (idx?) => {
+    if (edit) {
+      handleEdit(idx, inputRef.current.value);
+      console.log(idx);
+      setEdit(false);
+    } else {
+      const { value } = inputRef.current;
+      addUser(value);
+      setVisiblePopup(false);
+    }
+  };
+  const selectProfile = (idx) => {
+    const newData = data.map((item) => {
+      if (item.id === idx) {
         item.active = true;
         return item;
       }
@@ -155,16 +190,8 @@ function Manage() {
     });
     setData(newData);
   };
-  // const editUserName = (id, name) => {
-  //   const newData = data.map((item) => {
-  //     if (item.id === id) {
-  //       item.name = name;
-  //     }
-  //     return item;
-  //   });
-  //   setData(newData);
-  // };
 
+  const [name, setName] = useState('');
   const ContainerProfile = ({ item }) => {
     const wrapperRef = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -203,23 +230,29 @@ function Manage() {
                       variant="linkDrop"
                       pallete="black"
                       icon={IconEdit}
+                      onClick={() => {
+                        setId(item.id);
+                        setName(item.name);
+                        setEdit(true);
+                      }}
+
                     >
                       Edit profile
                     </Button>
                   </li>
-                  <li>
+                  {/* <li>
                     {data.length > 1 && (
-                    <Button
+                      <Button
                       // onClick={() => removeProfile(item.id)}
                       className="btnProfile"
                       variant="linkDrop"
                       pallete="black"
                       icon={IconRemove}
-                    >
+                      >
                       Remove profile
-                    </Button>
-                    )}
-                  </li>
+                      </Button>
+                      )}
+                    </li> */}
                 </ul>
               </div>
               {visible && <div className={overlay} />}
@@ -243,19 +276,47 @@ function Manage() {
         </ProfileComponent>
         <Button onClick={() => setVisiblePopup(true)}>Add new profile</Button>
       </Window>
-      <Popup
-        visible={visiblePopup}
-        onCancel={() => setVisiblePopup(false)}
-        title="Enter your name account"
-        confirmButton={(
-          <Button pallete="orange" onClick={handleConfirm}>
-            Add user
-          </Button>
+      {edit ? (
+        <Popup
+          visible={edit}
+          onCancel={() => setVisiblePopup(false)}
+          title="Edit your name account"
+          confirmButton={(
+            <Button pallete="orange" onClick={() => handleConfirm(id)}>
+              Edit
+            </Button>
       )}
-        footer
-      >
-        <Input ref={inputRef} maxLength={17} placeholder={`User ${data.length + 1}`} />
-      </Popup>
+          footer
+        >
+          <Input
+            ref={inputRef}
+            maxLength={17}
+            placeholder={`User ${data.length + 1}`}
+            value={edit ? name : ''}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Popup>
+      )
+        : (
+          <Popup
+            visible={visiblePopup}
+            onCancel={() => setVisiblePopup(false)}
+            title="Enter your name account"
+            confirmButton={(
+              <Button pallete="orange" onClick={() => handleConfirm(id)}>
+                Add user
+              </Button>
+    )}
+            footer
+          >
+
+            <Input
+              ref={inputRef}
+              maxLength={17}
+              placeholder={`User ${data.length + 1}`}
+            />
+          </Popup>
+        )}
     </>
   );
 }
