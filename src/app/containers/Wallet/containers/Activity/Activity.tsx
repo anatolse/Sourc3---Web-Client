@@ -45,7 +45,7 @@ const Activity = () => {
             active={selectedId === 2}
             onClick={() => (toggleTabs(2))}
           >
-            Transaction
+            Transactions
           </TabItem>
         </TabsMenu>
         {renderContent(selectedId)}

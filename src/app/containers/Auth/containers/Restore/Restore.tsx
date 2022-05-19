@@ -13,7 +13,8 @@ import { selectSeedCache, selectSeedErrors } from '@app/containers/Auth/store/se
 
 const buttonClassName = css`
 position: absolute;
-bottom: 25px;
+bottom: 65px;
+// bottom: 25px;
 left: 0;
 margin: 0 56px !important;
 `;

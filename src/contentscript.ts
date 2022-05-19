@@ -3,8 +3,6 @@ import { Environment, ConnectRequest } from '@core/types';
 import PortStream from '@core/PortStream';
 import PostMessageStream from 'post-message-stream';
 
-document.documentElement.setAttribute('sourc3-extension-installed', 'true');
-
 function setupConnection() {
   const backgroundPort = extensionizer.runtime.connect({
     name: Environment.CONTENT,
@@ -64,8 +62,9 @@ function shouldInjectProvider() {
   return doctypeCheck() && suffixCheck() && documentElementCheck();
 }
 
-const extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
+let extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
 
+document.documentElement.setAttribute('sourc3-extension-installed', 'true');
 window.addEventListener('message', (event) => {
   if (event.source !== window) {
     return;
@@ -79,13 +78,19 @@ window.addEventListener('message', (event) => {
     is_reconnect: event.data.is_reconnect,
   };
 
+  console.log("Event", event);
   if (event.data.type === 'create_sourc3_api') {
     if (event.data.is_reconnect) {
+      console.log("Reconnect!", reqData);
+      extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
       extensionPort.postMessage(reqData);
     } else {
+      console.log("Setup content!", reqData);
       setupConnection();
+      extensionPort = extensionizer.runtime.connect({ name: Environment.CONTENT_REQ });
       extensionPort.postMessage(reqData);
       extensionPort.onMessage.addListener((msg) => {
+        console.log("Msg:", msg);
         if (msg.result && shouldInjectProvider()) {
           injectScript();
         } else if (!msg.result) {
