@@ -76,8 +76,9 @@ export function startWallet(pass: string) {
 }
 
 export function deleteWallet(pass: string) {
-  localStorage.clear();
-  return postMessage(WalletMethod.DeleteWallet, pass);
+  return postMessage(WalletMethod.DeleteWallet, pass).then(() => {
+    localStorage.clear();
+  });
 }
 
 export function stopWallet() {
