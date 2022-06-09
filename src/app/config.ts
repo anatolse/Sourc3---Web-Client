@@ -7,6 +7,7 @@ const development: Configuration = {
   explorer_url: 'https://master-net.explorer.beam.mw/block?kernel_id=',
   restore_url: 'https://mobile-restore.beam.mw/masternet/masternet_recovery.bin',
   path_node: 'eu-node01.masternet.beam.mw:8200',
+  theme: 'masternet',
 };
 
 const master_net: Configuration = {
@@ -28,6 +29,11 @@ const main_net: Configuration = {
   path_node: 'web-wallet.beam.mw:8200',
 };
 
+const dapp_net: Configuration = {
+  ...development,
+  path_node: 'eu-node01.dappnet.beam.mw:8200',
+};
+
 const production: Configuration = {
   ...master_net,
 };
@@ -38,6 +44,7 @@ const config: ConfigurationObject = {
   master_net,
   test_net,
   main_net,
+  dapp_net
 };
 
 const configElement: Configuration = (config as any)[NODE_ENV];
