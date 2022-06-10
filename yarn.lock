@@ -2271,7 +2271,7 @@
   "resolved" "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   "version" "0.6.1"
 
-"beam-wasm-client-dappnet@^7.1.12820":
+"beam-wasm-client-dappnet@7.1.12820":
   "integrity" "sha512-LlOriFNjRZ+5d6nPoikjg79BZ7Yvncrn79lcfv6qAA8Ow/IVMeuN16nTB+4+4SRbXL07cejhQoFwEpsLsP3ckg=="
   "resolved" "https://registry.npmjs.org/beam-wasm-client-dappnet/-/beam-wasm-client-dappnet-7.1.12820.tgz"
   "version" "7.1.12820"
