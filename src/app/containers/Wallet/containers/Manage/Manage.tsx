@@ -117,12 +117,15 @@ function Manage() {
     setData((JSON.parse(localStorage.getItem('default'))));
   }, []);
 
-  useEffect(() => {
+  const setStorage = () => {
+    // chrome.runtime.sendMessage({ name: 'hello', data });
     localStorage.setItem('default', JSON.stringify(data));
     const activePid = JSON.parse(localStorage.getItem('default')).filter((item) => item.active === true);
     chrome.storage.sync.set({ activePid }, () => {
     });
-  }, [data]);
+  };
+
+  useEffect(() => setStorage, [data]);
 
   const addUser = (newName) => {
     const ava = Math.floor(Math.random() * 4);
@@ -182,6 +185,10 @@ function Manage() {
     const newData = data.map((item) => {
       if (item.id === idx) {
         item.active = true;
+        chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+          const [activeTab] = tabs;
+          chrome.tabs.sendMessage(activeTab.id, { type: 'set-pid', item });
+        });
         return item;
       }
       item.active = false;
