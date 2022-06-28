@@ -185,14 +185,14 @@ function Manage() {
     const newData = data.map((item) => {
       if (item.id === idx) {
         item.active = true;
-        chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-          const [activeTab] = tabs;
-          chrome.tabs.sendMessage(activeTab.id, { type: 'set-pid', item });
-        });
         return item;
       }
       item.active = false;
       return item;
+    });
+    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+      const [activeTab] = tabs;
+      chrome.tabs.sendMessage(activeTab.id, { type: 'set-pid', items: newData });
     });
     setData(newData);
   };
