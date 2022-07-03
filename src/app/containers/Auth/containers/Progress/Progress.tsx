@@ -21,15 +21,15 @@ import { ProgressBar } from '../../../../shared/components';
 const SubtitleStyled = styled.h3`
   height: 16px;
   margin: 32px 0;
-  color: rgba(0,0,0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
 `;
 
 const ProgressContainer = styled.div`
-position: absolute;
-    top: 395px;
-    left: 25px;
+  position: absolute;
+  top: 395px;
+  left: 25px;
 `;
 
 // const wallet = WasmWallet.getInstance();

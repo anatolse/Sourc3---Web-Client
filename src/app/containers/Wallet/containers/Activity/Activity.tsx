@@ -26,25 +26,22 @@ const Activity = () => {
             <Transactions />
           </Content>
         );
-      default: return (
-        <><p>Activity</p></>
-      );
+      default:
+        return (
+          <>
+            <p>Activity</p>
+          </>
+        );
     }
   };
   return (
     <Window type="pageMain">
       <>
         <TabsMenu>
-          <TabItem
-            active={selectedId === 1}
-            onClick={() => (toggleTabs(1))}
-          >
+          <TabItem active={selectedId === 1} onClick={() => toggleTabs(1)}>
             Activity
           </TabItem>
-          <TabItem
-            active={selectedId === 2}
-            onClick={() => (toggleTabs(2))}
-          >
+          <TabItem active={selectedId === 2} onClick={() => toggleTabs(2)}>
             Transactions
           </TabItem>
         </TabsMenu>

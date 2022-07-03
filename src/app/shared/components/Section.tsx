@@ -10,14 +10,15 @@ interface SectionProps {
   collapse?: boolean;
   variant?: 'regular' | 'gray' | 'receipt' | 'profile' | 'send' | 'warning' | 'receive' | 'balance';
   showAllAction?: () => void;
-  className?: string,
+  className?: string;
+  defaultCollapseState?: boolean;
 }
 
 const SectionStyled = styled.div`
   position: relative;
   width: 359px;
   height: 146px;
-  overflow:hidden;
+  overflow: hidden;
 
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
@@ -39,19 +40,18 @@ const BalanceSectionStyled = styled.div`
   position: relative;
   width: 359px;
   height: 146px;
-  overflow:hidden;
+  overflow: hidden;
 
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  .balance{
+  .balance {
     font-weight: 700 !important;
     font-size: 20px;
     line-height: 20px;
-    padding-left:4px !important;
+    padding-left: 4px !important;
   }
-
 `;
 
 const ProfileStyled = styled.div`
@@ -82,6 +82,12 @@ const SectionGrayStyled = styled.div`
   text-align: left;
   height: auto;
 
+  > .full-address-button {
+    position: absolute;
+    top: 60px;
+    right: 12px;
+    cursor: pointer;
+  }
   > .cancel-button {
     position: absolute;
     top: 60px;
@@ -122,11 +128,11 @@ const ShowAll = styled.div`
 const TitleWrapper = styled.div<SectionProps>`
   display: flex;
   justify-content: space-between;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 20px;
-    text-transform: none;
-    padding: 24px 0 4px 12px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: none;
+  padding: 24px 0 4px 12px;
 `;
 
 const ReceiptSectionStyled = styled(SectionStyled)`
@@ -139,21 +145,21 @@ border-radius: none;
 `;
 
 const SendStyled = styled(SectionStyled)`
-width:327px;
-background: rgba(255, 121, 31, 0.1);
-border: 1px solid rgba(255, 121, 31, 0.1);
-padding: 12px;
-height:auto;
-margin-top: 64px;
+  width: 327px;
+  background: rgba(255, 121, 31, 0.1);
+  border: 1px solid rgba(255, 121, 31, 0.1);
+  padding: 12px;
+  height: auto;
+  margin-top: 64px;
 `;
 const ReceiveStyled = styled(SectionGrayStyled)`
-.collapse{
-margin-top: 42px;
-border-radius: 8px;
-background: rgba(255, 121, 31, 0.1);
-padding: 12px;
-font-size: 16px;
-}
+  .collapse {
+    margin-top: 42px;
+    border-radius: 8px;
+    background: rgba(255, 121, 31, 0.1);
+    padding: 12px;
+    font-size: 16px;
+  }
 `;
 
 const WarningStyled = styled(SectionStyled)`
@@ -164,7 +170,7 @@ border: 1px solid rgba(255, 121, 31, 0.1);
 box-sizing: border-box;
 border-radius: 8px;
 font-size: 14px;
-font-weight: 700;
+font-weight: 400;
 line-height: 20px;
 color: rgba(0,0,0, 0.5)
 `;
@@ -177,8 +183,9 @@ const Section: React.FC<SectionProps> = ({
   children,
   showAllAction,
   className,
+  defaultCollapseState,
 }) => {
-  const [hidden, setHidden] = useState(collapse);
+  const [hidden, setHidden] = useState(defaultCollapseState ?? collapse);
 
   const handleMouseDown: React.MouseEventHandler = () => {
     setHidden(!hidden);

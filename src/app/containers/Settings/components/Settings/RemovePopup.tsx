@@ -8,6 +8,7 @@ import { CancelIcon, ArrowRightIcon, RemoveIcon } from '@app/shared/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteWallet } from '@app/containers/Settings/store/actions';
 import { selectErrorMessage } from '@app/shared/store/selectors';
+import { setError } from '@app/shared/store/actions';
 
 interface RemovePopupProps {
   visible?: boolean;
@@ -19,6 +20,10 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
   const [warned, setWarned] = useState(false);
   const dispatch = useDispatch();
   const error = useSelector(selectErrorMessage());
+
+  const clearError = () => {
+    dispatch(setError(null));
+  };
 
   const handleConfirm: React.MouseEventHandler = () => {
     if (warned) {
@@ -53,24 +58,18 @@ const RemovePopup: React.FC<RemovePopupProps> = ({ visible, onCancel }) => {
       onCancel={onCancel}
     >
       {warned ? (
-
         <>
-          <p>
-            Use your password to confirm erasing your current account
-          </p>
+          <p>Use your password to confirm erasing your current account</p>
           <Input label={error} type="password" ref={inputRef} valid={!error} placeholder="Enter your password" />
-
         </>
       ) : (
         <>
           {' '}
-          <p>
-            Are you sure you want to quit your account?
-          </p>
+          <p>Are you sure you want to quit your account?</p>
           <p>
             {' '}
-            All data will be erased. Make sure you’ve saved your
-            seed phrase if you want to restore this account later on.
+            All data will be erased. Make sure you’ve saved your seed phrase if you want to restore this account later
+            on.
           </p>
         </>
       )}

@@ -27,10 +27,10 @@ const TrackStyled = styled.div`
   height: 100%;
   border: solid 1px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  background-color: #F7F7F7;
-  
+  background-color: #f7f7f7;
+
   input[type='checkbox']:checked ~ & {
-    border-color: #FF791F;
+    border-color: #ff791f;
     background-color: rgba(255, 121, 31, 0.1);
   }
 `;

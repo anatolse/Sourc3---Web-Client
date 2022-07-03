@@ -14,47 +14,65 @@ import AmountInput from '@app/shared/components/AmountInput';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@app/shared/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAddress, selectReceiveAmount } from '@app/containers/Wallet/store/selectors';
-import { generateAddress, resetReceive, setReceiveAmount } from '@app/containers/Wallet/store/actions';
+import {
+  selectAddress,
+  selectReceiveAmount,
+  selectSbbs,
+  selectSelectedAssetId,
+} from '@app/containers/Wallet/store/selectors';
+import {
+  generateAddress, resetReceive, setReceiveAmount, setSbbs,
+} from '@app/containers/Wallet/store/actions';
 import { compact, copyToClipboard } from '@core/utils';
 import { toast } from 'react-toastify';
 import { css } from '@linaria/core';
 
 const ReceiveContainer = styled.div`
-margin: 0 24px;
+  margin: 0 24px;
 `;
 
 const ButtonClassName = css`
-  margin: 0 21px 0 0 !important; 
+  margin: 0 21px 0 0 !important;
 `;
 
 const buttonClassName = css`
-position: absolute;
-    bottom: 40px;
-    left: 56px;
+  position: absolute;
+  bottom: 40px;
+  left: 56px;
 `;
 
 const warningClassName = css`
-height: auto;
-margin: 20px 0 100px;
-text-align: left;
+  height: auto;
+  margin: 20px 0 100px;
+  text-align: left;
 `;
 const AddressStyled = styled.div`
-font-weight: 600;
-font-size: 16px;
-line-height: 20px;
-color: black;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: black;
+`;
+const AddressHint = styled.div`
+  margin-top: 10px;
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: italic;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #fff;
 `;
 
 const BlockButtonStyled = styled.div`
-margin-left: 18px
+  margin-left: 18px;
 `;
 
 const AddressContainer = styled.div`
-    display: flex;
-    align-items: center;
-    padding-left: 12px;
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  margin: 10px 0;
 `;
 
 const RowStyled = styled.div`
@@ -95,14 +113,18 @@ const QrCodeWrapper = styled.div`
 const Receive = () => {
   const dispatch = useDispatch();
   const [qrVisible, setQrVisible] = useState(false);
+  const [showFullAddress, setShowFullAddress] = useState(false);
   const receiveAmount = useSelector(selectReceiveAmount());
   const addressFull = useSelector(selectAddress());
-
+  const sbbs = useSelector(selectSbbs());
+  const selected_asset_id = useSelector(selectSelectedAssetId());
   const address = compact(addressFull);
+  const [amountError, setAmountError] = useState('');
 
   useEffect(
     () => () => {
       dispatch(resetReceive());
+      dispatch(setSbbs(null));
     },
     [dispatch],
   );
@@ -110,11 +132,26 @@ const Receive = () => {
   const { amount, asset_id } = receiveAmount;
 
   const [maxAnonymity, setMaxAnonymity] = useState(false);
+  const [comment, setComment] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(generateAddress.request({ type: maxAnonymity ? 'max_privacy' : 'offline' }));
-  }, [dispatch, maxAnonymity]);
+    if (selected_asset_id && Number(asset_id) !== selected_asset_id) {
+      dispatch(setReceiveAmount({ amount, asset_id: selected_asset_id }));
+    }
+  }, [selected_asset_id, asset_id, amount, dispatch]);
+
+  useEffect(() => {
+    if (comment) {
+      dispatch(generateAddress.request({ type: maxAnonymity ? 'max_privacy' : 'offline', comment }));
+    } else {
+      dispatch(
+        generateAddress.request({
+          type: maxAnonymity ? 'max_privacy' : 'offline',
+        }),
+      );
+    }
+  }, [dispatch, maxAnonymity, comment]);
 
   const copyAddress = async () => {
     toast('Address copied to clipboard');
@@ -142,7 +179,7 @@ const Receive = () => {
             <Button pallete="orange" onClick={copyAndCloseQr}>
               Share QR code
             </Button>
-        )}
+          )}
           footerClass="qr-code-popup"
           cancelButton={null}
           footer
@@ -194,19 +231,14 @@ const Receive = () => {
             <Section variant="warning" className={warningClassName}>
               <span>Transaction can last at most 72 hours.</span>
               <br />
-              <span>
-                Min transaction fee is
-                {' '}
-                <b>0.01 SC3</b>
-              </span>
+              <span>Min transaction fee is 0.01 SC3</span>
             </Section>
           ) : (
             <Section variant="warning" className={warningClassName}>
               <span>Sender will be given a choice between regular and offline payment.</span>
               <br />
               <span>
-                For online payment to complete,
-                you should get online during the 12 hours after coins are sent.
+                For online payment to complete, you should get online during the 12 hours after coins are sent.
               </span>
             </Section>
           )}
@@ -214,16 +246,10 @@ const Receive = () => {
           {/* <Section title="Comment" variant="gray" collapse>
           <Input variant="gray" />
         </Section> */}
-          <Button
-            pallete="orange"
-            type="button"
-            onClick={submitForm}
-            className={buttonClassName}
-          >
+          <Button pallete="orange" type="button" onClick={submitForm} className={buttonClassName}>
             Copy and close
           </Button>
         </ReceiveContainer>
-
       </>
     </Window>
   );

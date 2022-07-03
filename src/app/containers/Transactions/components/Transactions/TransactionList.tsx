@@ -24,7 +24,7 @@ const ListItemStyled = styled.li`
   padding: 16px 24px 16px 0px;
   height: 75px;
   width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 `;
 
 const fromInvokeData = (data: Contract, fee: number): Partial<Transaction> => {

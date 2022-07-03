@@ -27,18 +27,17 @@ const ContainerStyled = styled.div`
   width: 343px;
   padding: 24px;
   background-color: var(--color-white);
-box-sizing: border-box;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
   text-align: left;
-  color: rgba(0,0,0,0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 20px;
-  span:not(:first-child){
-    margin-top: 5px
+  span:not(:first-child) {
+    margin-top: 5px;
   }
-  
 
   > .cancel-header {
     right: 4px;
@@ -51,7 +50,8 @@ const TitleStyled = styled.h2`
   font-size: 18px;
   margin: 0;
   margin-bottom: 16px;
-  text-alight:left;
+  line-height: 20px
+  text-alight: left !important;
   color: black;
   font-weight:800;
 `;
@@ -103,28 +103,17 @@ const Popup: React.FC<PopupProps> = ({
   <Backdrop onCancel={onCancel}>
     <ContainerStyled>
       <TitleStyled>{title}</TitleStyled>
-      {closeButton
-        && (
-        <Button
-          className="cancel-header"
-          variant="icon"
-          pallete="white"
-          icon={CancelIcon}
-          onClick={onCancel}
-        />
-        )}
-      {children}
-      { footer && (
-        <FooterStyled agree={agree} className={footerClass}>
-          {cancelButton}
-          {confirmButton}
-        </FooterStyled>
+      {closeButton && (
+      <Button className="cancel-header" variant="icon" pallete="white" icon={CancelIcon} onClick={onCancel} />
       )}
-      {agree && (
-      <FooterStyled className={center}>
+      {children}
+      {footer && (
+      <FooterStyled agree={agree} className={footerClass}>
+        {cancelButton}
         {confirmButton}
       </FooterStyled>
       )}
+      {agree && <FooterStyled className={center}>{confirmButton}</FooterStyled>}
     </ContainerStyled>
   </Backdrop>
 ) : null);

@@ -27,11 +27,11 @@ const SeedListStyled = styled.ol`
     display: inline-block;
     min-width: 115px;
     height: 20px;
-    line-height: 19px;
+    line-height: 20px;
     margin-bottom: 32px;
     border-radius: 16px;
     text-align: left;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 16px;
 
     &:before {
@@ -80,11 +80,11 @@ const Registration: React.FC = () => {
   };
 
   const AuthInfo = styled.p`
-opacity: 0.5;
-text-align: left;
-line-height:20px;
-font-size: 14px;
-`;
+    opacity: 0.5;
+    text-align: left;
+    line-height: 20px;
+    font-size: 14px;
+  `;
 
   return !isRegistrationWarning ? (
     <>
@@ -109,18 +109,13 @@ font-size: 14px;
       <Popup
         visible={warningVisible}
         title="Save secret phrase"
-        confirmButton={(
-          <Button onClick={handleNextClick}>
-            I understand
-          </Button>
-        )}
+        confirmButton={<Button onClick={handleNextClick}>I understand</Button>}
         onCancel={handleCancel}
         agree
       >
         <span>
           Please write the secret phrase down. Storing it in a file makes it prone to cyber attacks and, therefore, less
           secure.
-
         </span>
       </Popup>
     </>

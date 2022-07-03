@@ -15,7 +15,7 @@ const ContainerStyled = styled.button`
   height: 44px;
   line-height: 20px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   border-radius: 8px;
   border: none;
   background-color: transparent;
@@ -24,15 +24,14 @@ const ContainerStyled = styled.button`
 `;
 
 const LabelStyled = styled.div`
-background-color: rgba(0,0,0,0.03);
-    color: rgba(0,0,0,0.5);
-    width: 79px;
-    height: 44px;
-    padding: 12px;
-    line-height: 20px;
-    margin-right: 8px;
-    border-radius: 8px;
-
+  background-color: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.5);
+  width: 79px;
+  height: 44px;
+  padding: 12px;
+  line-height: 20px;
+  margin-right: 8px;
+  border-radius: 8px;
 `;
 
 const SliderStyled = styled.div<{ active: boolean }>`
@@ -40,14 +39,14 @@ const SliderStyled = styled.div<{ active: boolean }>`
   top: 0;
   left: ${({ active }) => (!active ? '3.1%' : '49.1%')};
   width: 79px;
-    height: 45px;
-    line-height: 20px;
-    border-radius: 8px;
-    border: 1px solid #FF791F;
-    background-color: rgba(255, 121, 31, 0.1);
-    color: black;
-    padding: 12px;
-    font-weight: 600;
+  height: 45px;
+  line-height: 20px;
+  border-radius: 8px;
+  border: 1px solid #ff791f;
+  background-color: rgba(255, 121, 31, 0.1);
+  color: black;
+  padding: 12px;
+  font-weight: 600;
 `;
 
 const LabeledToggle: React.FC<LabeledToggleProps> = ({

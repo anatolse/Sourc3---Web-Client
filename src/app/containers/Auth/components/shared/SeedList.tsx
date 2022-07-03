@@ -67,7 +67,7 @@ const baseClassName = css`
     border: 1px solid transparent;
     border-radius: 8px;
     margin-right: -18px;
-    font-weight: 600;
+    font-weight: 400;
     padding-bottom: 5px;
     &:focus{
       border-color: rgba(0,0,0);
@@ -76,34 +76,36 @@ const baseClassName = css`
 `;
 
 const errorClassName = css`
->input{
-  background: rgba(234, 0, 0, 0.03);
-  border: none;
-  color: #EA0000;
-}
+  > input {
+    background: rgba(234, 0, 0, 0.03);
+    border: none;
+    color: #ea0000;
+  }
 
->input:focus-within{
-  background: rgba(234, 0, 0, 0.03);
-  border: 1px solid #EA0000;
-  color: #EA0000;
-}
+  > input:focus-within {
+    background: rgba(234, 0, 0, 0.03);
+    border: 1px solid #ea0000;
+    color: #ea0000;
+  }
 
-  &:before, &:focus-within:before {
+  &:before,
+  &:focus-within:before {
     line-height: 24px;
     border: none;
-    background-color: #EA0000;
+    background-color: #ea0000;
     color: var(--color-white);
   }
 `;
 
 const validClassName = css`
-  &:before,&:focus-within:before {
+  &:before,
+  &:focus-within:before {
     line-height: 24px;
     border: none;
     background-color: var(--color-black);
     color: var(--color-white);
   }
-  >input{
+  > input {
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 `;

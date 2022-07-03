@@ -19,8 +19,7 @@ import { selectVersion } from '@app/containers/Settings/store/selectors';
 import { css } from '@linaria/core';
 import { RemovePopup } from '../../components';
 
-const ContainerStyled = styled.div`
-`;
+const ContainerStyled = styled.div``;
 
 const VersionStyled = styled.div`
   text-align: end;
@@ -28,22 +27,22 @@ const VersionStyled = styled.div`
   margin-bottom: 20px;
 `;
 const ListStyle = styled.ul`
-&:after{
-  content: '';
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  width: 311px;
-  position: absolute;
-  right: 0;
-}
+  &:after {
+    content: '';
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 311px;
+    position: absolute;
+    right: 0;
+  }
 `;
 const ListItemStyle = styled.li`
-&:after{
-  content: '';
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  width: 311px;
-  position: absolute;
-  right: 0;
-}
+  &:after {
+    content: '';
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 311px;
+    position: absolute;
+    right: 0;
+  }
 `;
 
 const Settings = () => {
@@ -87,22 +86,12 @@ const Settings = () => {
           {/* <VersionStyled>{version}</VersionStyled> */}
           <ListStyle>
             <ListItemStyle>
-              <Button
-                variant="setting"
-                pallete="black"
-                icon={IconLockWallet}
-                onClick={() => stopWallet()}
-              >
+              <Button variant="setting" pallete="black" icon={IconLockWallet} onClick={() => stopWallet()}>
                 Lock client
               </Button>
             </ListItemStyle>
             <ListItemStyle>
-              <Button
-                variant="setting"
-                pallete="black"
-                icon={IconReport}
-                onClick={() => ReportClicked()}
-              >
+              <Button variant="setting" pallete="black" icon={IconReport} onClick={() => ReportClicked()}>
                 Report a problem
               </Button>
             </ListItemStyle>
@@ -129,9 +118,7 @@ const Settings = () => {
                 Quit current account
               </Button>
             </ListItemStyle>
-
           </ListStyle>
-
         </ContainerStyled>
       </Window>
       <RemovePopup visible={warningVisible} onCancel={() => toggleWarning(false)} />

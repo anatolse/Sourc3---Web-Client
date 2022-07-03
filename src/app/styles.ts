@@ -26,6 +26,30 @@ css`
       --color-select: #184469;
 
       --color-disabled: #8da1ad;
+      --color-popup-mainnet: #003f6f;
+      --color-popup-testnet: #342e41;
+      --color-popup-masternet: #323232;
+      --color-popup-dappnet: #323232;
+      --color-hover-mainnet: #114b77;
+      --color-hover-testnet: #711a75;
+      --color-hover-masternet: rgba(255, 255, 255, 0.05);
+      --color-hover-dappnet: rgba(255, 255, 255, 0.05);
+      --color-select: #184469;
+
+      --color-disabled: #8da1ad;
+
+      --color-bg-mainnet: var(--color-dark-blue);
+      --color-bg-testnet: #1e172c;
+      --color-bg-masternet: #171717;
+      --color-bg-dappnet: #000a16;
+      --color-gradient-start-mainnet: rgba(3, 91, 143, 0);
+      --color-gradient-start-testnet: #1a132d;
+      --color-gradient-start-masternet: #171717;
+      --color-gradient-start-dappnet: #000a16;
+      --color-gradient-finish-mainnet: #035b8f;
+      --color-gradient-finish-testnet: #4c3677;
+      --color-gradient-finish-masternet: #393939;
+      --color-gradient-finish-dappnet: #001f45;
     }
     
     @font-face {
@@ -60,35 +84,46 @@ css`
       font-weight: 900;
       font-style: normal;
     }
-    
+
     @font-face {
-      font-family: 'SFProDisplay';
-      src: url('/assets/fonts/SFProDisplay-Regular.ttf');
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-Regular.woff');
       font-weight: 400;
       font-style: normal;
     }
-
     @font-face {
-      font-family: 'SFProDisplay';
-      src: url('/assets/fonts/SFProDisplay-RegularItalic.ttf');
-      font-weight: 400;
-      font-style: italic;
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-Medium.woff');
+      font-weight: 500;
+      font-style: normal;
     }
-
     @font-face {
-      font-family: 'SFProDisplay';
-      src: url('/assets/fonts/SFUIDisplay-Medium.otf');
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-SemiBold.woff');
       font-weight: 600;
       font-style: normal;
     }
-
     @font-face {
-      font-family: 'SFProDisplay';
-      src: url('/assets/fonts/SFProDisplay-Bold.ttf');
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-Bold.woff');
       font-weight: 700;
       font-style: normal;
     }
 
+    @font-face {
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-ExtraBold.woff');
+      font-weight: 800;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'PublicSans';
+      src: url('/assets/fonts/PublicSans-Black.woff');
+      font-weight: 900;
+      font-style: normal;
+    }
+  
     * {
       box-sizing: border-box;
       outline: none;
@@ -106,7 +141,7 @@ css`
     }
 
     html * {
-      font-family: 'VisbyCF', sans-serif;
+      font-family: 'PublicSans', sans-serif;
     }
 
     body {
@@ -116,9 +151,11 @@ css`
     }
 
     p {
-      font-weight: 700;
+      font-weight: 400;
       margin: 0;
       margin-bottom: 24px;
+      font-size: 14px;
+    line-height: 20px;
     }
     b {
       font-weight: 900;
@@ -126,7 +163,7 @@ css`
       line-height: 20px;
     }
     span {
-      font-weight: 700;
+      font-weight: 400;
     }
 
     ul,

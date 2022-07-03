@@ -3,10 +3,11 @@ import { ActionType, createReducer } from 'typesafe-actions';
 
 import { Asset } from '@core/types';
 import { FEE_DEFAULT } from '@app/containers/Wallet/constants';
+import { deleteWallet } from '@app/containers/Settings/store/actions';
 import { WalletStateType } from '../interfaces';
 import * as actions from './actions';
 
-type Action = ActionType<typeof actions>;
+type Action = ActionType<typeof actions & typeof deleteWallet>;
 
 const META_BLANK: Partial<Asset> = {
   metadata_pairs: {
@@ -42,6 +43,7 @@ const initialState: WalletStateType = {
     asset_id: 0,
   },
   address: '',
+  sbbs: '',
   send_address_data: {
     type: null,
     amount: null,
@@ -73,9 +75,7 @@ const handleAssets = (state: WalletStateType) => {
 
 const reducer = createReducer<WalletStateType, Action>(initialState)
   .handleAction(actions.setTotals, (state, action) => produce(state, (nexState) => {
-    nexState.totals = action.payload.filter(({ asset_id }) => (
-      asset_id === 0
-    ));
+    nexState.totals = action.payload.filter(({ asset_id }) => asset_id === 0);
     nexState.assets_total = handleAssets(nexState);
   }))
   .handleAction(actions.setAssets, (state, action) => produce(state, (nexState) => {
@@ -90,6 +90,9 @@ const reducer = createReducer<WalletStateType, Action>(initialState)
   }))
   .handleAction(actions.generateAddress.success, (state, action) => produce(state, (nexState) => {
     nexState.address = action.payload;
+  }))
+  .handleAction(actions.setSbbs, (state, action) => produce(state, (nexState) => {
+    nexState.sbbs = action.payload;
   }))
   .handleAction(actions.resetReceive, (state) => produce(state, (nexState) => {
     nexState.receive_amount = {
@@ -125,6 +128,7 @@ const reducer = createReducer<WalletStateType, Action>(initialState)
   }))
   .handleAction(actions.setSelectedAssetId, (state, action) => produce(state, (nexState) => {
     nexState.selected_asset_id = action.payload;
-  }));
+  }))
+  .handleAction(deleteWallet.success, (state) => produce(state, (nexState) => ({ ...nexState, ...initialState })));
 
 export { reducer as WalletReducer };

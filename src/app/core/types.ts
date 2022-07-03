@@ -1,7 +1,19 @@
 export type Pallete = 'green' | 'ghost' | 'purple' | 'blue' | 'red' | 'white' | 'orange' | 'black' | 'currentRole';
 
-export type ButtonVariant = 'regular' | 'ghost' | 'block'
-| 'link' | 'icon' | 'agree' | 'menu' | 'eye' | 'setting' | 'switch' | 'linkDrop' | 'max' | 'manage';
+export type ButtonVariant =
+  | 'regular'
+  | 'ghost'
+  | 'block'
+  | 'link'
+  | 'icon'
+  | 'agree'
+  | 'menu'
+  | 'eye'
+  | 'setting'
+  | 'switch'
+  | 'linkDrop'
+  | 'max'
+  | 'manage';
 
 export type AddressType = 'regular' | 'regular_new' | 'max_privacy' | 'offline' | 'public_offline' | 'unknown';
 export interface CreateWalletParams {
@@ -17,6 +29,7 @@ export interface ExternalAppConnection {
 
 export interface CreateAddressParams {
   type: AddressType;
+  comment?: string;
 }
 
 export enum RPCMethod {
@@ -163,6 +176,7 @@ export interface AddressData {
   // extra data from token
   amount: number;
   asset_id: number;
+  peer_id?: string;
 }
 
 export interface SyncProgress extends SyncHash {
@@ -199,6 +213,7 @@ export enum TxStatusString {
   COMPLETED = 'completed',
   SELF_SENDING = 'self sending',
   SENT_TO_OWN_ADDRESS = 'sent to own address',
+  SENT_OFFLINE_TO_OWN_ADDRESS = 'sent offline to own address',
 
   SENT_OFFLINE = 'sent offline',
   RECEIVED_OFFLINE = 'received offline',
@@ -268,6 +283,7 @@ export interface Transaction {
   appname: string;
   rates: Rate[];
 }
+
 export interface Rate {
   from: string | number;
   rate: number;

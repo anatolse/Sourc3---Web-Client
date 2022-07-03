@@ -18,8 +18,7 @@ let notificationPort = null;
 let connected = false;
 let activeTab = null;
 
-chrome.storage.sync.get(['activePid'], (result) => {
-});
+chrome.storage.sync.get(['activePid'], () => {});
 
 function postMessage(data) {
   if (port && connected) {
@@ -52,7 +51,7 @@ function handleConnect(remote) {
       notificationManager.openBeamTabsIDs[tabId] = true;
       activeTab = remote.sender.tab.id;
       notificationPort = remote;
-      notificationPort.onDisconnect.addListener((e) => {
+      notificationPort.onDisconnect.addListener(() => {
         if (activeTab) {
           // notificationManager.closeTab(activeTab);
           activeTab = null;
@@ -79,6 +78,7 @@ function handleConnect(remote) {
             wallet.connectExternal(msg);
           } else if (msg.type === ExternalAppMethod.CreateSourc3Api) {
             if (msg.is_reconnect) {
+              // eslint-disable-next-line
               notificationManager.appname === msg.appname
                 ? notificationManager.openPopup()
                 : notificationManager.openConnectNotification(msg, remote.sender.origin);
@@ -115,9 +115,9 @@ wallet.initSendHandler((req, info, cb) => {
 
 extensionizer.runtime.onConnect.addListener(handleConnect);
 
-chrome.runtime.getPlatformInfo(info => {
-    setTimeout(() => {
-        // Increasing body size enforces the popup redrawing
-        document.body.style.height = "600px";
-    }, 250); // 250ms is enough to finish popup open animation
+chrome.runtime.getPlatformInfo(() => {
+  setTimeout(() => {
+    // Increasing body size enforces the popup redrawing
+    document.body.style.height = '600px';
+  }, 250); // 250ms is enough to finish popup open animation
 });

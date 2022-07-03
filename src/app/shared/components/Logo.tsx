@@ -13,8 +13,7 @@ const LogoClassName = css`
     left: 95px;
     top: 99px;
 `;
-const smallLogoClassName = css`
-`;
+const smallLogoClassName = css``;
 
 const DIMENSIONS = {
   large: {

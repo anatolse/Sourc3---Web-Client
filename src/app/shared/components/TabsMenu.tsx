@@ -11,18 +11,18 @@ export const TabsMenu = styled.ul<TabsProps>`
   width: 100%;
   justify-content: center;
 
-    &>li:not(:first-child){
-      margin-left:40px;
-    }
+  & > li:not(:first-child) {
+    margin-left: 40px;
+  }
 `;
 export const TabItem = styled.li<TabsProps>`
-color: ${({ active }) => (active ? '#FF791F' : 'rgba(0,0,0, 0.2)')};
-cursor: pointer;  
+  color: ${({ active }) => (active ? '#FF791F' : 'rgba(0,0,0, 0.2)')};
+  cursor: pointer;
 `;
 export const Content = styled.div`
-    position: absolute;
-    top: 115px;
-    left: 0;
-    background: white;
-    width: 100%;
+  position: absolute;
+  top: 115px;
+  left: 0;
+  background: white;
+  width: 100%;
 `;

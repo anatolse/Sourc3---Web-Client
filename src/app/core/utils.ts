@@ -30,7 +30,7 @@ export function toUSD(amount: number, rate: number): string {
       return '0.00 USD';
     case amount > 0.01: {
       const value = amount * rate;
-      return `${value.toFixed(2)} USD`;
+      return value > 0.01 ? `${value.toFixed(2)} USD` : '< 1 cent';
     }
     default:
       return '< 1 cent';
@@ -78,4 +78,8 @@ export const convertLowAmount = (amount: number) => {
     return amount.toFixed(Number(exp[1]));
   }
   return amount;
+
+  // return +amount <= 0.0000001
+  //   ? amount.toFixed(Number(amount.toString().replace(`${amount.toString()[0]}e-`, '')))
+  //   : amount;
 };

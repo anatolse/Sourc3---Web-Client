@@ -16,7 +16,6 @@ const BaseButtonStyled = styled.button<ButtonProps>`
     &:active {
       box-shadow: none !important;
       cursor: not-allowed !important;
-      
     }
   }
 `;
@@ -25,7 +24,7 @@ const ButtonStyled = styled(BaseButtonStyled)`
   display: block;
   width: 100%;
   max-width: 263px;
-  height:48px;
+  height: 48px;
   margin: 0 auto;
   margin-bottom: 10px;
   padding: 12px 24px;
@@ -33,7 +32,7 @@ const ButtonStyled = styled(BaseButtonStyled)`
   border-radius: 8px;
   background-color: ${({ pallete }) => `var(--color-${pallete})`};
   text-align: center;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 16px;
   color: var(--color-white);
 
@@ -67,10 +66,10 @@ const MenuStyle = styled(BaseButtonStyled)`
   &:active {
     box-shadow: 0 0 8px white;
     cursor: pointer;
-    border-bottom: 2px solid orange
+    border-bottom: 2px solid orange;
   }
-  & active{
-    border-bottom: 2px solid orange
+  & active {
+    border-bottom: 2px solid orange;
   }
 
   > svg {
@@ -80,7 +79,7 @@ const MenuStyle = styled(BaseButtonStyled)`
 `;
 
 const GhostButtonStyled = styled(ButtonStyled)`
-  background-color: rgba(0,0,0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
 
   &:hover,
@@ -111,7 +110,6 @@ const BlockButtonStyled = styled(ButtonStyled)`
   > svg {
     margin-right: 10px;
     vertical-align: baseline;
-
   }
   &:hover,
   &:active {
@@ -139,26 +137,27 @@ const IconButtonStyled = styled(BaseButtonStyled)`
 const LinkButtonStyled = styled(IconButtonStyled)`
   margin: 0 0;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 800;
+  line-height: 19px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
 const SwitchButtonStyled = styled(IconButtonStyled)`
   margin: 0 0;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 800;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
 const LinkDropButtonStyled = styled(GhostButtonStyled)`
-background-color: rgba(255,255,255,0.03);
-border-radius: 0;
-font-size: 16px;
-text-align: left;
-line-height: 16px;
-font-weight: 600;
-padding: 2px  16px;
-margin: 0;
-height: 40px;
-letter-spacing: 0.1px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  font-size: 16px;
+  text-align: left;
+  line-height: 16px;
+  font-weight: 600;
+  padding: 2px 16px;
+  margin: 0;
+  height: 40px;
+  letter-spacing: 0.1px;
   color: ${({ pallete }) => `var(--color-${pallete})`};
 
   &:hover,
@@ -184,23 +183,23 @@ position: absolute;
 `;
 
 const SettingButtonStyled = styled(GhostButtonStyled)`
-width: 100%;
-max-width: none;
-height: 72px;
-background-color: rgba(255,255,255,0.03);
-border-radius: 0;
-font-size: 16px;
-text-align: left;
-letter-spacing: 0.1px;
-font-weight: 600;
-line-height: 19px;
-margin:0;
-color: ${({ pallete }) => `var(--color-${pallete})`};
- &:after{
-   content: '';
-   border-bottom: 1px solid rgba(0,0,0, 0.05);
-   width: 311px
- }
+  width: 100%;
+  max-width: none;
+  height: 72px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  font-size: 16px;
+  text-align: left;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  line-height: 19px;
+  margin: 0;
+  color: ${({ pallete }) => `var(--color-${pallete})`};
+  &:after {
+    content: '';
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 311px;
+  }
   &:hover,
   &:active {
     background-color: rgba(0, 0, 0, 0.1);
@@ -213,14 +212,15 @@ color: ${({ pallete }) => `var(--color-${pallete})`};
 `;
 
 const MaxButtonStyled = styled(ButtonStyled)`
-width:60px;
-height:28px;
-padding: 0;
-margin: 0;
+  width: 60px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
 `;
 
 const ManageComponent = styled(IconButtonStyled)`
-margin: 0`;
+  margin: 0;
+`;
 
 const VARIANTS = {
   regular: ButtonStyled,
@@ -237,7 +237,6 @@ const VARIANTS = {
   linkDrop: LinkDropButtonStyled,
   max: MaxButtonStyled,
   manage: ManageComponent,
-
 };
 
 const Button: React.FC<ButtonProps> = ({

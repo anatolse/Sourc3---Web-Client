@@ -23,26 +23,24 @@ const ReportStyled = styled.div`
 `;
 
 const TitleStyled = styled.h4`
-    margin: 41px 0 24px 0;
-    font-size: 14px;
-    color: rgba(0,0,0, 0.5);
-    font-weight: 700;
-    text-align: left;
-    line-height: 20px;
+  margin: 41px 0 24px 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  text-align: left;
+  line-height: 20px;
 `;
 
 const ListStyled = styled.ol`
-    padding: 0px 19px;
-    font-size: 14px;
-    color: #808080;
-    font-weight: 700;
-    text-align: left;
-    line-height: 20px;
-    list-style: point;
+  padding: 0px 19px;
+  font-size: 14px;
+  color: #808080;
+  font-weight: 700;
+  text-align: left;
+  line-height: 20px;
+  list-style: point;
 `;
-const ListItemStyled = styled.li`
-
-`;
+const ListItemStyled = styled.li``;
 const LinkStyled = styled.span`
   cursor: pointer;
   color: #FF791F;;

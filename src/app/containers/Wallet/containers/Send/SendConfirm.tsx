@@ -18,13 +18,14 @@ const SC3Amount = styled.p`
   font-weight: 800;
   font-size: 16px;
   line-height: 19px;
-  color: rgba(0,0,0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   margin: 0;
 `;
 const SC3 = css`
   font-weight: 800;
   font-size: 18px;
-  line-height: 22px;`;
+  line-height: 22px;
+`;
 
 const formMid = css`
   position: absolute;
@@ -45,13 +46,13 @@ const subtitle = css`
   line-height: 19px;
   letter-spacing: 0.1px;
   width: 100px;
-   text-align: left;
+  text-align: left;
 `;
 const receiptValue = css`
   font-weight: 800 !important;
   font-size: 16px;
   line-height: 20px;
-  color: rgba(0,0,0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   text-align: left;
 `;
 
@@ -104,9 +105,7 @@ const SendConfirm = (props: SendConfirmProps) => {
         </div>
         <div className={wrapper}>
           <span className={subtitle}>Type</span>
-          <div className={receiptValue}>
-            {txType}
-          </div>
+          <div className={receiptValue}>{txType}</div>
         </div>
         <div className={wrapper}>
           <span className={subtitle}>Amount</span>
@@ -153,17 +152,17 @@ const SendConfirm = (props: SendConfirmProps) => {
           </div>
         </div>
         {selected.asset_id !== 0 && (
-        <div className={wrapper}>
-          <span className={subtitle}>SC3 Remaining</span>
-          <div className={receiptValue}>
-            <SC3Amount>
-              {convertLowAmount(fromGroths(beamRemaining))}
-              {' '}
-              {truncate(metadata_pairs.UN)}
-            </SC3Amount>
-            <Rate value={beamRemaining} groths />
+          <div className={wrapper}>
+            <span className={subtitle}>SC3 Remaining</span>
+            <div className={receiptValue}>
+              <SC3Amount>
+                {convertLowAmount(fromGroths(beamRemaining))}
+                {' '}
+                {truncate(metadata_pairs.UN)}
+              </SC3Amount>
+              <Rate value={beamRemaining} groths />
+            </div>
           </div>
-        </div>
         )}
         {/* <Section variant="receipt" subtitle="Send to">{compact(address)}</Section>
         <Section variant="receipt" subtitle="Transaction type">{txType}</Section>
@@ -202,7 +201,6 @@ const SendConfirm = (props: SendConfirmProps) => {
           Send
         </Button>
       </form>
-
     </>
   );
 };

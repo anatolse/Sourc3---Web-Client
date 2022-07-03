@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { css } from '@linaria/core';
 import { Button, Window } from '@app/shared/components';
@@ -9,27 +9,42 @@ import { SeedList } from '@app/containers/Auth/components';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegistrationSeed, setSeedResult, updateSeedList } from '@app/containers/Auth/store/actions';
-import { selectSeedCache, selectSeedErrors } from '@app/containers/Auth/store/selectors';
+import { selectSeedCache, selectSeedErrors, selectSeedValues } from '@app/containers/Auth/store/selectors';
 
 const buttonClassName = css`
-position: absolute;
-bottom: 65px;
-// bottom: 25px;
-left: 0;
-margin: 0 56px !important;
+  position: absolute;
+  bottom: 65px;
+  // bottom: 25px;
+  left: 0;
+  margin: 0 56px !important;
 `;
 
 const Restore: React.FC = () => {
   const [interval, updateInterval] = useState<null | NodeJS.Timer>(null);
+  const [cache, setCache] = useState('');
 
   const dispatch = useDispatch();
 
   const errors = useSelector(selectSeedErrors());
-  const cache = useSelector(selectSeedCache());
+  const seedCache = useSelector(selectSeedCache());
+  const seedValues = useSelector(selectSeedValues());
 
   const valid = !errors.filter((v) => !v).length;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (seedCache) {
+      setCache(cache);
+    }
+  }, [cache, seedCache]);
+
+  useEffect(() => {
+    if (seedValues.length === 12) {
+      const v = `${seedValues.toString().replace(new RegExp(',', 'g'), ';')};`;
+      setCache(v);
+    }
+  }, [seedValues]);
 
   const handleSubmit: React.ChangeEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();

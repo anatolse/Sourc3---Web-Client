@@ -16,11 +16,14 @@ import Menu from './Menu';
 
 interface WindowProps {
   title?: string;
-  padding?:'auth' | 'page';
-  type?: string
+  padding?: 'auth' | 'page';
+  type?: string;
   // pallete?: 'default' | 'blue' | 'purple';
   // eslint-disable-next-line react/no-unused-prop-types
   onPrevious?: React.MouseEventHandler | undefined;
+  // navigateToInfo?: React.MouseEventHandler | undefined;
+  // showHideButton?: boolean;
+  // showInfoButton?: boolean;
 }
 
 // function getColor(auth: boolean): string {
@@ -50,7 +53,7 @@ const HeadingStyled = styled.div<WindowProps>`
   width: 375px;
   height: 56px;
   background-color: var(--color-white);
-  border-bottom: 1px solid rgba(0,0,0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
   // &:before {
   //   content: '';
@@ -64,7 +67,7 @@ const HeadingStyled = styled.div<WindowProps>`
   // }
 `;
 const HeadingAuthStyled = styled(HeadingStyled)`
-border: none;
+  border: none;
 `;
 
 const FrameStyled = styled.div`
@@ -74,8 +77,8 @@ const FrameStyled = styled.div`
   // width: 375px;
   // height: 56px;
   text-align: center;
-  margin:11px 0 0 0;
-  width:108px
+  margin: 11px 0 0 0;
+  width: 108px;
 `;
 
 // const menuButtonStyle = css`
@@ -95,13 +98,13 @@ const FrameStyled = styled.div`
 // `;
 
 const CancelButton = styled.div`
-position: absolute;
-width: 25px;
-right: 20px;
-top: 16px;
+  position: absolute;
+  width: 25px;
+  right: 20px;
+  top: 16px;
 `;
 const BackButton = styled(CancelButton)`
-left: 11px;
+  left: 11px;
 `;
 
 export const Window: React.FC<WindowProps> = ({
@@ -110,6 +113,9 @@ export const Window: React.FC<WindowProps> = ({
   padding = 'page',
   type = '',
   onPrevious,
+  // showHideButton,
+  // showInfoButton,
+  // navigateToInfo,
 }) => {
   // const dispatch = useDispatch();
   // const wrapperRef = useRef(null);
@@ -175,7 +181,7 @@ export const Window: React.FC<WindowProps> = ({
   return (
     <ContainerStyled padding={padding} type={type}>
       {renderWindow(type)}
-      { children }
+      {children}
     </ContainerStyled>
   );
 };

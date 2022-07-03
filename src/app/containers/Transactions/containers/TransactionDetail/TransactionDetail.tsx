@@ -80,24 +80,24 @@ const TransactionDetail = () => {
   return (
     <Window title="Transaction details">
       {paymentProof && (
-      <TabsMenu>
-        <TabItem
-          active={activeTab === 'general'}
-          onClick={() => setActiveTab('general')}
-          onKeyDown={handleButton}
-          tabIndex={0}
-        >
-          General
-        </TabItem>
-        <TabItem
-          active={activeTab === 'payment-proof'}
-          onClick={() => setActiveTab('payment-proof')}
-          onKeyDown={handleButton}
-          tabIndex={-1}
-        >
-          Payment proof
-        </TabItem>
-      </TabsMenu>
+        <TabsMenu>
+          <TabItem
+            active={activeTab === 'general'}
+            onClick={() => setActiveTab('general')}
+            onKeyDown={handleButton}
+            tabIndex={0}
+          >
+            General
+          </TabItem>
+          <TabItem
+            active={activeTab === 'payment-proof'}
+            onClick={() => setActiveTab('payment-proof')}
+            onKeyDown={handleButton}
+            tabIndex={-1}
+          >
+            Payment proof
+          </TabItem>
+        </TabsMenu>
       )}
       <TransactionDetailWrapper className={!paymentProof ? EmptyStyled : ''}>
         {activeTab === 'general' && transactionDetail && (
@@ -117,7 +117,6 @@ const TransactionDetail = () => {
             isBalanceHidden={isBalanceHidden}
             copy={copy}
             assetRate={assetRate}
-
           />
         )}
       </TransactionDetailWrapper>

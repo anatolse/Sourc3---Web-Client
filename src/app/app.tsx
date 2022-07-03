@@ -17,17 +17,22 @@ import { AuthContainer, Progress } from './containers/Auth';
 import { SettingsContainer } from './containers/Settings';
 import { NotificationContainer } from './containers/Notifications';
 import { TransactionContainer } from './containers/Transactions';
+import { AssetContainer } from './containers/Assets/containers';
 
 const trackStyle = css`
   z-index: 999;
   border-radius: 3px;
-  background-color: rgba(0,0,0, 0.03);
+  background-color: rgba(0, 0, 0, 0.03);
 `;
 
 const routes = [
   {
     path: '/',
     element: <Progress />,
+  },
+  {
+    path: `${ROUTES.ASSETS.BASE}/*`,
+    element: <AssetContainer />,
   },
   {
     path: `${ROUTES.AUTH.BASE}/*`,
@@ -70,7 +75,7 @@ const App = () => {
       }
       dispatch(sharedActions.navigate(''));
     }
-  }, [navigateURL, dispatch, navigate]);
+  }, [navigateURL, dispatch, navigate, location.pathname]);
 
   useEffect(() => {
     if (isLocked && !location.pathname.includes('auth')) {

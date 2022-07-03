@@ -61,10 +61,10 @@ const SetPassword = () => {
   };
 
   const AuthInfo = styled.p`
-  opacity: 0.5;
-  text-align: left;
-  line-height:20px;
-  font-size: 14px;
+    opacity: 0.5;
+    text-align: left;
+    line-height: 20px;
+    font-size: 14px;
   `;
 
   return (
@@ -72,9 +72,7 @@ const SetPassword = () => {
       <Window padding="auth" type="auth" title="Password" onPrevious={handlePrevious}>
         <FormStyled onSubmit={handleSubmit}>
           <AuthInfo>
-            Enter a strong password.
-            The password is specific to each client and is only store locally.
-
+            Enter a strong password. The password is specific to each client and is only store locally.
           </AuthInfo>
           <Input
             autoFocus
@@ -105,11 +103,7 @@ const SetPassword = () => {
       <Popup
         visible={warningVisible}
         title="Return to seed phrase"
-        confirmButton={(
-          <Button onClick={handleReturnClick}>
-            Return
-          </Button>
-        )}
+        confirmButton={<Button onClick={handleReturnClick}>Return</Button>}
         onCancel={() => toggleWarning(false)}
         footer
       >

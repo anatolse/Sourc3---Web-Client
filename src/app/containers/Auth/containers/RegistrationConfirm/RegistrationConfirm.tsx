@@ -54,19 +54,14 @@ const RegistrationConfirm: React.FC = () => {
     navigate(`${ROUTES.AUTH.REGISTRATION}?do_not_show_warn=true`);
   };
   const AuthInfo = styled.p`
-opacity: 0.5;
-text-align: left;
-line-height:20px;
-font-size: 14px;
-`;
+    opacity: 0.5;
+    text-align: left;
+    line-height: 20px;
+    font-size: 14px;
+  `;
 
   return (
-    <Window
-      type="auth"
-      padding="auth"
-      title="Confirmation"
-      onPrevious={() => toggleWarning(true)}
-    >
+    <Window type="auth" padding="auth" title="Confirmation" onPrevious={() => toggleWarning(true)}>
       <AuthInfo>
         Enter the words from the secret phrase corresponding the numbers shown below.
         {/* You can skip the confrimation. */}

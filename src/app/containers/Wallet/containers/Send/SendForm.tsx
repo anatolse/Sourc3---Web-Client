@@ -40,7 +40,7 @@ import {
 } from '@app/containers/Wallet/store/selectors';
 import { AssetTotal, TransactionAmount } from '@app/containers/Wallet/interfaces';
 import { AddressData } from '@core/types';
-import { SendConfirm } from '@app/containers';
+import { FullAddress, SendConfirm } from '@app/containers';
 
 const WarningStyled = styled.div`
   margin: 0px -20px 20px -20px;
@@ -49,7 +49,7 @@ const WarningStyled = styled.div`
 `;
 const WrapperAvailable = styled.div`
   display: flex;
-   flex-direction: column;
+  flex-direction: column;
   align-items: flex-start;
 `;
 
@@ -62,22 +62,22 @@ const maxButtonStyle = css`
 `;
 
 const formClassName = css`
-padding: 0 24px;
-&>div:not:first-child{
-  &div:first-child{
-    padding: 0 0 4px 0
+  padding: 0 24px;
+  & > div:not:first-child {
+    &div:first-child {
+      padding: 0 0 4px 0;
+    }
   }
-}
 `;
 const titleClassName = css`
-margin-bottom: 16px;
+  margin-bottom: 16px;
 `;
 const availableClassName = css`
-font-weight: 800;
-font-size: 18px
+  font-weight: 500;
+  font-size: 18px;
 `;
 const typeClassNames = css`
-margin-bottom: -32px;
+  margin-bottom: -32px;
 `;
 const buttonClassName = css`
 position absolute;
@@ -85,17 +85,17 @@ bottom: 40px;
 left:56px;
 `;
 const warningClassNames = css`
-margin-top: 8px;
-margin-bottom: 40px;
-text-align:left;
-height:auto;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  text-align: left;
+  height: auto;
 `;
 
 interface SendFormData {
   address: string;
   offline: boolean;
   send_amount: TransactionAmount;
-
+  comment: string;
   misc: {
     beam: AssetTotal;
     selected: AssetTotal;
@@ -167,9 +167,12 @@ const validate = async (values: SendFormData, setHint: (string) => void) => {
 const SendForm = () => {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [focus, setFocus] = useState(false);
+  const [showFullAddress, setShowFullAddress] = useState(false);
   const [validateInterval, setValidateInterval] = useState<null | NodeJS.Timer>(null);
   const [validateAmountInterval, setValidateAmountInterval] = useState<null | NodeJS.Timer>(null);
   const addressData = useSelector(selectSendAddressData());
+
   const [warning, setWarning] = useState('');
   const [hint, setHint] = useState('');
   const [selected, setSelected] = useState(ASSET_BLANK);
@@ -190,8 +193,9 @@ const SendForm = () => {
       offline: false,
       send_amount: {
         amount: '',
-        asset_id: 0,
+        asset_id: selected_asset_id,
       },
+      comment: '',
       misc: {
         addressData,
         fee,
@@ -307,7 +311,7 @@ const SendForm = () => {
         setWarning(AddressTip.REGULAR);
       }
     }
-  }, [addressData, values, fee, setFieldValue]);
+  }, [addressData, values, fee, setFieldValue, validateAmountHandler]);
 
   const groths = fromGroths(selected.available);
 
@@ -324,12 +328,14 @@ const SendForm = () => {
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+
     setFieldValue('address', value, true);
     if (value.length) validateAddressHandler(value);
   };
 
   const handleAssetChange = (e: TransactionAmount) => {
     const isMaxPrivacy = addressData.type === 'max_privacy';
+
     setFieldValue('send_amount', e, true);
     const asset = assets.find(({ asset_id: id }) => id === e.asset_id) ?? ASSET_BLANK;
     setSelected(asset);
@@ -386,7 +392,9 @@ const SendForm = () => {
   };
 
   const submitSend = useCallback(() => {
-    const { send_amount, address, offline } = values;
+    const {
+      send_amount, address, offline, comment,
+    } = values;
     const isMaxPrivacy = addressData.type === 'max_privacy';
     const value = send_amount.amount === '' ? 0 : toGroths(parseFloat(send_amount.amount));
 
@@ -394,7 +402,7 @@ const SendForm = () => {
       fee,
       value,
       address,
-      comment: '',
+      comment,
       asset_id: send_amount.asset_id,
       offline: offline || isMaxPrivacy,
     };
@@ -449,21 +457,18 @@ const SendForm = () => {
             </Section>
           )}
           <Section variant="send">
-            <Title variant="regular" className={titleClassName}>Available</Title>
+            <Title variant="regular" className={titleClassName}>
+              Available
+            </Title>
             <WrapperAvailable>
               <div className={availableClassName}>
                 {`${convertLowAmount(groths)} ${truncate(selected.metadata_pairs.N)}`}
               </div>
               {selected.asset_id === 0 && !errors.send_amount && <Rate value={groths} />}
               {groths > 0 && (
-              <Button
-                variant="max"
-                pallete="orange"
-                className={maxButtonStyle}
-                onClick={() => handleMaxAmount()}
-              >
-                max
-              </Button>
+                <Button variant="max" pallete="orange" className={maxButtonStyle} onClick={() => handleMaxAmount()}>
+                  max
+                </Button>
               )}
             </WrapperAvailable>
           </Section>
@@ -474,7 +479,11 @@ const SendForm = () => {
             onInput={onCommentChange}
           />
         </Section> */}
-          {warning && <Section variant="warning" className={warningClassNames}>{warning}</Section>}
+          {warning && (
+            <Section variant="warning" className={warningClassNames}>
+              {warning}
+            </Section>
+          )}
           <Button
             className={!warning ? `${buttonClassName}` : ''}
             pallete="orange"

@@ -73,9 +73,9 @@ const Profile = styled.div`
 `;
 const Name = styled.p`
 margin: 0
-font-weight: 800;
+font-weight: 500;
 font-size: 16px;
-line-height: 19px;
+line-height: 18.8px;
 margin: 16px 10px 16px;
 text-align: right;
 letter-spacing: 0.1px;
@@ -98,10 +98,7 @@ const overlay = css`
 `;
 
 function Manage() {
-  const avatar = [IconProfileLarge,
-    IconProfileLarge2,
-    IconProfileLarge3,
-    IconProfileLarge4];
+  const avatar = [IconProfileLarge, IconProfileLarge2, IconProfileLarge3, IconProfileLarge4];
 
   const [data, setData] = useState([]);
   const [visiblePopup, setVisiblePopup] = useState(false);
@@ -111,17 +108,16 @@ function Manage() {
   const inputRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
-    if (localStorage.length === 0 || (JSON.parse(localStorage.getItem('default'))) === null) {
+    if (localStorage.length === 0 || JSON.parse(localStorage.getItem('default')) === null) {
       localStorage.setItem('default', JSON.stringify(profile));
     }
-    setData((JSON.parse(localStorage.getItem('default'))));
+    setData(JSON.parse(localStorage.getItem('default')));
   }, []);
 
   useEffect(() => {
     localStorage.setItem('default', JSON.stringify(data));
     const activePid = JSON.parse(localStorage.getItem('default')).filter((item) => item.active === true);
-    chrome.storage.sync.set({ activePid }, () => {
-    });
+    chrome.storage.sync.set({ activePid }, () => {});
   }, [data]);
 
   const addUser = (newName) => {
@@ -141,7 +137,10 @@ function Manage() {
     //   return id;
     // };
     const newData = {
-      id: data.length, name: newName || `User ${data.length + 1}`, active: false, avatar: ava,
+      id: data.length,
+      name: newName || `User ${data.length + 1}`,
+      active: false,
+      avatar: ava,
     };
     setData([...data, newData]);
   };
@@ -233,7 +232,6 @@ function Manage() {
                         setName(item.name);
                         setEdit(true);
                       }}
-
                     >
                       Edit profile
                     </Button>
@@ -264,12 +262,7 @@ function Manage() {
     <>
       <Window title="Manage profiles">
         <ProfileComponent>
-          {data && data.map((item) => (
-            <ContainerProfile
-              item={item}
-              key={item.id}
-            />
-          ))}
+          {data && data.map((item) => <ContainerProfile item={item} key={item.id} />)}
         </ProfileComponent>
         <Button onClick={() => setVisiblePopup(true)}>Add new profile</Button>
       </Window>
@@ -282,7 +275,7 @@ function Manage() {
             <Button pallete="orange" onClick={() => handleConfirm(id)}>
               Edit
             </Button>
-      )}
+          )}
           footer
         >
           <Input
@@ -293,27 +286,21 @@ function Manage() {
             onChange={(e) => setName(e.target.value)}
           />
         </Popup>
-      )
-        : (
-          <Popup
-            visible={visiblePopup}
-            onCancel={() => setVisiblePopup(false)}
-            title="Enter your name account"
-            confirmButton={(
-              <Button pallete="orange" onClick={() => handleConfirm(id)}>
-                Add user
-              </Button>
-    )}
-            footer
-          >
-
-            <Input
-              ref={inputRef}
-              maxLength={17}
-              placeholder={`User ${data.length + 1}`}
-            />
-          </Popup>
-        )}
+      ) : (
+        <Popup
+          visible={visiblePopup}
+          onCancel={() => setVisiblePopup(false)}
+          title="Enter your name account"
+          confirmButton={(
+            <Button pallete="orange" onClick={() => handleConfirm(id)}>
+              Add user
+            </Button>
+          )}
+          footer
+        >
+          <Input ref={inputRef} maxLength={17} placeholder={`User ${data.length + 1}`} />
+        </Popup>
+      )}
     </>
   );
 }

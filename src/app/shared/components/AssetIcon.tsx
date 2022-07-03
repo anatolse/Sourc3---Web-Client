@@ -24,10 +24,7 @@ const ContainerStyled = styled.div<AssetIconProps>`
   color: ${({ asset_id }) => (PALLETE_ASSETS[asset_id] ? PALLETE_ASSETS[asset_id] : PALLETE_ASSETS[asset_id % PALLETE_ASSETS.length])};
 `;
 
-const AssetIcon: React.FC<AssetIconProps> = ({
-  asset_id = 0, className,
-  size = 'small',
-}) => {
+const AssetIcon: React.FC<AssetIconProps> = ({ asset_id = 0, className, size = 'small' }) => {
   // const iconSC3 = (size === 'large' ? IconSR3Asset : Sourc3Icon);
   const iconSC3 = () => {
     switch (size) {

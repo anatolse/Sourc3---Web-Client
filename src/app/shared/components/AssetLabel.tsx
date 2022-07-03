@@ -30,7 +30,7 @@ const ContainerStyled = styled.div`
 
 const AmountStyled = styled.span<AssetLabelProps>`
   flex-grow: 1;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 26px;
   line-height: 38px;
   display: flex;
@@ -41,7 +41,6 @@ const iconClassName = css`
   right: 100%;
   margin-right: 16px;
   top: 7px;
-  
 `;
 
 const rateStyle = css`
@@ -52,14 +51,13 @@ position: absolute;
 top: 40px;
 font-size: 14px;
 line-height: 17px;
-font-weight: 700;
+font-weight: 400;
 }
 `;
 const Name = styled.div`
-margin-left: 5px
+  margin-left: 5px;
 `;
-const Label = styled.div`
-`;
+const Label = styled.div``;
 
 const AssetLabel: React.FC<AssetLabelProps> = ({
   value,
@@ -97,7 +95,6 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
           <Label>{label}</Label>
           <Name>{name}</Name>
         </AmountStyled>
-
       </>
       {showRate && !isBalanceHidden ? <Rate value={amount} income={income} className={rateStyle} /> : null}
     </ContainerStyled>

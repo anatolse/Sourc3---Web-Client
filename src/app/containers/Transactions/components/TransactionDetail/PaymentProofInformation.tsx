@@ -1,19 +1,19 @@
 import React from 'react';
-import { PaymentProof, TransactionDetail, Rate } from '@core/types';
+import { PaymentProof, Rate, TransactionDetail } from '@core/types';
 import { styled } from '@linaria/react';
 
+import { fromGroths, toUSD } from '@core/utils';
 import { Button } from '@app/shared/components';
 import { CopySmallIcon, ExternalLink } from '@app/shared/icons';
 import config from '@app/config';
 import { InformationItem } from '@app/shared/components/DetailInformationLayout';
-import { fromGroths, toUSD } from '@app/core/utils';
 import AssetLabel from '../../../../shared/components/AssetLabel';
 
 interface PaymentProofInformationInterface {
   paymentProof: PaymentProof;
-  transactionDetail: TransactionDetail;
   isBalanceHidden: boolean;
   copy: (value: string, tM: string) => void;
+  transactionDetail: TransactionDetail;
   assetRate: Rate;
 }
 
@@ -23,9 +23,9 @@ const PaymentProofWrapper = styled.div`
 
 const PaymentProofInformation = ({
   paymentProof,
-  transactionDetail,
   isBalanceHidden,
   copy,
+  transactionDetail,
   assetRate,
 }: PaymentProofInformationInterface) => (
   <PaymentProofWrapper>
@@ -61,7 +61,7 @@ const PaymentProofInformation = ({
           value={paymentProof.amount}
           asset_id={paymentProof.asset_id}
           comment=""
-          className="asset-label"
+          className={`asset-label ${transactionDetail.income ? 'income' : 'outcome'}`}
           iconClass="iconClass"
           showRate={false}
           isBalanceHidden={isBalanceHidden}
@@ -69,8 +69,8 @@ const PaymentProofInformation = ({
         />
         <div className="amount-comment">
           {assetRate?.rate
-            ? `${toUSD(fromGroths(transactionDetail.value), fromGroths(assetRate?.rate))} `
-                  + '(сalculated with the exchange rate at the time of the transaction)'
+            ? `${toUSD(fromGroths(paymentProof.amount), fromGroths(assetRate?.rate))} `
+              + '(сalculated with the exchange rate at the time of the transaction)'
             : 'Exchange rate was not available at the time of transaction'}
         </div>
       </div>

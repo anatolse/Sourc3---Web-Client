@@ -19,9 +19,7 @@ const Transactions = () => {
   //   navigate(ROUTES.WALLET.BASE);
   // }, [navigate]);
 
-  return (
-    <TransactionList data={sorted} />
-  );
+  return <TransactionList data={sorted} />;
 };
 
 export default Transactions;

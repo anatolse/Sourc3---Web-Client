@@ -45,7 +45,7 @@ const BARS_MAX = 6;
 const ContainerStyled = styled.div`
   position: relative;
   height: 40px;
-  margin: 20px 0;
+  margin: 20px 0 0;
 `;
 
 const ListStyled = styled.ol`
@@ -84,7 +84,7 @@ const ListItemStyled = styled.li<{ points: number }>`
 // `;
 
 const IconItem = styled.li`
-margin-left: 52px
+  margin-left: 52px;
 `;
 const ParagraphStyled = styled.p`
 color: rgba(0,0,0, 0.5);
@@ -99,17 +99,16 @@ left: 24px;
 `;
 
 const PopupListStyled = styled.ol`
-list-style: disc;
-color: rgba(0, 0, 0, 0.5);
-text-align: left;
-line-height:20px;
-font-size: 14px;
-margin-left: 24px;
-margin-top: 16px;
+  list-style: disc;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: left;
+  line-height: 20px;
+  font-size: 14px;
+  margin-left: 24px;
+  margin-top: 16px;
 `;
 
-const PopupListItemStyled = styled.li`
-`;
+const PopupListItemStyled = styled.li``;
 
 const PasswordStrength: React.FC<PasswordStrengthProps> = ({ value }) => {
   const points = ratePassword(value);
@@ -125,7 +124,9 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ value }) => {
           {bars.map((p, index) => (
             <ListItemStyled key={index} points={p} />
           ))}
-          <IconItem><Button variant="icon" icon={IconQuestion} onClick={() => setPopupVisible(true)} /></IconItem>
+          <IconItem>
+            <Button variant="icon" icon={IconQuestion} onClick={() => setPopupVisible(true)} />
+          </IconItem>
         </ListStyled>
         {/* {title && (
         <StrengthTitleStyled>
@@ -135,11 +136,7 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ value }) => {
         </StrengthTitleStyled>
         )} */}
       </ContainerStyled>
-      <Popup
-        visible={popupVisible}
-        onCancel={() => setPopupVisible(false)}
-        closeButton
-      >
+      <Popup visible={popupVisible} onCancel={() => setPopupVisible(false)} closeButton>
         <ParagraphStyled>Strong password needs to meet the following requirements:</ParagraphStyled>
         <br />
         <PopupListStyled>

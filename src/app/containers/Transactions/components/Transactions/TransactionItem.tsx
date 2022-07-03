@@ -20,11 +20,11 @@ const ContainerStyled = styled.div`
 `;
 
 const AmountStyled = styled.span`
-flex-grow: 1;
-font-weight: 800;
-font-size: 18px;
-line-height: 22px;
-letter-spacing: 0.1px;
+  flex-grow: 1;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.1px;
 `;
 
 const iconClassName = css`
@@ -33,18 +33,17 @@ const iconClassName = css`
   // margin: -4px;
   margin-top: 4px;
   width: 16px;
-  height:16px;
+  height: 16px;
   margin-right: 8px;
 `;
 
 const rateStyle = css`
   margin: 0;
-  color: rgba(0,0,0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-
 `;
 
 export const MultipleAssets = styled.div`
@@ -62,13 +61,15 @@ export const MultipleAssets = styled.div`
 `;
 
 const TransactionDate = styled.div`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.1px;
-  color: rgba(0,0,0,0.5);
-  text-align: right;
-  width: 100%;
+font-size: 14px;
+line-height: 17px;
+letter-spacing: 0.1px;
+color: rgba(0,0,0,0.5);
+text-align: right;
+width: 100%;
+span{
+    font-weight: 400 !important;
+  }
   > span:not:last-child {
     font-weight:600;
     margin-right:6px;
@@ -174,9 +175,7 @@ const TransactionItem = ({
 
     return (
       <>
-        <span>
-          {`${time},`}
-        </span>
+        <span>{`${time},`}</span>
         <span>{date}</span>
       </>
     );

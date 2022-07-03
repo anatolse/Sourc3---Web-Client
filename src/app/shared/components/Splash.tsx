@@ -23,16 +23,17 @@ const ContainerStyled = styled.div<SplashProps>`
 `;
 
 const TitleStyled = styled.div`
-position: absolute;
-font-size: 24px;
-font-weight: 900;
-color: var(--color-black);
-top: 255px;
-left: 96px;
-width: 190px;
-height: 60px;
-text-align: right;
-line-height: 30px;
+  font-family: 'VisbyCF';
+  position: absolute;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--color-black);
+  top: 255px;
+  left: 96px;
+  width: 190px;
+  height: 60px;
+  text-align: right;
+  line-height: 30px;
 `;
 
 const backButtonStyle = css`
@@ -46,9 +47,9 @@ export const Splash: React.FC<SplashProps> = ({
     {onReturn && <BackButton onClick={onReturn} className={backButtonStyle} />}
     <Logo size={size} />
     <TitleStyled>
-      Building<br/>
-      the Web3-way
-
+      Building
+      <br />
+      the Web3-way.
     </TitleStyled>
     {children}
   </ContainerStyled>

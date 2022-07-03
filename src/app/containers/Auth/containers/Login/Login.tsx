@@ -13,20 +13,19 @@ import { selectErrorMessage } from '@app/shared/store/selectors';
 import { css } from '@linaria/core';
 
 const formClassName = css`
-position: absolute;
-left: 40px;
-top: 380px;
-right: 40px;
-> button:last-child {
-  margin-bottom: 0 !important;
-}
-> button:first-child {
-  margin-bottom: 32px !important;
-}
-
+  position: absolute;
+  left: 40px;
+  top: 380px;
+  right: 40px;
+  > button:last-child {
+    margin-bottom: 0 !important;
+  }
+  > button:first-child {
+    margin-bottom: 32px !important;
+  }
 `;
 const buttonClassName = css`
-margin-bottom: 32px !important;
+  margin-bottom: 32px !important;
 `;
 
 const Login: React.FC = () => {
@@ -48,12 +47,14 @@ const Login: React.FC = () => {
     },
     [dispatch],
   );
+
   return (
     <>
       <Splash size="large">
         <form autoComplete="off" noValidate onSubmit={handleSubmit} className={formClassName}>
           <Input
             autoFocus
+            id="pwd"
             name="password"
             type="password"
             placeholder="Enter your password"
@@ -83,11 +84,7 @@ const Login: React.FC = () => {
         visible={warningVisible}
         title="Restore web client or create a new one"
         footer
-        confirmButton={(
-          <Button onClick={() => navigate(ROUTES.AUTH.BASE)}>
-            I agree
-          </Button>
-        )}
+        confirmButton={<Button onClick={() => navigate(ROUTES.AUTH.BASE)}>I agree</Button>}
         onCancel={() => {
           toggleWarning(false);
         }}

@@ -66,9 +66,7 @@ const GeneralTransactionInformation = ({
 
     return (
       <>
-        <span>
-          {`${time},`}
-        </span>
+        <span>{`${time}, `}</span>
         <span>{` ${date}`}</span>
       </>
     );
@@ -151,6 +149,21 @@ const GeneralTransactionInformation = ({
                 + '(сalculated with the exchange rate at the time of the transaction)'
               : 'Exchange rate was not available at the time of transaction'}
           </div>
+
+          {/* {transactionDetail.asset_id !== 0 && (
+            <div className="confidential-id">
+              <div className="confidential-id-label">Confidential asset ID:</div>
+              <div className="confidential-id-value">
+                <div className="val">{transactionDetail.asset_id}</div>
+                <Button
+                  variant="icon"
+                  pallete="white"
+                  icon={ExternalLink}
+                  onClick={() => window.open(config.explorer_url_confidential_id + transactionDetail.asset_id)}
+                />
+              </div>
+            </div>
+          )} */}
         </div>
       </InformationItem>
     ) : null;
@@ -218,7 +231,6 @@ const GeneralTransactionInformation = ({
               asset_id={0}
               comment=""
               className="asset-label fee"
-              // iconClass="iconClass"
               showRate={false}
               isBalanceHidden={isBalanceHidden}
               icon={false}

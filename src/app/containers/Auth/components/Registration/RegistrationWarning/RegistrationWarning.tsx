@@ -3,30 +3,27 @@ import { styled } from '@linaria/react';
 
 import { Window, Button, Footer } from '@app/shared/components';
 
-import {
-} from '@app/shared/icons';
-
 const WarningListStyled = styled.ol`
-    list-style: auto;
-    padding-left: 20px;
-    color: rgba(0,0,0, 0.5);
-    margin-bottom:24px;
-    font-weight: 800;
+  list-style: auto;
+  padding-left: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
+  font-weight: 800;
   > li {
     position: relative;
     text-align: left;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 14px;
     line-height: 24px;
   }
 `;
 
 const AuthInfo = styled.p`
-opacity: 0.5;
-text-align: left;
-line-height:20px;
-font-size: 14px;
-font-weight: 700;
+  opacity: 0.5;
+  text-align: left;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 400;
 `;
 
 interface RegistrationWarningProps {
@@ -35,13 +32,8 @@ interface RegistrationWarningProps {
 
 const RegistrationWarning: React.FC<RegistrationWarningProps> = ({ onClick }) => (
   <Window padding="auth" type="auth" title="Authorization">
-    <AuthInfo>
-      SOURC3 is a decentralized platform. Therefore authorization is done through a secret phrase.
-    </AuthInfo>
-    <AuthInfo>
-      {' '}
-      In the next screen you will be presented with the twelve words.
-    </AuthInfo>
+    <AuthInfo>SOURC3 is a decentralized platform. Therefore authorization is done through a secret phrase.</AuthInfo>
+    <AuthInfo> In the next screen you will be presented with the twelve words.</AuthInfo>
     <WarningListStyled>
       <li>Copy them</li>
       <li>Keep them safe</li>

@@ -25,9 +25,9 @@ interface StatusLabelProps {
 
 const ContainerStyled = styled.div<{ color: string }>`
   // margin-top: 8px;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 16px;
   color: ${({ color }) => color};
   text-align: right;
   letter-spacing: 0.1px;

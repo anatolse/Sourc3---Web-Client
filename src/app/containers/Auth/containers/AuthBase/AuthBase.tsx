@@ -46,7 +46,6 @@ const AuthBase: React.FC = () => {
         <p>
           Please notice that if you use your client on another device, your balance will be up to date, but transaction
           history and addresses will be kept separately on each device.
-
         </p>
       </Popup>
     </>
