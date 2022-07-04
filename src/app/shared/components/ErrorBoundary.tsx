@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@linaria/react';
-import { ErrorSvg } from '@app/shared/icons';
+// import { ErrorSvg } from '@app/shared/icons';
 
 interface State {
   hasError: boolean;
@@ -42,7 +42,7 @@ export default class ErrorBoundary extends React.Component<any, State> {
       // You can render any custom fallback UI
       return (
         <ErrorWrapper>
-          <ErrorSvg />
+          {/* <ErrorSvg /> */}
           <h1>Something went wrong.</h1>
           <h2>Please, reload extension.</h2>
         </ErrorWrapper>

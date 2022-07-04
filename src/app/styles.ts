@@ -18,7 +18,7 @@ css`
       --color-black: #000000;
       --toastify-toast-min-height: 48px;
       --toastify-toast-max-height: 800px;
-      --color-currentRole: gray;
+      --color-currentRole: rgba(0,0,0, 0.3);
       --color-rgba-blue: rgba(77,163,230, 0.2)
 
 

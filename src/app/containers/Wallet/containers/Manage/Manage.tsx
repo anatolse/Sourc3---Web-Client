@@ -206,7 +206,11 @@ function Manage() {
           <Profile>
             <Button variant="icon" icon={avatar[item.avatar]} />
             <Name>{item.name}</Name>
-            <Button onClick={() => selectProfile(item.id)} pallete="orange" variant="switch">
+            <Button
+              onClick={() => selectProfile(item.id)}
+              pallete={item.active ? 'currentRole' : 'orange'}
+              variant="switch"
+            >
               {item.active ? 'Current role' : 'Switch'}
             </Button>
           </Profile>

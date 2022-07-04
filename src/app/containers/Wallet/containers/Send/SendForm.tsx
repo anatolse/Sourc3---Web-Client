@@ -13,7 +13,7 @@ import { styled } from '@linaria/react';
 import LabeledToggle from '@app/shared/components/LabeledToggle';
 import { css } from '@linaria/core';
 import {
-  convertLowAmount, fromGroths, toGroths, truncate,
+  compact, convertLowAmount, fromGroths, toGroths, truncate,
 } from '@core/utils';
 import { useFormik } from 'formik';
 
@@ -193,7 +193,7 @@ const SendForm = () => {
       offline: false,
       send_amount: {
         amount: '',
-        asset_id: selected_asset_id,
+        asset_id: 0,
       },
       comment: '',
       misc: {
@@ -215,6 +215,8 @@ const SendForm = () => {
   } = formik;
 
   const { type: addressType } = addressData;
+
+  const compactAddress = compact(values.address, 15);
 
   useEffect(() => {
     if (selected_asset_id !== 0) {
@@ -245,6 +247,7 @@ const SendForm = () => {
 
   const validateAmountHandler = (total: TransactionAmount, offline: boolean) => {
     const { amount, asset_id } = total;
+
     if (amount === '0' || !amount) {
       setFieldValue('send_amount', total, true);
       return;
@@ -311,7 +314,7 @@ const SendForm = () => {
         setWarning(AddressTip.REGULAR);
       }
     }
-  }, [addressData, values, fee, setFieldValue, validateAmountHandler]);
+  }, [addressData, values, fee, setFieldValue]);
 
   const groths = fromGroths(selected.available);
 
@@ -436,9 +439,11 @@ const SendForm = () => {
               label={getAddressHint()}
               valid={isAddressValid()}
               placeholder="Paste the recipient address"
-              value={values.address}
+              value={focus ? values.address : compactAddress}
               onInput={handleAddressChange}
               className="send-input"
+              onFocus={() => setFocus(true)}
+              onBlur={() => setFocus(false)}
             />
             {values.address && <IconCancel className="cancel-button" onClick={() => setFieldValue('address', '')} />}
           </Section>
