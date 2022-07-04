@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import {
   Button, Input, Popup, Section, Window,
 } from '@app/shared/components';
@@ -114,11 +116,14 @@ function Manage() {
     setData(JSON.parse(localStorage.getItem('default')));
   }, []);
 
-  useEffect(() => {
+  const setStorage = useCallback(() => {
+    // chrome.runtime.sendMessage({ name: 'hello', data });
     localStorage.setItem('default', JSON.stringify(data));
     const activePid = JSON.parse(localStorage.getItem('default')).filter((item) => item.active === true);
     chrome.storage.sync.set({ activePid }, () => {});
   }, [data]);
+
+  useEffect(() => setStorage, [data, setStorage]);
 
   const addUser = (newName) => {
     const ava = Math.floor(Math.random() * 4);
@@ -185,6 +190,10 @@ function Manage() {
       }
       item.active = false;
       return item;
+    });
+    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+      const [activeTab] = tabs;
+      chrome.tabs.sendMessage(activeTab.id, { type: 'set-pid', items: newData });
     });
     setData(newData);
   };
