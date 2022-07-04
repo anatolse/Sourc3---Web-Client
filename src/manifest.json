@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Sourc3 (dappnet)",
-  "short_name": "Sourc3 (dappnet)",
+  "name": "Sourc3 (masternet)",
+  "short_name": "Sourc3 (masternet)",
   "description": "Sourc3 Web Client",
-  "version": "0.0.410",
+  "version": "0.0.378",
   "cross_origin_embedder_policy": {
     "value": "require-corp"
   },

@@ -45,7 +45,7 @@ const dapp_net: Configuration = {
 };
 
 const production: Configuration = {
-  ...dapp_net,
+  ...master_net,
 };
 
 const config: ConfigurationObject = {

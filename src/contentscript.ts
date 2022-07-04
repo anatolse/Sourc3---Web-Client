@@ -96,7 +96,3 @@ window.addEventListener('message', (event) => {
     }
   }
 });
-
-chrome.runtime.onMessage.addListener((data) => {
-  if (data.type === 'set-pid') window.postMessage(data);
-});

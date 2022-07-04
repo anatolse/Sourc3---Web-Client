@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import produce from 'immer';
 import { ActionType, createReducer } from 'typesafe-actions';
 import { profile } from '../constants/profile';

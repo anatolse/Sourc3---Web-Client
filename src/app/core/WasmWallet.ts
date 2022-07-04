@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-constant-condition */
-/* eslint-disable func-names */
 import * as extensionizer from 'extensionizer';
 import * as passworder from 'browser-passworder';
 

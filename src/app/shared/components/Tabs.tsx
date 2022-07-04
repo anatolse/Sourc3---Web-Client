@@ -8,6 +8,7 @@ export interface ITab {
 }
 
 export interface ITabsProps {
+  className?: string;
   selectedId?: string | number;
   tabs?: ITab[];
   onClick?: (id: string | number) => void;
